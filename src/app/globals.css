@@ -1,26 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;500&family=Figtree:wght@300;400;500;600&display=swap');
+
 @import "tailwindcss";
 
+/* ─── DESIGN TOKENS ─── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --accent:       #a78bfa;
+  --accent-soft:  rgba(167, 139, 250, 0.10);
+  --accent-mid:   rgba(167, 139, 250, 0.22);
+  --accent-line:  rgba(167, 139, 250, 0.35);
+
+  --serif:  'Instrument Serif', serif;
+  --mono:   'Geist Mono', monospace;
+  --sans:   'Figtree', sans-serif;
+  --nav-h:  60px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── LIGHT MODE ─── */
+:root, [data-theme="light"] {
+  --bg:         #fafaf9;
+  --bg2:        #f3f2ef;
+  --surface:    #ffffff;
+  --surface2:   #f7f6f3;
+  --border:     #e5e3de;
+  --border2:    #d0cdc7;
+  --text:       #1a1916;
+  --text2:      #6b6760;
+  --text3:      #9c9890;
+  --shadow:     0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  --shadow-lg:  0 2px 8px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.06);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── DARK MODE ─── */
+[data-theme="dark"] {
+  --bg:         #0f0f11;
+  --bg2:        #161619;
+  --surface:    #1c1c1f;
+  --surface2:   #222226;
+  --border:     #2a2a2e;
+  --border2:    #3a3a40;
+  --text:       #f0ede8;
+  --text2:      #888480;
+  --text3:      #555250;
+  --shadow:     0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+  --shadow-lg:  0 2px 8px rgba(0,0,0,0.4), 0 12px 40px rgba(0,0,0,0.3);
+}
+
+/* ─── BASE ─── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.6;
+  font-size: 15px;
+  transition: background 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* ─── TYPOGRAPHY HELPERS ─── */
+.font-serif  { font-family: var(--serif); }
+.font-mono   { font-family: var(--mono); }
+.font-sans   { font-family: var(--sans); }
+
+/* ─── REVEAL ANIMATION ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  animation: fadeUp 0.5s ease both;
+}
+.delay-1 { animation-delay: 0.07s; }
+.delay-2 { animation-delay: 0.14s; }
+.delay-3 { animation-delay: 0.21s; }
+.delay-4 { animation-delay: 0.28s; }
+.delay-5 { animation-delay: 0.35s; }
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  { background: var(--border2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ─── BUTTON HOVERS ─── */
+.btn-solid { transition: opacity 0.18s, transform 0.15s; }
+.btn-solid:hover { opacity: 0.82; transform: translateY(-1px); }
+.btn-outline { transition: border-color 0.18s, color 0.18s; }
+.btn-outline:hover { border-color: var(--accent) !important; color: var(--accent) !important; }
+
+/* ─── CONTACT LINK HOVERS ─── */
+.clink { transition: color 0.18s; }
+.clink:hover { color: var(--accent) !important; }
+
+/* ─── CHIP HOVERS ─── */
+.chip:hover { border-color: var(--accent-line) !important; color: var(--accent) !important; }
+
+/* ─── PROJECT CARD ─── */
+.proj-card { transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s; }
+.proj-card:hover { border-color: var(--border2) !important; box-shadow: var(--shadow-lg) !important; transform: translateY(-2px); }
+
+/* ─── EXPERIENCE CARD ─── */
+.exp-card { transition: box-shadow 0.2s, border-color 0.2s; }
+.exp-card:hover { border-color: var(--border2) !important; box-shadow: var(--shadow) !important; }
