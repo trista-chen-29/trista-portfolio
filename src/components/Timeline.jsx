@@ -33,7 +33,11 @@ export default function Timeline({ items }) {
             <div className="tl-card">
               <div className="tl-period">{item.period}</div>
               <div className="tl-role">{item.role}</div>
-              <div className="tl-company">{item.company}</div>
+              <div className="tl-company">
+                {item.companyHref ? (
+                  <a href={item.companyHref} target="_blank" rel="noreferrer">{item.company}</a>
+                ) : item.company}
+              </div>
               <div className="tl-pills">
                 <span className={`badge ${current ? 'badge-done' : 'badge-wip'}`}>
                   {typeLabel[item.type] || 'Role'}

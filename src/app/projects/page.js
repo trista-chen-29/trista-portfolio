@@ -396,6 +396,7 @@ const projects = [
     desc: 'YOLOv8 people counting on Ethos-U55 edge hardware. Reached mAP@0.5 0.979 and mAP@0.5:0.95 0.651 after 20–200+ epoch experiments, then held 20–22 FPS on-device.',
     tags: ['YOLOv8', 'Edge AI', 'Ethos-U55', 'Python'],
     role: 'Machine Learning Engineer',
+    href: 'https://github.com/walson6/Nuvoton-Team-2',
     art: <NuvotonArt />,
   },
   {
@@ -425,6 +426,7 @@ const projects = [
     desc: 'Multi-agent research pipeline: crawl Wikipedia with Playwright, structure results, store in Redis, then serve predicted follow-ups with semantic KNN (RedisVL) plus LLM-filtered prefetch so warm queries skip a recrawl.',
     tags: ['Python', 'RedisVL', 'uAgents', 'Playwright'],
     role: 'Backend / Agents',
+    href: 'https://github.com/codebyemily/AgentDex',
     art: <AgentDexArt />,
   },
   {
@@ -440,7 +442,7 @@ const projects = [
   {
     title: 'Cosmetic Safety Intelligence API',
     period: '2026',
-    status: 'done',
+    status: 'wip',
     desc: 'FastAPI service that turns product metadata and storage context into schema-validated expiration risk, recommended action, confidence, and cache/latency metadata via an LLM adapter.',
     tags: ['Python', 'FastAPI', 'Pydantic', 'LLM'],
     role: 'Backend Engineer',

@@ -7,27 +7,32 @@ const interests = [
   {
     emoji: '🧗',
     name: 'Rock climbing',
-    blurb: 'A puzzle you solve with your whole body. I like routes that look impossible until they click.',
+    blurb: 'Currently stuck on V1+ at the SJSU SRAC boulders. Goal this semester: send V2.',
   },
   {
     emoji: '🏋️',
     name: 'Gym',
-    blurb: 'Heavy sets, messy playlists, and the same stubbornness I bring to a flaky board.',
+    blurb: 'Still very beginner. Leg press, stairmaster, and treadmill are my favorites.',
   },
   {
-    emoji: '🍷',
-    name: 'Wine',
-    blurb: 'Curious about people, places, and why one grape can taste like a whole evening.',
+    emoji: '🍸',
+    name: 'Cocktails',
+    blurb: 'All the cocktails — just not too sweet. Hard liquor is fine; tequila is better.',
   },
   {
     emoji: '🎤',
     name: 'Karaoke',
-    blurb: 'High energy, zero shame, and a very committed chorus.',
+    blurb: 'Mandarin and English. Next boss fight: ROSÉ songs.',
   },
   {
     emoji: '🀄',
     name: 'Mahjong',
-    blurb: 'Pattern matching, table talk, and staying three tiles ahead.',
+    blurb: 'Five years on and off. I do not bet money — I bet push-ups and sit-ups.',
+  },
+  {
+    emoji: '🍜',
+    name: 'Foodie',
+    blurb: 'Always hunting the next bowl. Green onion pancake, malatang, pho, tom yum, matcha — yes.',
   },
 ];
 

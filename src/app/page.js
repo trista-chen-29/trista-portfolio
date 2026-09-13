@@ -32,7 +32,7 @@ export default function AboutPage() {
     <div className="page">
       <section className="hero reveal">
         <div>
-          <p className="page-kicker">Curious · Hands-on · Still figuring it out</p>
+          <p className="page-kicker">Firmware · Robotics · Validation · Software</p>
           <div className="hero-profile" style={{ marginTop: 10 }}>
             <div className="hero-photo">
               <Image
@@ -51,17 +51,20 @@ export default function AboutPage() {
           </div>
           <div className="hero-bio" style={{ marginTop: 14 }}>
             <p>
-              I like problems that do not sit still — a noisy sensor, a racey waitlist, a rover arm that has to feel honest in your hands.
-              Some days that looks like <span className="strong">firmware</span>. Some days it is <span className="strong">software</span>. A lot of days it is both.
+              Taiwanese, currently in San Jose, and a February 29 baby — so I only get a real birthday every four years.
+              I like problems that do not sit still: a noisy sensor, a racey waitlist, a rover arm that has to feel honest in your hands.
             </p>
             <p>
-              I currently do EMC/RF validation at <span className="accent">Element</span>. I have also interned in firmware at Alef,
-              built Mission Control tools for SJSU Robotics, and shipped event software with SCE.
+              Some days that is <span className="strong">firmware</span>. Some days it is <span className="strong">software</span>. A lot of days it is both.
             </p>
             <p>
-              Born on February 29, so I am technically still catching up on birthdays. Looking for{' '}
-              <span className="strong">internships now</span> and <span className="strong">new-grad roles after May 2027</span>
-              {' '}— firmware, robotics, validation, or software. If it is a puzzle with people on the other side, I am in.
+              I currently do EMC/RF validation at{' '}
+              <a className="accent" href="https://www.element.com/" target="_blank" rel="noreferrer">Element Materials Technology</a>.
+              I have also interned in firmware at Alef, built Mission Control tools for SJSU Robotics, and shipped event software with SCE.
+            </p>
+            <p>
+              Looking for <span className="strong">internships now</span> and <span className="strong">new-grad roles after May 2027</span>
+              {' '}in firmware, robotics, validation, or software.
             </p>
           </div>
           <div className="hero-actions" style={{ marginTop: 14 }}>
@@ -75,7 +78,7 @@ export default function AboutPage() {
         <div className="ios-group" style={{ margin: 0 }}>
           <div className="ios-group-label">Snapshot</div>
           <div className="ios-card">
-            <div className="ios-row"><span className="label">GPA</span><span className="value accent">3.7</span></div>
+            <div className="ios-row"><span className="label">GPA</span><span className="value">3.7</span></div>
             <div className="ios-row"><span className="label">Grad</span><span className="value">May 2027</span></div>
             <div className="ios-row stack">
               <span className="label">Seeking</span>

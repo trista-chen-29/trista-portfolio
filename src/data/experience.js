@@ -2,6 +2,7 @@ export const experiences = [
   {
     role: 'Associate Test Technician',
     company: 'Element Materials Technology · Morgan Hill, CA',
+    companyHref: 'https://www.element.com/',
     period: 'June 2026 – Present',
     type: 'current',
     bullets: [
