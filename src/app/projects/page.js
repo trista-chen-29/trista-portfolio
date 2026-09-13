@@ -420,7 +420,7 @@ const projects = [
   },
   {
     title: 'AgentDex',
-    period: '2026',
+    period: '2026 Berkeley AI Hackathon',
     status: 'done',
     desc: 'Multi-agent research pipeline: crawl Wikipedia with Playwright, structure results, store in Redis, then serve predicted follow-ups with semantic KNN (RedisVL) plus LLM-filtered prefetch so warm queries skip a recrawl.',
     tags: ['Python', 'RedisVL', 'uAgents', 'Playwright'],
@@ -429,7 +429,7 @@ const projects = [
   },
   {
     title: 'AI Meeting Agent',
-    period: 'Mar 2026 · Agent for Impact Hackathon',
+    period: '2026 NVIDIA Hackathon · Agent For Impact',
     status: 'done',
     desc: 'Paste a messy transcript, get summary, decisions, action items with owners/deadlines, blockers, and a copy-ready follow-up. FastAPI + NVIDIA Nemotron with schema validation; React/Vite UI.',
     tags: ['Python', 'FastAPI', 'Nemotron', 'React'],
@@ -478,10 +478,10 @@ const projects = [
     art: <ProfSupportArt />,
   },
   {
-    title: 'Orig — Mobile Site Fixes',
-    period: '2026 · codebyemily/Orig',
+    title: 'Orig',
+    period: '2026 SJ Hacks',
     status: 'done',
-    desc: 'Collaborative site work: hamburger menu and footer reflow for phones, navbar/footer polish, and PDF-related updates.',
+    desc: 'Team site for SJ Hacks 2026 — mobile menu, footer reflow, navbar polish, and PDF-related updates so it actually works on a phone.',
     tags: ['HTML', 'CSS', 'JavaScript'],
     role: 'Frontend Contributor',
     href: 'https://github.com/codebyemily/Orig',
@@ -495,7 +495,7 @@ export default function ProjectsPage() {
       <p className="page-kicker">Selected work</p>
       <h1 className="page-title">Projects</h1>
       <p className="page-sub">
-        Hardware-first: firmware, rover teleop, sensors, and edge inference — plus a few software systems on the side.
+        Hardware, software, and hackathon weekends — built with teammates who also refused to leave a bug alone.
       </p>
       <div className="project-grid">
         {projects.map((p, i) => (

@@ -4,9 +4,9 @@ import { experiences } from '@/data/experience';
 export default function ExperiencePage() {
   return (
     <div className="page">
-      <p className="page-kicker">Path</p>
+      <p className="page-kicker">So far</p>
       <h1 className="page-title">Experience</h1>
-      <p className="page-sub">Firmware, robotics, EMC/RF validation, and edge systems — tap a card to expand.</p>
+      <p className="page-sub">Labs, clubs, internships, and a few late nights that turned into real systems.</p>
       <Timeline items={experiences} />
     </div>
   );

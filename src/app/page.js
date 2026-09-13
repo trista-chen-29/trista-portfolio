@@ -1,24 +1,21 @@
 import Image from 'next/image';
 import { Chip } from '@/components/Ui';
+import Interests from '@/components/Interests';
 
 const skills = [
   { label: 'Embedded & robotics', items: [
     { name: 'ESP32' }, { name: 'CAN / TWAI' }, { name: 'Hall sensors' },
-    { name: 'Motor control' }, { name: 'Signal processing' }, { name: 'Arduino' }, { name: 'Socket.IO' },
+    { name: 'Motor control' }, { name: 'Arduino' }, { name: 'Socket.IO' },
+  ]},
+  { label: 'Software', items: [
+    { name: 'Python', icon: 'python' }, { name: 'JavaScript', icon: 'javascript' },
+    { name: 'TypeScript', icon: 'typescript' }, { name: 'Go', icon: 'go' },
+    { name: 'React', icon: 'react' }, { name: 'FastAPI', icon: 'fastapi' },
+    { name: 'Kafka', icon: 'apachekafka' }, { name: 'Redis', icon: 'redis' },
   ]},
   { label: 'Validation & test', items: [
     { name: 'EMC / RF' }, { name: 'Wi-Fi 6E' }, { name: 'Bluetooth' }, { name: 'UWB' },
-    { name: 'Spectrum analysis' }, { name: 'k6' }, { name: 'Linux' },
-  ]},
-  { label: 'Languages', items: [
-    { name: 'C' }, { name: 'C++', icon: 'cplusplus' }, { name: 'Python', icon: 'python' },
-    { name: 'Go', icon: 'go' }, { name: 'Java', icon: 'java' },
-    { name: 'JavaScript', icon: 'javascript' }, { name: 'TypeScript', icon: 'typescript' }, { name: 'SQL' },
-  ]},
-  { label: 'Tools', items: [
-    { name: 'Git', icon: 'git' }, { name: 'Docker', icon: 'docker' }, { name: 'PyTorch', icon: 'pytorch' },
-    { name: 'FastAPI', icon: 'fastapi' }, { name: 'React', icon: 'react' },
-    { name: 'Kafka', icon: 'apachekafka' }, { name: 'Redis', icon: 'redis' }, { name: 'MongoDB', icon: 'mongodb' },
+    { name: 'k6' }, { name: 'Linux' }, { name: 'C / C++', icon: 'cplusplus' },
   ]},
 ];
 
@@ -35,7 +32,7 @@ export default function AboutPage() {
     <div className="page">
       <section className="hero reveal">
         <div>
-          <p className="page-kicker">Firmware · Robotics · Validation · Test</p>
+          <p className="page-kicker">Curious · Hands-on · Still figuring it out</p>
           <div className="hero-profile" style={{ marginTop: 10 }}>
             <div className="hero-photo">
               <Image
@@ -54,21 +51,21 @@ export default function AboutPage() {
           </div>
           <div className="hero-bio" style={{ marginTop: 14 }}>
             <p>
-              I work close to hardware: <span className="strong">ESP32 motor control over CAN</span>,{' '}
-              <span className="strong">rover teleoperation</span>, and{' '}
-              <span className="strong">EMC/RF validation</span> in a certification lab.
+              I like problems that do not sit still — a noisy sensor, a racey waitlist, a rover arm that has to feel honest in your hands.
+              Some days that looks like <span className="strong">firmware</span>. Some days it is <span className="strong">software</span>. A lot of days it is both.
             </p>
             <p>
-              Right now I am an associate test technician at <span className="accent">Element Materials Technology</span>.
-              Before that I interned in firmware at Alef, built Mission Control software for SJSU Robotics, and deployed YOLOv8 on Ethos-U55 with Nuvoton.
+              I currently do EMC/RF validation at <span className="accent">Element</span>. I have also interned in firmware at Alef,
+              built Mission Control tools for SJSU Robotics, and shipped event software with SCE.
             </p>
             <p>
-              Open to <span className="strong">internships now</span> in embedded, firmware, validation, test, or robotics,
-              and <span className="strong">new-grad roles after May 2027</span>.
+              Born on February 29, so I am technically still catching up on birthdays. Looking for{' '}
+              <span className="strong">internships now</span> and <span className="strong">new-grad roles after May 2027</span>
+              {' '}— firmware, robotics, validation, or software. If it is a puzzle with people on the other side, I am in.
             </p>
           </div>
           <div className="hero-actions" style={{ marginTop: 14 }}>
-            <a className="btn-solid" href="mailto:yichichen229@gmail.com">Message</a>
+            <a className="btn-solid" href="mailto:yichichen229@gmail.com">Say hi</a>
             <a className="btn-outline" href="/Yi-Chi_Trista_Chen_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
             <a className="btn-outline" href="https://github.com/trista-chen-29" target="_blank" rel="noreferrer">GitHub</a>
             <a className="btn-outline" href="https://linkedin.com/in/yichichen229" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -88,6 +85,8 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <Interests />
+
       {skills.map((group) => (
         <div className="ios-group" key={group.label}>
           <div className="ios-group-label">{group.label}</div>
@@ -102,11 +101,11 @@ export default function AboutPage() {
       ))}
 
       <div className="ios-group">
-        <div className="ios-group-label">Education</div>
+        <div className="ios-group-label">School</div>
         <div className="ios-card">
           <div className="ios-row stack">
             <span className="label">B.S. Software Engineering · SJSU</span>
-            <span className="value">Expected May 2027 · computer organization, assembly, OS, DSA, databases, ML for big data</span>
+            <span className="value">May 2027 · architecture, assembly, OS, algorithms, databases</span>
           </div>
         </div>
       </div>

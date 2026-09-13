@@ -1,8 +1,16 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import { Tag, StatusBadge } from './Ui';
 
 export default function ProjectCard({ title, period, status, desc, tags, role, href, children }) {
   return (
-    <article className="proj-card">
+    <motion.article
+      className="proj-card"
+      whileHover={{ y: -4 }}
+      whileTap={{ scale: 0.985 }}
+      transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+    >
       <div className="proj-art">{children}</div>
       <div className="proj-body">
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, alignItems: 'flex-start' }}>
@@ -21,6 +29,6 @@ export default function ProjectCard({ title, period, status, desc, tags, role, h
           )}
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

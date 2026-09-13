@@ -3,8 +3,8 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/components/Navbar';
 
 export const metadata = {
-  title: 'Trista Chen — Firmware, Robotics & Validation',
-  description: 'SJSU Software Engineering, May 2027. Embedded firmware, robotics, EMC/RF validation, and test. Open to internships now and new-grad roles after graduation.',
+  title: 'Trista Chen',
+  description: 'SJSU Software Engineering, May 2027. Firmware, robotics, validation, and software. Internships now, new-grad after graduation. Climbs, sings, and stays curious.',
 };
 
 export const viewport = {
@@ -13,8 +13,8 @@ export const viewport = {
   maximumScale: 5,
   viewportFit: 'cover',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f2f2f7' },
-    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+    { media: '(prefers-color-scheme: light)', color: '#f7f1ea' },
+    { media: '(prefers-color-scheme: dark)', color: '#1b1613' },
   ],
 };
 
