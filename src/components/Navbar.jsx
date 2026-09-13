@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTheme } from './ThemeProvider';
 
@@ -13,6 +13,7 @@ const tabs = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { theme, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -128,6 +129,11 @@ export default function Navbar() {
               key={href}
               href={href}
               className={pathname === href ? 'active' : undefined}
+              onClick={(e) => {
+                e.preventDefault();
+                setOpen(false);
+                router.push(href);
+              }}
             >
               {label}
             </Link>
