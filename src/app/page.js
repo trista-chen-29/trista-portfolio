@@ -5,103 +5,97 @@ const skills = [
   {
     label: 'Languages',
     items: [
-      { name: 'JavaScript', hi: false,  icon: 'javascript' },
-      { name: 'Python',     hi: false,  icon: 'python' },
-      { name: 'Java',       hi: false,  icon: 'java' },
-      { name: 'SQL',        hi: false,  icon: null },
-      { name: 'C++',        hi: false, icon: 'cplusplus' },
-      { name: 'Go',         hi: false, icon: 'go' },
+      { name: 'Python', icon: 'python' },
+      { name: 'JavaScript', icon: 'javascript' },
+      { name: 'TypeScript', icon: 'typescript' },
+      { name: 'Go', icon: 'go' },
+      { name: 'Java', icon: 'java' },
+      { name: 'C / C++', icon: 'cplusplus' },
+      { name: 'SQL', icon: null },
     ],
   },
   {
     label: 'Frontend',
     items: [
-      { name: 'React',       hi: false,  icon: 'react' },
-      { name: 'Tailwind',    hi: false,  icon: 'tailwindcss' },
-      { name: 'Socket.IO',   hi: false, icon: null },
-      { name: 'MUI',         hi: false, icon: null },
-      { name: 'Vite',        hi: false, icon: 'vitejs' },
-      { name: 'JavaFX',      hi: false, icon: 'java' },
+      { name: 'React', icon: 'react' },
+      { name: 'Next.js', icon: 'nextjs' },
+      { name: 'Tailwind', icon: 'tailwindcss' },
+      { name: 'Socket.IO', icon: null },
+      { name: 'Vite', icon: 'vitejs' },
+      { name: 'JavaFX', icon: 'java' },
     ],
   },
   {
     label: 'Backend',
     items: [
-      { name: 'Node.js',   hi: false,  icon: 'nodejs' },
-      { name: 'Express',   hi: false,  icon: 'express' },
-      { name: 'Django',    hi: false,  icon: 'django' },
-      { name: 'FastAPI',   hi: false, icon: 'fastapi' },
-      { name: 'Gin',       hi: false, icon: 'go' },
+      { name: 'FastAPI', icon: 'fastapi' },
+      { name: 'Node.js', icon: 'nodejs' },
+      { name: 'Express', icon: 'express' },
+      { name: 'Gin', icon: 'go' },
+      { name: 'Django', icon: 'django' },
     ],
   },
   {
-    label: 'Databases',
+    label: 'Data / Infra',
     items: [
-      { name: 'MySQL',      hi: false,  icon: 'mysql' },
-      { name: 'PostgreSQL', hi: false,  icon: 'postgresql' },
-      { name: 'SQLite',     hi: false, icon: 'sqlite' },
-      { name: 'MongoDB',    hi: false, icon: 'mongodb' },
-      { name: 'Redis',      hi: false, icon: 'redis' },
+      { name: 'Kafka', icon: 'apachekafka' },
+      { name: 'Redis', icon: 'redis' },
+      { name: 'MongoDB', icon: 'mongodb' },
+      { name: 'MySQL', icon: 'mysql' },
+      { name: 'PostgreSQL', icon: 'postgresql' },
+      { name: 'Docker', icon: 'docker' },
+    ],
+  },
+  {
+    label: 'Embedded',
+    items: [
+      { name: 'ESP32', icon: null },
+      { name: 'CAN / TWAI', icon: null },
+      { name: 'Hall sensors', icon: null },
+      { name: 'Motor control', icon: null },
+      { name: 'Arduino', icon: null },
     ],
   },
   {
     label: 'AI / ML',
     items: [
-      { name: 'TensorFlow Lite', hi: false,  icon: 'tensorflow' },
-      { name: 'CNN',             hi: false, icon: null },
-      { name: 'Edge AI',         hi: false, icon: null },
-      { name: 'INT8 Quant.',     hi: false, icon: null },
-      { name: 'NLP',             hi: false, icon: null },
+      { name: 'YOLOv8', icon: null },
+      { name: 'scikit-learn', icon: null },
+      { name: 'PyTorch', icon: 'pytorch' },
+      { name: 'Edge AI', icon: null },
+      { name: 'Ethos-U55', icon: null },
     ],
   },
   {
-    label: 'Testing / QA',
+    label: 'Testing',
     items: [
-      { name: 'Selenium',  hi: false,  icon: 'selenium' },
-      { name: 'Postman',   hi: false,  icon: null },
-      { name: 'JMeter',    hi: false, icon: null },
-      { name: 'Jest',      hi: false, icon: 'jest' },
-    ],
-  },
-  {
-    label: 'Tools',
-    items: [
-      { name: 'Git',    hi: false,  icon: 'git' },
-      { name: 'Docker', hi: false, icon: 'docker' },
-      { name: 'Maven',  hi: false, icon: 'maven' },
-      { name: 'Kafka',  hi: false, icon: 'apachekafka' },
+      { name: 'k6', icon: null },
+      { name: 'Postman', icon: null },
+      { name: 'JMeter', icon: null },
+      { name: 'Playwright', icon: null },
+      { name: 'Git', icon: 'git' },
+      { name: 'Linux', icon: 'linux' },
     ],
   },
 ];
 
 const contacts = [
-  { icon: '✉',  text: 'yichichen229@gmail.com',       href: 'mailto:yichichen229@gmail.com' },
+  { icon: '✉', text: 'yichichen229@gmail.com', href: 'mailto:yichichen229@gmail.com' },
   { icon: 'in', text: 'linkedin.com/in/yichichen229', href: 'https://linkedin.com/in/yichichen229' },
-  { icon: 'gh', text: 'github.com/trista-chen-29',    href: 'https://github.com/trista-chen-29' },
-  { icon: '📍', text: 'Sunnyvale, CA',                href: null },
-  { icon: '📞', text: '(408) 549-6898',               href: 'tel:4085496898' },
+  { icon: 'gh', text: 'github.com/trista-chen-29', href: 'https://github.com/trista-chen-29' },
+  { icon: '📍', text: 'San Jose, CA', href: null },
+  { icon: '📞', text: '(408) 549-6898', href: 'tel:4085496898' },
 ];
 
 export default function AboutPage() {
   return (
-    <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '4rem 2.5rem 5rem' }}>
-
-      {/* ── Hero: Photo + Name + Bio ── */}
-      <div className="reveal" style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr auto',
-        gap: '4rem',
-        alignItems: 'start',
-        paddingBottom: '3rem',
-        borderBottom: '1px solid var(--border)',
-        marginBottom: '3rem',
-      }}>
-        {/* Left: name + bio + cta */}
-        <div>
-          <SectionLabel>Full-Stack · AI/ML · QA Engineering</SectionLabel>
+    <div className="page">
+      <div className="hero-grid reveal">
+        <div className="hero-copy">
+          <SectionLabel>Firmware · Robotics · Full-Stack · ML</SectionLabel>
           <h1 style={{
             fontFamily: 'var(--serif)',
-            fontSize: 'clamp(3rem, 6vw, 5rem)',
+            fontSize: 'clamp(2.4rem, 8vw, 5rem)',
             fontWeight: 400, lineHeight: 1.05,
             marginBottom: '1rem', letterSpacing: '-.01em',
           }}>
@@ -112,49 +106,43 @@ export default function AboutPage() {
             fontFamily: 'var(--mono)', fontSize: '.8rem', color: 'var(--text2)',
             letterSpacing: '.06em', marginBottom: '2rem',
           }}>
-            SJSU Software Engineering &apos;27 · Sunnyvale, CA
+            SJSU Software Engineering ’27 · San Jose, CA
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '560px' }}>
             <p style={{ fontSize: '.97rem', color: 'var(--text2)', lineHeight: 1.85 }}>
-              I build systems that{' '}
-              <strong style={{ color: 'var(--text)', fontWeight: 600 }}>hold up under pressure</strong>
-              {' '}— 9 production APIs at a live startup, a real-time health indicator on a Mars rover controller, and an AI agent that turns messy meeting notes into execution-ready action plans at a hackathon.
+              I build systems that stay reliable when the hardware, the network, or the load gets messy — from{' '}
+              <strong style={{ color: 'var(--text)', fontWeight: 600 }}>CAN teleoperation</strong> on a rover arm,
+              to a{' '}
+              <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Kafka + Redis registration platform</strong> that held 1k+ concurrent users,
+              to{' '}
+              <strong style={{ color: 'var(--text)', fontWeight: 600 }}>ESP32 wheel calibration</strong> that recovers zero after power loss.
             </p>
             <p style={{ fontSize: '.97rem', color: 'var(--text2)', lineHeight: 1.85 }}>
-              I work across the full stack — React frontends, Django & Express backends, relational databases — and I&apos;m deepening into{' '}
-              <span style={{ color: 'var(--accent)', fontWeight: 500 }}>ML engineering and QA</span>
-              {' '}through an industry-led Edge AI project with Nuvoton and robotics systems work at SJSU.
+              Right now I am an associate test technician at{' '}
+              <span style={{ color: 'var(--accent)', fontWeight: 500 }}>Element Materials Technology</span>,
+              running EMC/RF validation across Wi-Fi, Bluetooth, UWB, and 802.15.4. Before that I shipped software with SJSU Robotics, SCE Development, Alef, and an industry-led YOLOv8 project with Nuvoton.
             </p>
             <p style={{ fontSize: '.97rem', color: 'var(--text2)', lineHeight: 1.85 }}>
-              I&apos;m drawn to problems where{' '}
-              <strong style={{ color: 'var(--text)', fontWeight: 600 }}>clarity meets complexity</strong>
-              : clean API design, reliable data pipelines, and interfaces that surface what matters without clutter.
+              I like work where{' '}
+              <strong style={{ color: 'var(--text)', fontWeight: 600 }}>clarity meets complexity</strong>:
+              command/ACK recovery on lossy links, race-free waitlists, schema-checked ML APIs, and UIs that show commanded vs. actual state.
             </p>
             <p style={{ fontSize: '.97rem', color: 'var(--text2)', lineHeight: 1.85 }}>
-              Outside of code, I&apos;m usually jogging, rock climbing, shooting hoops, or tidying something that probably didn&apos;t need tidying. Also:{' '}
+              Outside of code I am usually jogging, rock climbing, shooting hoops, or tidying something that probably did not need tidying. Also:{' '}
               <span style={{ color: 'var(--accent)', fontWeight: 500 }}>I was born on February 29</span>
-              {' '}— so technically I&apos;ve only had 5 real birthdays. Make of that what you will.
+              {' '}— so technically I have only had 5 real birthdays.
             </p>
           </div>
           <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap', marginTop: '2rem' }}>
             <BtnSolid href="mailto:yichichen229@gmail.com">Get in Touch</BtnSolid>
+            <BtnOutline href="/Yi-Chi_Chen_Resume.pdf" target="_blank">Resume ↗</BtnOutline>
             <BtnOutline href="https://github.com/trista-chen-29" target="_blank">GitHub ↗</BtnOutline>
             <BtnOutline href="https://linkedin.com/in/yichichen229" target="_blank">LinkedIn ↗</BtnOutline>
           </div>
         </div>
 
-        {/* Right: Photo + quick stats beneath */}
         <div className="reveal delay-1" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
-          {/* Photo — portrait rectangle */}
-          <div style={{
-            width: '300px', height: '380px',
-            borderRadius: '12px',
-            overflow: 'hidden',
-            border: '1px solid var(--border)',
-            background: 'var(--bg2)',
-            flexShrink: 0,
-            position: 'relative',
-          }}>
+          <div className="hero-photo">
             <Image
               src="/photo.jpg"
               alt="Trista Chen"
@@ -163,18 +151,15 @@ export default function AboutPage() {
               priority
             />
           </div>
-
-          {/* Mini stats strip */}
-          <div style={{
-            width: '300px',
+          <div className="hero-stats" style={{
             background: 'var(--surface)', border: '1px solid var(--border)',
             borderRadius: '8px', overflow: 'hidden',
             boxShadow: 'var(--shadow)',
           }}>
             {[
-              { k: 'GPA',    v: '3.71 / 4.0',     accent: true  },
-              { k: 'Grad',   v: 'May 2027',        accent: false },
-              { k: 'Status', v: '● Open to roles', green: true   },
+              { k: 'GPA', v: '3.71 / 4.0', accent: true },
+              { k: 'Grad', v: 'May 2027', accent: false },
+              { k: 'Status', v: '● Open to internships', green: true },
             ].map(({ k, v, accent, green }, i, arr) => (
               <div key={k} style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
@@ -192,7 +177,6 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* ── Skills: line by line ── */}
       <div className="reveal delay-2">
         <SectionLabel>Technical Skills</SectionLabel>
         <div style={{ borderTop: '1px solid var(--border)' }}>
@@ -204,17 +188,41 @@ export default function AboutPage() {
 
       <Divider />
 
-      {/* ── Certifications ── */}
+      <div className="reveal delay-2">
+        <SectionLabel>Education</SectionLabel>
+        <div style={{ borderTop: '1px solid var(--border)' }}>
+          <div className="cert-row">
+            <span style={{
+              fontFamily: 'var(--mono)', fontSize: '.67rem', fontWeight: 500,
+              letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--text3)',
+              paddingTop: '.15rem',
+            }}>
+              SJSU
+            </span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '.4rem' }}>
+              <span style={{ fontSize: '.9rem', fontWeight: 500, color: 'var(--text)' }}>
+                B.S. in Software Engineering
+              </span>
+              <span style={{ fontFamily: 'var(--mono)', fontSize: '.72rem', color: 'var(--text2)', lineHeight: 1.6 }}>
+                Data Structures & Algorithms · Database Systems · Machine Learning for Big Data · Operating Systems · Computer Organization & Architecture · Assembly
+              </span>
+            </div>
+            <span style={{
+              fontFamily: 'var(--mono)', fontSize: '.72rem', color: 'var(--accent)',
+              whiteSpace: 'nowrap', paddingTop: '.15rem',
+            }}>
+              Expected May 2027
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <Divider />
+
       <div className="reveal delay-2">
         <SectionLabel>Certifications</SectionLabel>
         <div style={{ borderTop: '1px solid var(--border)' }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '110px 1fr auto',
-            alignItems: 'start',
-            gap: '1.5rem',
-            padding: '.85rem 0',
-          }}>
+          <div className="cert-row">
             <span style={{
               fontFamily: 'var(--mono)', fontSize: '.67rem', fontWeight: 500,
               letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--text3)',
@@ -227,7 +235,7 @@ export default function AboutPage() {
                 Google Project Management Certificate
               </span>
               <span style={{ fontFamily: 'var(--mono)', fontSize: '.72rem', color: 'var(--text2)', lineHeight: 1.6 }}>
-                6-course program covering project lifecycle, Agile & Scrum, risk management, stakeholder communication, and data-driven decision making. Relevant to planning and coordinating multi-phase software projects.
+                Project lifecycle, Agile & Scrum, risk management, stakeholder communication, and data-driven decision making.
               </span>
             </div>
             <span style={{
@@ -243,23 +251,17 @@ export default function AboutPage() {
       <Divider />
       <div className="reveal delay-3">
         <SectionLabel>Contact</SectionLabel>
-        <div style={{
-          background: 'var(--surface)', border: '1px solid var(--border)',
-          borderRadius: '8px', padding: '2.5rem',
-          display: 'grid', gridTemplateColumns: '1fr 1fr',
-          gap: '3rem', alignItems: 'center',
-          boxShadow: 'var(--shadow)',
-        }}>
+        <div className="contact-grid">
           <div>
             <h2 style={{
-              fontFamily: 'var(--serif)', fontSize: '2.2rem',
+              fontFamily: 'var(--serif)', fontSize: 'clamp(1.7rem, 5vw, 2.2rem)',
               fontWeight: 400, lineHeight: 1.2, marginBottom: '.75rem',
             }}>
               Let&apos;s build something{' '}
               <em style={{ fontStyle: 'italic', color: 'var(--accent)' }}>worth shipping.</em>
             </h2>
             <p style={{ fontSize: '.9rem', color: 'var(--text2)', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-              Open to internship and new grad roles in software engineering, full-stack, or ML/QA. My inbox is always open.
+              Open to internships in software, firmware, robotics, and ML engineering. Inbox is always open.
             </p>
             <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap' }}>
               <BtnSolid href="mailto:yichichen229@gmail.com">Send an Email</BtnSolid>
@@ -273,7 +275,6 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }

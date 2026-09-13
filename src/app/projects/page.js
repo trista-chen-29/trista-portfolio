@@ -13,13 +13,13 @@ function NuvotonArt() {
       </div>
       <span style={{ fontFamily: 'var(--mono)', fontSize: '.62rem', color: 'var(--accent)', letterSpacing: '.12em' }}>LIVE COUNT: 3 PERSONS</span>
       <div style={{ width: '80%', display: 'flex', flexDirection: 'column', gap: '.35rem' }}>
-        {[{ l: 'Accuracy', v: '96.2%', c: '#4ade80' }, { l: 'Inference', v: '17 FPS', c: '#4ade80' }, { l: 'Mode', v: 'ON-DEVICE', c: 'var(--accent)' }].map(({ l, v, c }) => (
+        {[{ l: 'mAP@0.5', v: '0.979', c: '#4ade80' }, { l: 'Inference', v: '22 FPS', c: '#4ade80' }, { l: 'NPU', v: 'Ethos-U55', c: 'var(--accent)' }].map(({ l, v, c }) => (
           <div key={l} style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--mono)', fontSize: '.6rem', color: 'var(--text2)' }}>
             <span>{l}</span><span style={{ color: c }}>{v}</span>
           </div>
         ))}
         <div style={{ height: '4px', background: 'var(--border)', borderRadius: '2px', overflow: 'hidden', marginTop: '.1rem' }}>
-          <div style={{ width: '96%', height: '100%', background: 'var(--accent)', borderRadius: '2px', opacity: .7 }} />
+          <div style={{ width: '98%', height: '100%', background: 'var(--accent)', borderRadius: '2px', opacity: .7 }} />
         </div>
       </div>
       <div style={{ position: 'absolute', bottom: '.75rem', right: '.75rem', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', textTransform: 'uppercase', padding: '.22rem .6rem', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '3px', color: 'var(--text2)' }}>Industry Project</div>
@@ -267,142 +267,247 @@ function JobTrackerArt() {
   );
 }
 
-function UARTArt() {
+function AlefArt() {
   return (
     <div style={{ position: 'absolute', inset: 0, padding: '.65rem', display: 'flex', flexDirection: 'column', gap: '.35rem' }}>
-      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '.35rem .6rem', display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.15rem' }}>
-        <span style={{ fontFamily: 'var(--mono)', fontSize: '.55rem', color: 'var(--text2)' }}>uart_drive_serial.py</span>
-        <span style={{ marginLeft: 'auto', fontFamily: 'var(--mono)', fontSize: '.5rem', color: '#f59e0b' }}>● pending hw</span>
+      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '.35rem .6rem', display: 'flex', justifyContent: 'space-between' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '.55rem', color: 'var(--text2)' }}>ESP32 · TWAI</span>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '.5rem', color: '#4ade80' }}>ZERO LOCKED</span>
       </div>
       <div style={{ display: 'flex', gap: '.4rem', flex: 1 }}>
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '.3rem' }}>
-          {["[msg_id]", "[length]", "[payload]"].map((label) => (
-            <div key={label} style={{ padding: '.3rem .5rem', background: 'var(--accent-soft)', border: '1px solid var(--accent-mid)', borderRadius: '3px', fontFamily: 'var(--mono)', fontSize: '.55rem', color: 'var(--accent)' }}>{label}</div>
+        <div style={{ flex: 1, background: 'var(--accent-soft)', border: '1px solid var(--accent-mid)', borderRadius: '4px', padding: '.5rem', display: 'flex', flexDirection: 'column', gap: '.3rem' }}>
+          {['Hall A', 'Hall B', 'Homing'].map((l) => (
+            <div key={l} style={{ fontFamily: 'var(--mono)', fontSize: '.52rem', color: 'var(--accent)' }}>{l} ●</div>
           ))}
-          <div style={{ padding: '.3rem .5rem', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: '3px', fontFamily: 'var(--mono)', fontSize: '.52rem', color: 'var(--text3)' }}>UART framing</div>
         </div>
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '.3rem' }}>
-          <div style={{ padding: '.35rem .5rem', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: '3px' }}>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '.5rem', color: 'var(--text3)', marginBottom: '.2rem' }}>Teams</div>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '.55rem', color: 'var(--text2)' }}>Mission Control</div>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '.55rem', color: 'var(--accent)' }}>↔ Firmware</div>
-          </div>
-          <div style={{ padding: '.35rem .5rem', background: 'rgba(251,191,36,.06)', border: '1px solid rgba(251,191,36,.2)', borderRadius: '3px' }}>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '.5rem', color: '#f59e0b', marginBottom: '.2rem' }}>Pending</div>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '.52rem', color: 'var(--text3)' }}>HW validation</div>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '.52rem', color: 'var(--text3)' }}>Framing confirm</div>
-          </div>
+        <div style={{ flex: 1, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '.5rem' }}>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '.5rem', color: 'var(--text3)' }}>Loop</div>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '.7rem', color: 'var(--accent)' }}>100 Hz</div>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '.5rem', color: 'var(--text3)', marginTop: '.4rem' }}>vel + incr pos</div>
         </div>
       </div>
-      <div style={{ position: 'absolute', bottom: '.75rem', right: '.75rem', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', textTransform: 'uppercase', padding: '.22rem .6rem', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '3px', color: 'var(--text2)' }}>SJSU Robotics</div>
+      <div style={{ position: 'absolute', bottom: '.75rem', right: '.75rem', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', textTransform: 'uppercase', padding: '.22rem .6rem', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '3px', color: 'var(--text2)' }}>Alef</div>
     </div>
   );
 }
 
-// Newest + in-progress first, then shipped oldest last
+function ChurnArt() {
+  return (
+    <div style={{ position: 'absolute', inset: 0, padding: '.65rem', display: 'flex', flexDirection: 'column', gap: '.35rem' }}>
+      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '.35rem .6rem', display: 'flex', justifyContent: 'space-between' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '.55rem', color: 'var(--accent)' }}>POST /predict</span>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '.5rem', color: 'var(--text3)' }}>FastAPI</span>
+      </div>
+      {[
+        { l: 'LogReg recall', v: '79%' },
+        { l: '250k F1', v: '0.72' },
+        { l: 'ROC-AUC', v: '0.90' },
+      ].map(({ l, v }) => (
+        <div key={l} style={{ display: 'flex', justifyContent: 'space-between', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: '3px', padding: '.35rem .5rem' }}>
+          <span style={{ fontFamily: 'var(--mono)', fontSize: '.52rem', color: 'var(--text3)' }}>{l}</span>
+          <span style={{ fontFamily: 'var(--mono)', fontSize: '.52rem', color: 'var(--accent)' }}>{v}</span>
+        </div>
+      ))}
+      <div style={{ position: 'absolute', bottom: '.75rem', right: '.75rem', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', textTransform: 'uppercase', padding: '.22rem .6rem', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '3px', color: 'var(--text2)' }}>ML Pipeline</div>
+    </div>
+  );
+}
+
+function AgentDexArt() {
+  return (
+    <div style={{ position: 'absolute', inset: 0, padding: '.65rem', display: 'flex', flexDirection: 'column', gap: '.3rem' }}>
+      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '.35rem .6rem', fontFamily: 'var(--mono)', fontSize: '.55rem', color: 'var(--accent)' }}>Wiki crawl → RedisVL → prefetch</div>
+      <div style={{ display: 'flex', gap: '.3rem', flex: 1 }}>
+        {['Crawl', 'KNN cache', 'LLM filter'].map((s, i) => (
+          <div key={s} style={{ flex: 1, background: i === 1 ? 'var(--accent-soft)' : 'var(--surface2)', border: `1px solid ${i === 1 ? 'var(--accent-line)' : 'var(--border)'}`, borderRadius: '3px', padding: '.4rem', fontFamily: 'var(--mono)', fontSize: '.5rem', color: i === 1 ? 'var(--accent)' : 'var(--text2)' }}>{s}</div>
+        ))}
+      </div>
+      <div style={{ fontFamily: 'var(--mono)', fontSize: '.5rem', color: '#4ade80' }}>warm hit · skip recrawl</div>
+      <div style={{ position: 'absolute', bottom: '.75rem', right: '.75rem', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', textTransform: 'uppercase', padding: '.22rem .6rem', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '3px', color: 'var(--text2)' }}>Multi-agent</div>
+    </div>
+  );
+}
+
+function AirQualityArt() {
+  return (
+    <div style={{ position: 'absolute', inset: 0, padding: '.65rem', display: 'flex', flexDirection: 'column', gap: '.35rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '.35rem .6rem' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '.55rem', color: 'var(--text2)' }}>Arduino UNO</span>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '.5rem', color: '#4ade80' }}>99.5% uptime</span>
+      </div>
+      <div style={{ flex: 1, display: 'flex', gap: '.3rem' }}>
+        {['CO', 'VOC', 'FAN'].map((l, i) => (
+          <div key={l} style={{ flex: 1, background: i === 2 ? 'rgba(251,191,36,.08)' : 'var(--surface2)', border: '1px solid var(--border)', borderRadius: '3px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--mono)', fontSize: '.55rem', color: i === 2 ? '#f59e0b' : 'var(--text2)' }}>{l}</div>
+        ))}
+      </div>
+      <div style={{ fontFamily: 'var(--mono)', fontSize: '.5rem', color: 'var(--text3)' }}>10 Hz read · alert &lt; 200ms</div>
+      <div style={{ position: 'absolute', bottom: '.75rem', right: '.75rem', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', textTransform: 'uppercase', padding: '.22rem .6rem', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '3px', color: 'var(--text2)' }}>Embedded</div>
+    </div>
+  );
+}
+
+function CosmeticArt() {
+  return (
+    <div style={{ position: 'absolute', inset: 0, padding: '.65rem', display: 'flex', flexDirection: 'column', gap: '.3rem' }}>
+      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '.35rem .6rem', fontFamily: 'var(--mono)', fontSize: '.52rem', color: 'var(--accent)' }}>POST /v1/analyze</div>
+      <div style={{ background: 'var(--accent-soft)', border: '1px solid var(--accent-mid)', borderRadius: '3px', padding: '.45rem', fontFamily: 'var(--mono)', fontSize: '.5rem', color: 'var(--text2)', lineHeight: 1.5 }}>risk: medium · confidence 0.72 · cache miss</div>
+      <div style={{ display: 'flex', gap: '.3rem', flex: 1 }}>
+        {['schema', 'LLM', 'cache'].map((s) => (
+          <div key={s} style={{ flex: 1, background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: '3px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--mono)', fontSize: '.48rem', color: 'var(--text3)' }}>{s}</div>
+        ))}
+      </div>
+      <div style={{ position: 'absolute', bottom: '.75rem', right: '.75rem', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', textTransform: 'uppercase', padding: '.22rem .6rem', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '3px', color: 'var(--text2)' }}>FastAPI</div>
+    </div>
+  );
+}
+
 const projects = [
   {
-    title: 'Edge AI People Counting',
-    period: 'Mar 2026 – Present · Nuvoton × SJSU AI/ML Club',
-    status: 'wip',
-    desc: 'Deploying a CNN on the Nuvoton M55M1 EVB with Ethos-U55 NPU to count elevator passengers in real time — INT8 quantized, fully on-device, targeting >95% accuracy at ≥15 FPS. Monthly mentorship from Nuvoton engineers.',
-    tags: ['TensorFlow Lite', 'CNN', 'INT8', 'Nuvoton M55M1', 'Ethos-U55', 'Vela'],
-    role: 'ML Engineer',
-    art: <NuvotonArt />,
-  },
-  {
-    title: 'UART Drive Communication — SJSU Robotics',
-    period: 'Mar 2026 – Present · SJSU Robotics · URC 2027',
-    status: 'wip',
-    desc: 'Building a UART-based drive communication path as a backup alongside existing CAN infrastructure. Involves cross-team coordination with the firmware team to confirm framing specs, checksums, and hardware validation. Currently pending physical serial connection testing.',
-    tags: ['Python', 'UART', 'CAN', 'Serial', 'Embedded'],
-    role: 'Mission Control Team Member',
-    art: <UARTArt />,
-  },
-  {
-    title: 'SCEvents — Event Registration Platform',
-    period: 'Mar 2026 – Present · SJSU SCE Club',
-    status: 'wip',
-    desc: 'Internal event platform replacing Luma for SCE club. Contributed the GET /events/:id endpoint in Go (Gin), wiring individual event retrieval from MongoDB into the frontend. Built on Kafka + Redis + Docker for production-scale concurrency.',
-    tags: ['Go', 'Gin', 'MongoDB', 'Redis', 'Kafka', 'Docker'],
-    role: 'Dev Team Member',
+    title: 'SCEvents + Clark Calendar',
+    period: 'Mar – May 2026 · SCE-Development',
+    status: 'done',
+    desc: 'High-concurrency event platform for SJSU SCE: Kafka registration/waitlist pipelines, Redis locks under 10k+ write spikes, Mongo persistence, and a React calendar on sce.sjsu.edu with JWT auth, role visibility, scheduled publish, and closed-event blocking. 20+ PRs across SCEvents and Clark.',
+    tags: ['Go', 'Kafka', 'Redis', 'MongoDB', 'React', 'k6'],
+    role: 'Software Engineer Intern',
+    href: 'https://github.com/SCE-Development/SCEvents',
     art: <SCEventsArt />,
   },
   {
-    title: 'SpartanClubConnect',
-    period: 'Feb 2026 – Present · Database Systems Course',
-    status: 'wip',
-    desc: 'Instagram-style event platform for SJSU clubs — students follow clubs, browse and RSVP to events, club officers post announcements, admins moderate. Full-stack with role-based auth, RSVP logic, and waitlist handling.',
-    tags: ['Java', 'JDBC', 'JSP', 'MySQL', 'Apache Tomcat'],
-    role: 'Full-Stack Developer',
-    art: <SpartanArt />,
-  },
-  {
-    title: 'AI Meeting Agent',
-    period: 'Mar 16, 2026 · Agent for Impact Hackathon',
+    title: 'URC Teleoperation — Mission Control',
+    period: 'Jan – Aug 2026 · SJSURoboticsTeam',
     status: 'done',
-    desc: 'Paste a messy meeting transcript, get back a structured breakdown — summary, decisions, action items with owners & deadlines, blockers, and a copy-ready follow-up message. Detects missing owners and vague tasks automatically.',
-    tags: ['Python', 'FastAPI', 'NVIDIA Nemotron', 'React', 'Vite', 'Pydantic'],
-    role: 'Backend Engineer & Testing Lead',
-    art: <MeetingAgentArt />,
-  },
-  {
-    title: 'Mission Control Health Indicator',
-    period: 'Jan – Mar 2026 · SJSU Robotics',
-    status: 'done',
-    desc: 'Designed and shipped a real-time communication health feature for the rover teleoperation dashboard. A timestamp-based state machine (GOOD / WARN / LOST / NO DATA) gives operators a single-glance system status without parsing raw metrics. Integrated into existing React architecture using hooks — no backend changes required.',
-    tags: ['React', 'Socket.IO', 'MUI', 'useEffect', 'useMemo'],
-    role: 'Mission Control Team Member',
+    desc: 'React + Python arm teleoperation over CAN: ACK/recovery, slider and gamepad controls with joint limits, disconnect handling, commanded-vs-feedback TX, HEALTH state machine, and a UART drive backup path. Merged into urc-teleoperation-2026.',
+    tags: ['React', 'Python', 'CAN', 'UART', 'Socket.IO'],
+    role: 'Mission Control Software Engineer',
+    href: 'https://github.com/SJSURoboticsTeam/urc-teleoperation-2026',
     art: <RoboticsArt />,
   },
   {
-    title: 'SCE Financial Advising App',
-    period: 'Feb 2026 · SJSU SCE Club',
+    title: 'ESP32 Wheel Calibration',
+    period: 'Apr – May 2026 · Alef',
     status: 'done',
-    desc: 'Full-stack stock monitoring system integrating Finnhub API with scheduled per-symbol polling, Express REST backend, and a dynamic React dashboard. Configured Vite proxy for CORS-free integration.',
-    tags: ['React', 'Node.js', 'Express', 'Finnhub API', 'Vite'],
+    desc: 'Dual Hall-sensor homing on ESP32 to restore wheel zero after power loss. CAN (TWAI) motor control at 100 Hz for velocity and incremental positioning, hysteresis against EMI, and a diagnostic web UI that cut field setup time.',
+    tags: ['ESP32', 'CAN/TWAI', 'C++', 'Hall sensors'],
+    role: 'Firmware Software Engineer Intern',
+    art: <AlefArt />,
+  },
+  {
+    title: 'Edge AI Headcount',
+    period: 'Feb – May 2026 · Nuvoton × SJSU AI/ML Club',
+    status: 'done',
+    desc: 'YOLOv8 people counting on Ethos-U55 edge hardware. Reached mAP@0.5 0.979 and mAP@0.5:0.95 0.651 after 20–200+ epoch experiments, then held 20–22 FPS on-device.',
+    tags: ['YOLOv8', 'Edge AI', 'Ethos-U55', 'Python'],
+    role: 'Machine Learning Engineer',
+    art: <NuvotonArt />,
+  },
+  {
+    title: 'Customer Churn Prediction',
+    period: '2026 · Team project',
+    status: 'done',
+    desc: 'Telecom churn models on usage, tenure, and service features. Compared logistic regression, random forest, and gradient boosting; shipped the 79%-recall logistic pipeline through FastAPI with a saved scikit-learn preprocess/encode/scale/infer pipeline. Scaled experiment on 250k rows reached F1 0.72 and ROC-AUC 0.90.',
+    tags: ['Python', 'scikit-learn', 'FastAPI'],
+    role: 'ML Engineer',
+    href: 'https://github.com/trista-chen-29/Customer-Churn-Prediction',
+    art: <ChurnArt />,
+  },
+  {
+    title: 'AgentDex',
+    period: '2026',
+    status: 'done',
+    desc: 'Multi-agent research pipeline: crawl Wikipedia with Playwright, structure results, store in Redis, then serve predicted follow-ups with semantic KNN (RedisVL) plus LLM-filtered prefetch so warm queries skip a recrawl.',
+    tags: ['Python', 'RedisVL', 'uAgents', 'Playwright'],
+    role: 'Backend / Agents',
+    art: <AgentDexArt />,
+  },
+  {
+    title: 'AI Meeting Agent',
+    period: 'Mar 2026 · Agent for Impact Hackathon',
+    status: 'done',
+    desc: 'Paste a messy transcript, get summary, decisions, action items with owners/deadlines, blockers, and a copy-ready follow-up. FastAPI + NVIDIA Nemotron with schema validation; React/Vite UI.',
+    tags: ['Python', 'FastAPI', 'Nemotron', 'React'],
+    role: 'Backend Engineer',
+    href: 'https://github.com/trista-chen-29/meeting-agent',
+    art: <MeetingAgentArt />,
+  },
+  {
+    title: 'Air Quality Monitoring System',
+    period: 'Apr – June 2025',
+    status: 'done',
+    desc: 'Arduino UNO + gas sensors at 10 Hz. Threshold logic trips fan and LED alerts in under 200ms. Hardware/software soak tests hit 99.5% uptime over 72 hours.',
+    tags: ['Arduino', 'C++', 'Sensors'],
+    role: 'Embedded Developer',
+    art: <AirQualityArt />,
+  },
+  {
+    title: 'Cosmetic Safety Intelligence API',
+    period: '2026',
+    status: 'done',
+    desc: 'FastAPI service that turns product metadata and storage context into schema-validated expiration risk, recommended action, confidence, and cache/latency metadata via an LLM adapter.',
+    tags: ['Python', 'FastAPI', 'Pydantic', 'LLM'],
+    role: 'Backend Engineer',
+    href: 'https://github.com/trista-chen-29/cosmetic-safety-intelligence-api',
+    art: <CosmeticArt />,
+  },
+  {
+    title: 'SpartanClubConnect',
+    period: 'Spring 2026 · CS157A · ObviousYordle/CS157A-S1-Team-1',
+    status: 'done',
+    desc: 'Club/event platform for SJSU: landing and dashboard, officer request workflow with admin review, moderation, RSVP, and event admin. PRs on schema, auth, and officer gating.',
+    tags: ['Java', 'JDBC', 'MySQL', 'JSP'],
+    role: 'Full-Stack Contributor',
+    href: 'https://github.com/ObviousYordle/CS157A-S1-Team-1',
+    art: <SpartanArt />,
+  },
+  {
+    title: 'SCE Financial Advising App',
+    period: 'Feb 2026 · SJSU SCE',
+    status: 'done',
+    desc: 'Stock monitoring dashboard with Finnhub polling, Express REST backend, and a React UI with a Vite proxy for CORS-free local development.',
+    tags: ['React', 'Node.js', 'Express', 'Finnhub'],
     role: 'Full-Stack Developer',
+    href: 'https://github.com/trista-chen-29/sce-stock-exchange',
     art: <StockArt />,
   },
   {
     title: 'Prof-Support',
-    period: 'Sep – Dec 2025 · CS151 Team Project',
+    period: 'Fall 2025 · CS151 Team 24',
     status: 'done',
-    desc: 'Desktop app for faculty to manage student academic profiles, programming languages, comments, and reports. My contributions: built the View Student Profiles page (v0.5), implemented Edit Student Profiles with SQLite persistence (v0.7), designed the Add Comments UI (v0.8), and built the full Reports interface with whitelist/blacklist filtering and CSV export (v0.9).',
-    tags: ['Java', 'JavaFX', 'FXML', 'SQLite', 'Maven', 'DAO/Service'],
-    role: 'Full-Stack Contributor (UI + Backend Integration)',
+    desc: 'JavaFX faculty tool for student profiles, comments, languages, and reports. Built profile viewing/editing with SQLite persistence, comments UI, and whitelist/blacklist reports with CSV export.',
+    tags: ['Java', 'JavaFX', 'SQLite', 'Maven'],
+    role: 'Full-Stack Contributor',
+    href: 'https://github.com/trista-chen-29/Prof-Support',
     art: <ProfSupportArt />,
   },
   {
-    title: 'Smart Job Tracker System',
-    period: 'Dec 2024 – Feb 2025',
+    title: 'Orig — Mobile Site Fixes',
+    period: '2026 · codebyemily/Orig',
     status: 'done',
-    desc: 'Backend pipeline scraping & normalizing 500+ job postings via BeautifulSoup, stored in a Django ORM relational schema with NLP-based keyword scoring to rank the most relevant roles first.',
-    tags: ['Python', 'Django', 'MySQL', 'BeautifulSoup', 'NLP'],
-    role: 'Backend Developer',
+    desc: 'Collaborative site work: hamburger menu and footer reflow for phones, navbar/footer polish, and PDF-related updates.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    role: 'Frontend Contributor',
+    href: 'https://github.com/codebyemily/Orig',
     art: <JobTrackerArt />,
   },
 ];
 
 export default function ProjectsPage() {
   return (
-    <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '4rem 2.5rem 5rem' }}>
+    <div className="page">
       <div className="reveal">
         <SectionLabel>Selected Work</SectionLabel>
         <h2 style={{
           fontFamily: 'var(--serif)',
-          fontSize: 'clamp(2rem, 4vw, 3rem)',
-          fontWeight: 400, marginBottom: '2.5rem',
+          fontSize: 'clamp(2rem, 6vw, 3rem)',
+          fontWeight: 400, marginBottom: '1rem',
         }}>
           Things I&apos;ve{' '}
           <em style={{ fontStyle: 'italic', color: 'var(--accent)' }}>built</em>
         </h2>
+        <p style={{ fontSize: '.9rem', color: 'var(--text2)', lineHeight: 1.7, maxWidth: '640px', marginBottom: '2.5rem' }}>
+          Own repos plus contributions on SCE-Development, SJSURoboticsTeam, CS157A Team 1, and Orig. UART drive work and Clark calendar PRs live in those org repos.
+        </p>
       </div>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-        gap: '1.25rem',
-      }}>
+      <div className="project-grid">
         {projects.map((p, i) => (
           <div key={p.title} className={`reveal delay-${Math.min((i % 4) + 1, 5)}`}>
             <ProjectCard
@@ -412,6 +517,7 @@ export default function ProjectsPage() {
               desc={p.desc}
               tags={p.tags}
               role={p.role}
+              href={p.href}
             >
               {p.art}
             </ProjectCard>

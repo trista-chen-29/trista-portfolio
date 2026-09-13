@@ -38,9 +38,9 @@ export function Chip({ children, highlight, icon }) {
 }
 
 /* ── Button Solid ── */
-export function BtnSolid({ children, href }) {
+export function BtnSolid({ children, href, target }) {
   return (
-    <a href={href} className="btn-solid" style={{
+    <a href={href} target={target} rel={target ? 'noreferrer' : undefined} className="btn-solid" style={{
       fontFamily: 'var(--mono)', fontSize: '.75rem', letterSpacing: '.08em',
       background: 'var(--text)', color: 'var(--bg)',
       padding: '.6rem 1.5rem', border: 'none', cursor: 'pointer',
@@ -54,7 +54,7 @@ export function BtnSolid({ children, href }) {
 /* ── Button Outline ── */
 export function BtnOutline({ children, href, target }) {
   return (
-    <a href={href} target={target} className="btn-outline" style={{
+    <a href={href} target={target} rel={target ? 'noreferrer' : undefined} className="btn-outline" style={{
       fontFamily: 'var(--mono)', fontSize: '.75rem', letterSpacing: '.08em',
       background: 'transparent', color: 'var(--text)',
       padding: '.6rem 1.5rem', border: '1px solid var(--border2)',
@@ -135,14 +135,7 @@ export function ContactLink({ icon, text, href }) {
 /* ── Skill Row ── */
 export function SkillRow({ label, items }) {
   return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: '110px 1fr',
-      alignItems: 'center',
-      gap: '1.5rem',
-      padding: '.75rem 0',
-      borderBottom: '1px solid var(--border)',
-    }}>
+    <div className="skill-row">
       <span style={{
         fontFamily: 'var(--mono)', fontSize: '.67rem', fontWeight: 500,
         letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--text3)',

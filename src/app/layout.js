@@ -2,11 +2,16 @@ import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/components/Navbar';
 
-import Head from 'next/head';
-
 export const metadata = {
   title: 'Trista Chen — Software Engineer',
-  description: 'Full-Stack · Backend · ML Engineering. SJSU Software Engineering student based in Sunnyvale, CA.',
+  description: 'SJSU Software Engineering student. Firmware, robotics, event systems, and ML engineering. Based in San Jose, CA.',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({ children }) {
@@ -21,17 +26,9 @@ export default function RootLayout({ children }) {
           <main style={{ paddingTop: 'var(--nav-h)' }}>
             {children}
           </main>
-          <footer style={{
-            borderTop: '1px solid var(--border)',
-            padding: '1.5rem 2.5rem',
-            display: 'flex',
-            justifyContent: 'space-between',
-            fontFamily: 'var(--mono)',
-            fontSize: '.7rem',
-            color: 'var(--text3)',
-          }}>
+          <footer className="site-footer">
             <span>© 2026 Yi-Chi (Trista) Chen</span>
-            <span>Sunnyvale, CA · SJSU SWE &apos;27</span>
+            <span>San Jose, CA · SJSU SWE ’27</span>
           </footer>
         </ThemeProvider>
       </body>

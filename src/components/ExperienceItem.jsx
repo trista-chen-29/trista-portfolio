@@ -5,11 +5,13 @@ import { useState } from 'react';
 export default function ExperienceItem({ role, company, period, type, bullets, defaultOpen = true }) {
   const [open, setOpen] = useState(defaultOpen);
 
-  const typeStyle = type === 'wip'
-    ? { bg: 'rgba(251,191,36,0.08)', color: '#f59e0b', border: 'rgba(251,191,36,0.35)', label: 'In Progress' }
-    : type === 'volunteer'
-    ? { bg: 'var(--accent-soft)', color: 'var(--accent)', border: 'var(--accent-line)', label: 'Volunteer' }
-    : { bg: 'var(--accent-soft)', color: 'var(--accent)', border: 'var(--accent-line)', label: 'Internship' };
+  const typeStyle = {
+    current: { bg: 'rgba(74,222,128,0.10)', color: '#4ade80', border: 'rgba(74,222,128,0.28)', label: 'Current' },
+    wip: { bg: 'rgba(251,191,36,0.08)', color: '#f59e0b', border: 'rgba(251,191,36,0.35)', label: 'In Progress' },
+    volunteer: { bg: 'var(--accent-soft)', color: 'var(--accent)', border: 'var(--accent-line)', label: 'Volunteer' },
+    club: { bg: 'var(--accent-soft)', color: 'var(--accent)', border: 'var(--accent-line)', label: 'Club' },
+    internship: { bg: 'var(--accent-soft)', color: 'var(--accent)', border: 'var(--accent-line)', label: 'Internship' },
+  }[type] || { bg: 'var(--accent-soft)', color: 'var(--accent)', border: 'var(--accent-line)', label: 'Role' };
 
   return (
     <div className="exp-card" style={{
@@ -21,10 +23,7 @@ export default function ExperienceItem({ role, company, period, type, bullets, d
     }}>
       <div
         onClick={() => setOpen(o => !o)}
-        style={{
-          display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
-          padding: '1.5rem 2rem', cursor: 'pointer', gap: '1rem', userSelect: 'none',
-        }}
+        className="exp-head"
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', flexWrap: 'wrap' }}>
@@ -42,7 +41,7 @@ export default function ExperienceItem({ role, company, period, type, bullets, d
             {company}
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', flexShrink: 0 }}>
+        <div className="exp-meta" style={{ display: 'flex', alignItems: 'center', gap: '.75rem', flexShrink: 0 }}>
           <span style={{ fontFamily: 'var(--mono)', fontSize: '.75rem', color: 'var(--accent)' }}>{period}</span>
           <div style={{
             width: '24px', height: '24px', borderRadius: '50%',
@@ -60,7 +59,7 @@ export default function ExperienceItem({ role, company, period, type, bullets, d
       </div>
 
       {open && (
-        <div style={{ padding: '0 2rem 1.5rem', borderTop: '1px solid var(--border)' }}>
+        <div className="exp-body" style={{ borderTop: '1px solid var(--border)' }}>
           <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '.5rem', paddingTop: '1.2rem' }}>
             {bullets.map((b, i) => (
               <li key={i} style={{ fontSize: '.9rem', color: 'var(--text2)', display: 'flex', gap: '.75rem', lineHeight: 1.65 }}>

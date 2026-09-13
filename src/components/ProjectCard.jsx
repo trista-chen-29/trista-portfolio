@@ -1,6 +1,6 @@
 import { Tag, StatusBadge } from './Ui';
 
-export default function ProjectCard({ title, period, status, desc, tags, role, children }) {
+export default function ProjectCard({ title, period, status, desc, tags, role, href, children }) {
   return (
     <div className="proj-card" style={{
       background: 'var(--surface)',
@@ -31,8 +31,14 @@ export default function ProjectCard({ title, period, status, desc, tags, role, c
         <div style={{
           fontFamily: 'var(--mono)', fontSize: '.72rem', color: 'var(--text3)',
           paddingTop: '.6rem', borderTop: '1px solid var(--border)',
+          display: 'flex', justifyContent: 'space-between', gap: '.75rem', flexWrap: 'wrap',
         }}>
-          Role: <span style={{ color: 'var(--accent)' }}>{role}</span>
+          <span>Role: <span style={{ color: 'var(--accent)' }}>{role}</span></span>
+          {href && (
+            <a href={href} target="_blank" rel="noreferrer" className="clink" style={{ color: 'var(--accent)', textDecoration: 'none' }}>
+              GitHub ↗
+            </a>
+          )}
         </div>
       </div>
     </div>
