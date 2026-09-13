@@ -1,4 +1,3 @@
-import { SectionLabel } from '@/components/Ui';
 import ProjectCard from '@/components/ProjectCard';
 
 /* ── Screenshot art components ── */
@@ -493,20 +492,11 @@ const projects = [
 export default function ProjectsPage() {
   return (
     <div className="page">
-      <div className="reveal">
-        <SectionLabel>Selected Work</SectionLabel>
-        <h2 style={{
-          fontFamily: 'var(--serif)',
-          fontSize: 'clamp(2rem, 6vw, 3rem)',
-          fontWeight: 400, marginBottom: '1rem',
-        }}>
-          Things I&apos;ve{' '}
-          <em style={{ fontStyle: 'italic', color: 'var(--accent)' }}>built</em>
-        </h2>
-        <p style={{ fontSize: '.9rem', color: 'var(--text2)', lineHeight: 1.7, maxWidth: '640px', marginBottom: '2.5rem' }}>
-          Own repos plus contributions on SCE-Development, SJSURoboticsTeam, CS157A Team 1, and Orig. UART drive work and Clark calendar PRs live in those org repos.
-        </p>
-      </div>
+      <p className="page-kicker">Selected work</p>
+      <h1 className="page-title">Projects</h1>
+      <p className="page-sub">
+        Own repos plus contributions on SCE-Development, SJSURoboticsTeam, CS157A, and Orig.
+      </p>
       <div className="project-grid">
         {projects.map((p, i) => (
           <div key={p.title} className={`reveal delay-${Math.min((i % 4) + 1, 5)}`}>

@@ -12,6 +12,10 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f2f2f7' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
 };
 
 export default function RootLayout({ children }) {
@@ -19,13 +23,13 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme="light" suppressHydrationWarning>
       <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body>
         <ThemeProvider>
           <Navbar />
-          <main style={{ paddingTop: 'var(--nav-h)' }}>
-            {children}
-          </main>
+          <main>{children}</main>
           <footer className="site-footer">
             <span>© 2026 Yi-Chi (Trista) Chen</span>
             <span>San Jose, CA · SJSU SWE ’27</span>
