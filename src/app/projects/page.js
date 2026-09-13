@@ -362,14 +362,13 @@ function CosmeticArt() {
 
 const projects = [
   {
-    title: 'SCEvents + Clark Calendar',
-    period: 'Mar – May 2026 · SCE-Development',
+    title: 'ESP32 Wheel Calibration',
+    period: 'Apr – May 2026 · Alef',
     status: 'done',
-    desc: 'High-concurrency event platform for SJSU SCE: Kafka registration/waitlist pipelines, Redis locks under 10k+ write spikes, Mongo persistence, and a React calendar on sce.sjsu.edu with JWT auth, role visibility, scheduled publish, and closed-event blocking. 20+ PRs across SCEvents and Clark.',
-    tags: ['Go', 'Kafka', 'Redis', 'MongoDB', 'React', 'k6'],
-    role: 'Software Engineer Intern',
-    href: 'https://github.com/SCE-Development/SCEvents',
-    art: <SCEventsArt />,
+    desc: 'Dual Hall-sensor homing on ESP32 to restore wheel zero after power loss. CAN (TWAI) motor control at 100 Hz for velocity and incremental positioning, hysteresis against EMI, and a diagnostic web UI that cut field setup time.',
+    tags: ['ESP32', 'CAN/TWAI', 'C++', 'Hall sensors'],
+    role: 'Firmware Software Engineer Intern',
+    art: <AlefArt />,
   },
   {
     title: 'URC Teleoperation — Mission Control',
@@ -382,13 +381,13 @@ const projects = [
     art: <RoboticsArt />,
   },
   {
-    title: 'ESP32 Wheel Calibration',
-    period: 'Apr – May 2026 · Alef',
+    title: 'Air Quality Monitoring System',
+    period: 'Apr – June 2025',
     status: 'done',
-    desc: 'Dual Hall-sensor homing on ESP32 to restore wheel zero after power loss. CAN (TWAI) motor control at 100 Hz for velocity and incremental positioning, hysteresis against EMI, and a diagnostic web UI that cut field setup time.',
-    tags: ['ESP32', 'CAN/TWAI', 'C++', 'Hall sensors'],
-    role: 'Firmware Software Engineer Intern',
-    art: <AlefArt />,
+    desc: 'Arduino UNO + gas sensors at 10 Hz. Threshold logic trips fan and LED alerts in under 200ms. Hardware/software soak tests hit 99.5% uptime over 72 hours.',
+    tags: ['Arduino', 'C++', 'Sensors'],
+    role: 'Embedded Developer',
+    art: <AirQualityArt />,
   },
   {
     title: 'Edge AI Headcount',
@@ -398,6 +397,16 @@ const projects = [
     tags: ['YOLOv8', 'Edge AI', 'Ethos-U55', 'Python'],
     role: 'Machine Learning Engineer',
     art: <NuvotonArt />,
+  },
+  {
+    title: 'SCEvents + Clark Calendar',
+    period: 'Mar – May 2026 · SCE-Development',
+    status: 'done',
+    desc: 'High-concurrency event platform for SJSU SCE: Kafka registration/waitlist pipelines, Redis locks under 10k+ write spikes, Mongo persistence, and a React calendar on sce.sjsu.edu with JWT auth, role visibility, scheduled publish, and closed-event blocking. 20+ PRs across SCEvents and Clark.',
+    tags: ['Go', 'Kafka', 'Redis', 'MongoDB', 'React', 'k6'],
+    role: 'Software Engineer Intern',
+    href: 'https://github.com/SCE-Development/SCEvents',
+    art: <SCEventsArt />,
   },
   {
     title: 'Customer Churn Prediction',
@@ -427,15 +436,6 @@ const projects = [
     role: 'Backend Engineer',
     href: 'https://github.com/trista-chen-29/meeting-agent',
     art: <MeetingAgentArt />,
-  },
-  {
-    title: 'Air Quality Monitoring System',
-    period: 'Apr – June 2025',
-    status: 'done',
-    desc: 'Arduino UNO + gas sensors at 10 Hz. Threshold logic trips fan and LED alerts in under 200ms. Hardware/software soak tests hit 99.5% uptime over 72 hours.',
-    tags: ['Arduino', 'C++', 'Sensors'],
-    role: 'Embedded Developer',
-    art: <AirQualityArt />,
   },
   {
     title: 'Cosmetic Safety Intelligence API',
@@ -495,7 +495,7 @@ export default function ProjectsPage() {
       <p className="page-kicker">Selected work</p>
       <h1 className="page-title">Projects</h1>
       <p className="page-sub">
-        Own repos plus contributions on SCE-Development, SJSURoboticsTeam, CS157A, and Orig.
+        Hardware-first: firmware, rover teleop, sensors, and edge inference — plus a few software systems on the side.
       </p>
       <div className="project-grid">
         {projects.map((p, i) => (

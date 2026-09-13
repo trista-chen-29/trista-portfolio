@@ -6,7 +6,7 @@ export default function ExperiencePage() {
     <div className="page">
       <p className="page-kicker">Path</p>
       <h1 className="page-title">Experience</h1>
-      <p className="page-sub">From RF labs and rover teleop to Kafka waitlists and edge ML — tap a card to expand.</p>
+      <p className="page-sub">Firmware, robotics, EMC/RF validation, and edge systems — tap a card to expand.</p>
       <Timeline items={experiences} />
     </div>
   );

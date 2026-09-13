@@ -3,8 +3,8 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/components/Navbar';
 
 export const metadata = {
-  title: 'Trista Chen — Software Engineer',
-  description: 'SJSU Software Engineering student. Firmware, robotics, event systems, and ML engineering. Based in San Jose, CA.',
+  title: 'Trista Chen — Firmware, Robotics & Validation',
+  description: 'SJSU Software Engineering, May 2027. Embedded firmware, robotics, EMC/RF validation, and test. Open to internships now and new-grad roles after graduation.',
 };
 
 export const viewport = {

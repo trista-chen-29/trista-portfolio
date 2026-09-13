@@ -2,23 +2,23 @@ import Image from 'next/image';
 import { Chip } from '@/components/Ui';
 
 const skills = [
+  { label: 'Embedded & robotics', items: [
+    { name: 'ESP32' }, { name: 'CAN / TWAI' }, { name: 'Hall sensors' },
+    { name: 'Motor control' }, { name: 'Signal processing' }, { name: 'Arduino' }, { name: 'Socket.IO' },
+  ]},
+  { label: 'Validation & test', items: [
+    { name: 'EMC / RF' }, { name: 'Wi-Fi 6E' }, { name: 'Bluetooth' }, { name: 'UWB' },
+    { name: 'Spectrum analysis' }, { name: 'k6' }, { name: 'Linux' },
+  ]},
   { label: 'Languages', items: [
-    { name: 'Python', icon: 'python' }, { name: 'JavaScript', icon: 'javascript' },
-    { name: 'TypeScript', icon: 'typescript' }, { name: 'Go', icon: 'go' },
-    { name: 'Java', icon: 'java' }, { name: 'C / C++', icon: 'cplusplus' }, { name: 'SQL' },
+    { name: 'C' }, { name: 'C++', icon: 'cplusplus' }, { name: 'Python', icon: 'python' },
+    { name: 'Go', icon: 'go' }, { name: 'Java', icon: 'java' },
+    { name: 'JavaScript', icon: 'javascript' }, { name: 'TypeScript', icon: 'typescript' }, { name: 'SQL' },
   ]},
-  { label: 'Frontend', items: [
-    { name: 'React', icon: 'react' }, { name: 'Next.js', icon: 'nextjs' },
-    { name: 'Tailwind', icon: 'tailwindcss' }, { name: 'Socket.IO' }, { name: 'Vite', icon: 'vitejs' },
-  ]},
-  { label: 'Backend & data', items: [
-    { name: 'FastAPI', icon: 'fastapi' }, { name: 'Node.js', icon: 'nodejs' },
-    { name: 'Kafka', icon: 'apachekafka' }, { name: 'Redis', icon: 'redis' },
-    { name: 'MongoDB', icon: 'mongodb' }, { name: 'MySQL', icon: 'mysql' }, { name: 'Docker', icon: 'docker' },
-  ]},
-  { label: 'Embedded & ML', items: [
-    { name: 'ESP32' }, { name: 'CAN / TWAI' }, { name: 'YOLOv8' },
-    { name: 'scikit-learn' }, { name: 'Ethos-U55' }, { name: 'Playwright' }, { name: 'k6' },
+  { label: 'Tools', items: [
+    { name: 'Git', icon: 'git' }, { name: 'Docker', icon: 'docker' }, { name: 'PyTorch', icon: 'pytorch' },
+    { name: 'FastAPI', icon: 'fastapi' }, { name: 'React', icon: 'react' },
+    { name: 'Kafka', icon: 'apachekafka' }, { name: 'Redis', icon: 'redis' }, { name: 'MongoDB', icon: 'mongodb' },
   ]},
 ];
 
@@ -35,33 +35,41 @@ export default function AboutPage() {
     <div className="page">
       <section className="hero reveal">
         <div>
-          <p className="page-kicker">Firmware · Robotics · Full-Stack · ML</p>
+          <p className="page-kicker">Firmware · Robotics · Validation · Test</p>
           <div className="hero-profile" style={{ marginTop: 10 }}>
             <div className="hero-photo">
-              <Image src="/photo.jpg" alt="Trista Chen" fill style={{ objectFit: 'cover', objectPosition: 'center 18%' }} priority sizes="168px" />
+              <Image
+                src="/photo.jpg"
+                alt="Trista Chen"
+                fill
+                style={{ objectFit: 'cover', objectPosition: 'center 18%' }}
+                priority
+                sizes="168px"
+              />
             </div>
             <div className="hero-copy">
               <h1 className="page-title" style={{ margin: 0 }}>Yi-Chi Trista Chen</h1>
-              <p className="page-sub" style={{ margin: '6px 0 0' }}>SJSU Software Engineering ’27</p>
+              <p className="page-sub" style={{ margin: '6px 0 0' }}>SJSU Software Engineering · May 2027</p>
             </div>
           </div>
           <div className="hero-bio" style={{ marginTop: 14 }}>
             <p>
-              I build systems that stay reliable when hardware, networks, or load get messy — from{' '}
-              <span className="strong">CAN teleoperation</span> on a rover arm, to a{' '}
-              <span className="strong">Kafka + Redis</span> registration platform for 1k+ users, to{' '}
-              <span className="strong">ESP32 wheel calibration</span> after power loss.
+              I work close to hardware: <span className="strong">ESP32 motor control over CAN</span>,{' '}
+              <span className="strong">rover teleoperation</span>, and{' '}
+              <span className="strong">EMC/RF validation</span> in a certification lab.
             </p>
             <p>
-              I am an associate test technician at <span className="accent">Element Materials Technology</span>, running EMC/RF validation. Before that I shipped work with SJSU Robotics, SCE Development, Alef, and Nuvoton.
+              Right now I am an associate test technician at <span className="accent">Element Materials Technology</span>.
+              Before that I interned in firmware at Alef, built Mission Control software for SJSU Robotics, and deployed YOLOv8 on Ethos-U55 with Nuvoton.
             </p>
             <p>
-              Outside of code: jogging, climbing, hoops, and a February 29 birthday — five real birthdays so far.
+              Open to <span className="strong">internships now</span> in embedded, firmware, validation, test, or robotics,
+              and <span className="strong">new-grad roles after May 2027</span>.
             </p>
           </div>
           <div className="hero-actions" style={{ marginTop: 14 }}>
             <a className="btn-solid" href="mailto:yichichen229@gmail.com">Message</a>
-            <a className="btn-outline" href="/Yi-Chi_Chen_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+            <a className="btn-outline" href="/Yi-Chi_Trista_Chen_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
             <a className="btn-outline" href="https://github.com/trista-chen-29" target="_blank" rel="noreferrer">GitHub</a>
             <a className="btn-outline" href="https://linkedin.com/in/yichichen229" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
@@ -70,9 +78,12 @@ export default function AboutPage() {
         <div className="ios-group" style={{ margin: 0 }}>
           <div className="ios-group-label">Snapshot</div>
           <div className="ios-card">
-            <div className="ios-row"><span className="label">GPA</span><span className="value accent">3.71 / 4.0</span></div>
+            <div className="ios-row"><span className="label">GPA</span><span className="value accent">3.7</span></div>
             <div className="ios-row"><span className="label">Grad</span><span className="value">May 2027</span></div>
-            <div className="ios-row"><span className="label">Status</span><span className="value green">Open to internships</span></div>
+            <div className="ios-row stack">
+              <span className="label">Seeking</span>
+              <span className="value green">Internships now · New grad after May 2027</span>
+            </div>
           </div>
         </div>
       </section>
@@ -95,17 +106,7 @@ export default function AboutPage() {
         <div className="ios-card">
           <div className="ios-row stack">
             <span className="label">B.S. Software Engineering · SJSU</span>
-            <span className="value">Expected May 2027 · DSA, databases, OS, computer architecture, ML for big data</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="ios-group">
-        <div className="ios-group-label">Certification</div>
-        <div className="ios-card">
-          <div className="ios-row stack">
-            <span className="label">Google Project Management</span>
-            <span className="value">Jan – Mar 2026 · Agile, risk, stakeholders</span>
+            <span className="value">Expected May 2027 · computer organization, assembly, OS, DSA, databases, ML for big data</span>
           </div>
         </div>
       </div>
