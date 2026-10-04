@@ -47,4 +47,12 @@ src/
 
 ## Deployment
 
-Deployed on [Vercel](https://vercel.com). Push to `main` to auto-deploy.
+GitHub Actions runs lint and `next build` on every pull request and push to `main`.
+
+On `main`, the same workflow deploys production to Vercel. Pull requests get a preview URL commented on the PR.
+
+Required repository secrets:
+
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`

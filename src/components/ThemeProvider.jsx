@@ -1,27 +1,52 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useSyncExternalStore } from 'react';
 
 const ThemeContext = createContext({ theme: 'light', toggleTheme: () => {} });
 
+let currentTheme = 'light';
+const listeners = new Set();
+
+function emit() {
+  listeners.forEach((listener) => listener());
+}
+
+function subscribe(listener) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+function getSnapshot() {
+  return currentTheme;
+}
+
+function getServerSnapshot() {
+  return 'light';
+}
+
+function applyTheme(next) {
+  currentTheme = next;
+  document.documentElement.dataset.theme = next;
+  window.localStorage.setItem('theme', next);
+  emit();
+}
+
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('light');
+  const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   useEffect(() => {
-    const saved = localStorage.getItem('theme');
-    if (saved === 'dark' || saved === 'light') setTheme(saved);
+    const saved = window.localStorage.getItem('theme');
+    const next = saved === 'dark' || saved === 'light' ? saved : 'light';
+    document.documentElement.dataset.theme = next;
+    if (next !== currentTheme) {
+      currentTheme = next;
+      emit();
+    }
   }, []);
 
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-  }, [theme]);
-
-  function toggleTheme() {
-    const next = theme === 'light' ? 'dark' : 'light';
-    setTheme(next);
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem('theme', next);
-  }
+  const toggleTheme = useCallback(() => {
+    applyTheme(currentTheme === 'light' ? 'dark' : 'light');
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
