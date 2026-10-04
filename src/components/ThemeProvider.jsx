@@ -5,12 +5,12 @@ import { createContext, useContext, useEffect, useState } from 'react';
 const ThemeContext = createContext({ theme: 'light', toggleTheme: () => {} });
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') || 'light';
-    }
-    return 'light';
-  });
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') setTheme(saved);
+  }, []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;

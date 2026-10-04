@@ -7,32 +7,32 @@ const interests = [
   {
     emoji: '🧗',
     name: 'Rock climbing',
-    blurb: 'Currently stuck on V1+ at the SJSU SRAC boulders. Goal this semester: send V2.',
+    blurb: 'The SJSU SRAC boulders currently have me parked on V1+. This semester’s assignment is V2, whether the wall agrees or not.',
   },
   {
     emoji: '🏋️',
     name: 'Gym',
-    blurb: 'Still very beginner. Leg press, stairmaster, and treadmill are my favorites.',
+    blurb: 'Still collecting beginner miles. Leg press, stairmaster, and treadmill are the rotation I actually look forward to.',
   },
   {
     emoji: '🍸',
     name: 'Cocktails',
-    blurb: 'All the cocktails — just not too sweet. Hard liquor is fine; tequila is better.',
+    blurb: 'I’ll try almost anything as long as it isn’t candy-sweet. Hard liquor is welcome. Tequila is the favorite.',
   },
   {
     emoji: '🎤',
     name: 'Karaoke',
-    blurb: 'Mandarin and English. Next boss fight: ROSÉ songs.',
+    blurb: 'Mandarin, English, and a growing queue. ROSÉ is next on the list — ambitious, but that is the point of a microphone.',
   },
   {
     emoji: '🀄',
     name: 'Mahjong',
-    blurb: 'Five years on and off. I do not bet money — I bet push-ups and sit-ups.',
+    blurb: 'Five years, on and off. No cash on the table — only push-ups and sit-ups, which somehow still sting.',
   },
   {
     emoji: '🍜',
     name: 'Foodie',
-    blurb: 'Always hunting the next bowl. Green onion pancake, malatang, pho, tom yum, matcha — yes.',
+    blurb: 'Always chasing the next bowl or pan: scallion pancake, malatang, pho, tom yum, and a matcha somewhere in between.',
   },
 ];
 

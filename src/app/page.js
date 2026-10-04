@@ -45,7 +45,7 @@ export default function AboutPage() {
               />
             </div>
             <div className="hero-copy">
-              <h1 className="page-title" style={{ margin: 0 }}>Yi-Chi Trista Chen</h1>
+              <h1 className="page-title" style={{ margin: 0 }}>Yi-Chi (Trista) Chen</h1>
               <p className="page-sub" style={{ margin: '6px 0 0' }}>SJSU Software Engineering · May 2027</p>
             </div>
           </div>
@@ -59,7 +59,9 @@ export default function AboutPage() {
             </p>
             <p>
               I currently do EMC/RF validation at{' '}
-              <a className="accent" href="https://www.element.com/" target="_blank" rel="noreferrer">Element Materials Technology</a>.
+              <a className="accent" href="https://www.element.com/" target="_blank" rel="noreferrer">Element Materials Technology</a>
+              {' '}and serve as an officer at the{' '}
+              <a className="accent" href="https://sce.sjsu.edu/" target="_blank" rel="noreferrer">SJSU Software & Computer Engineering Society</a>.
               I have also interned in firmware at Alef, built Mission Control tools for SJSU Robotics, and shipped event software with SCE.
             </p>
             <p>

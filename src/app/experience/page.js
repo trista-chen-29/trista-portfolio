@@ -6,7 +6,7 @@ export default function ExperiencePage() {
     <div className="page">
       <p className="page-kicker">So far</p>
       <h1 className="page-title">Experience</h1>
-      <p className="page-sub">Labs, clubs, internships, and a few late nights that turned into real systems.</p>
+      <p className="page-sub">Labs, clubs, internships — tap a logo to visit the organization.</p>
       <Timeline items={experiences} />
     </div>
   );
