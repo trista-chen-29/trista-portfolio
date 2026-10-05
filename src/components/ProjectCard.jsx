@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { Tag, StatusBadge } from './Ui';
 
-export default function ProjectCard({ title, period, status, desc, tags, role, href, shots = [], children }) {
+export default function ProjectCard({ title, period, status, desc, tags, role, href, shots = [], onOpen, children }) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const shot = shots[index] || shots[0];
@@ -31,7 +31,11 @@ export default function ProjectCard({ title, period, status, desc, tags, role, h
       <button
         type="button"
         className="proj-art"
-        onClick={() => shot && setOpen(true)}
+        onClick={() => {
+          if (!shot) return;
+          setOpen(true);
+          onOpen?.();
+        }}
         onMouseEnter={() => shots.length > 1 && setIndex(1)}
         onMouseLeave={() => setIndex(0)}
         aria-label={shot ? `Open screenshot of ${title}` : undefined}

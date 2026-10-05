@@ -1,28 +1,39 @@
 import Image from 'next/image';
 import { Chip } from '@/components/Ui';
 import Interests from '@/components/Interests';
+import ResumeActions from '@/components/ResumeActions';
 
 const skills = [
   { label: 'Languages', items: [
     { name: 'C', icon: 'c' }, { name: 'C++', icon: 'cplusplus' },
     { name: 'Python', icon: 'python' }, { name: 'Go', icon: 'go' },
     { name: 'Java', icon: 'java' }, { name: 'JavaScript', icon: 'javascript' },
-    { name: 'TypeScript', icon: 'typescript' }, { name: 'Assembly' }, { name: 'SQL' },
+    { name: 'TypeScript', icon: 'typescript' }, { name: 'Kotlin', icon: 'kotlin' },
+    { name: 'Assembly' }, { name: 'SQL' },
+    { name: 'HTML', icon: 'html5' }, { name: 'CSS', icon: 'css3' },
   ]},
   { label: 'Embedded & firmware', items: [
     { name: 'ESP32' }, { name: 'CAN / TWAI' }, { name: 'UART' }, { name: 'USB' },
     { name: 'Hall sensors' }, { name: 'Motor control' }, { name: 'Ethos-U55' }, { name: 'Arduino' },
   ]},
   { label: 'Backend & data', items: [
-    { name: 'FastAPI', icon: 'fastapi' }, { name: 'Kafka', icon: 'apachekafka' },
-    { name: 'Redis', icon: 'redis' }, { name: 'MongoDB', icon: 'mongodb' },
-    { name: 'MySQL', icon: 'mysql' }, { name: 'React', icon: 'react' },
+    { name: 'FastAPI', icon: 'fastapi' }, { name: 'Gin' },
+    { name: 'Kafka', icon: 'apachekafka' }, { name: 'Redis', icon: 'redis' },
+    { name: 'MongoDB', icon: 'mongodb' }, { name: 'MySQL', icon: 'mysql' },
+    { name: 'SQLite', icon: 'sqlite' }, { name: 'Pydantic' }, { name: 'JWT' },
+    { name: 'React', icon: 'react' }, { name: 'Next.js', icon: 'nextjs' },
+    { name: 'Node.js', icon: 'nodejs' }, { name: 'Express', icon: 'express' },
+    { name: 'Electron', icon: 'electron' }, { name: 'Vite', icon: 'vitejs' },
+    { name: 'Tailwind', icon: 'tailwindcss' },
+    { name: 'JDBC' }, { name: 'JSP' }, { name: 'JavaFX' }, { name: 'Maven', icon: 'maven' },
     { name: 'Docker', icon: 'docker' }, { name: 'Socket.IO', icon: 'socketio' },
   ]},
   { label: 'ML, validation & tools', items: [
     { name: 'PyTorch', icon: 'pytorch' }, { name: 'scikit-learn', icon: 'scikitlearn' },
-    { name: 'YOLOv8' }, { name: 'EMC / RF' }, { name: 'Wi-Fi 6E' }, { name: 'Bluetooth' },
-    { name: 'UWB' }, { name: 'k6' }, { name: 'Playwright' },
+    { name: 'pandas', icon: 'pandas' }, { name: 'Jupyter', icon: 'jupyter' },
+    { name: 'YOLOv8' }, { name: 'Whisper' }, { name: 'RedisVL' }, { name: 'uAgents' },
+    { name: 'EMC / RF' }, { name: 'Wi-Fi 6E' }, { name: 'Bluetooth' }, { name: 'UWB' },
+    { name: 'k6' }, { name: 'Playwright' }, { name: 'pytest' }, { name: 'Vitest' },
     { name: 'Linux', icon: 'linux' }, { name: 'GitHub Actions' },
   ]},
 ];
@@ -77,13 +88,7 @@ export default function AboutPage() {
               {' '}in firmware, robotics, validation, or software.
             </p>
           </div>
-          <div className="hero-actions" style={{ marginTop: 14 }}>
-            <a className="btn-solid" href="mailto:yichichen229@gmail.com">Say hi</a>
-            <a className="btn-outline" href="/Yi-Chi_Chen_Resume.pdf" target="_blank" rel="noreferrer">Software resume</a>
-            <a className="btn-outline" href="/Yi-Chi_Trista_Chen_Resume.pdf" target="_blank" rel="noreferrer">Embedded resume</a>
-            <a className="btn-outline" href="https://github.com/trista-chen-29" target="_blank" rel="noreferrer">GitHub</a>
-            <a className="btn-outline" href="https://linkedin.com/in/yichichen229" target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
+          <ResumeActions />
         </div>
 
         <div className="ios-group" style={{ margin: 0 }}>

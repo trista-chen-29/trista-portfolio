@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import ProjectCard from '@/components/ProjectCard';
+import ResumeToast from '@/components/ResumeToast';
+import { noteInterest } from '@/lib/resumeFeed';
 
 /* ── Screenshot art components ── */
 
@@ -428,11 +430,12 @@ const projects = [
   },
   {
     title: 'Air Quality Monitoring System',
-    period: 'Apr – June 2025',
+    period: 'Apr – June 2025 · De Anza ENGR 10',
     status: 'done',
-    desc: 'Arduino UNO + gas sensors at 10 Hz. Threshold logic trips fan and LED alerts in under 200ms. Hardware/software soak tests hit 99.5% uptime over 72 hours.',
-    tags: ['Arduino', 'C++', 'Sensors'],
+    desc: 'Arduino UNO monitor for indoor gas: LCD1602 status, green/yellow/red LEDs, and a fan that turns on when the reading is harmful or dangerous. Built with Wenyan Chen, Ricardo Barron, Luke Nguyen, and Kevin Ngo. The DHT11 overheated during testing; the gas path, lights, and fan still ran.',
+    tags: ['Arduino', 'C++', 'LCD1602', 'Sensors'],
     role: 'Embedded Developer',
+    href: 'https://github.com/trista-chen-29/trista-portfolio/tree/main/projects/air-quality-monitor',
     art: <AirQualityArt />,
   },
   {
@@ -467,12 +470,12 @@ const projects = [
   },
   {
     title: 'Catch',
-    period: 'Sep 2026',
-    status: 'done',
-    desc: 'Laptop app that records a lecture locally, transcribes with on-device Whisper, and turns the transcript into an editable to-do list. Audio, text, and tasks stay on the computer — nothing is uploaded.',
-    tags: ['TypeScript', 'Whisper', 'SQLite'],
+    period: '2026 · CMPE 195 · prototype',
+    status: 'wip',
+    desc: 'Laptop prototype that records a lecture locally, transcribes it with on-device Whisper, and turns the transcript into an editable to-do list. Audio, text, and tasks stay on the computer. Still in progress.',
+    tags: ['TypeScript', 'Electron', 'Whisper', 'SQLite'],
     role: 'Full-Stack Engineer',
-    href: 'https://github.com/trista-chen-29/catch',
+    href: 'https://github.com/NotMyPersonalAccount/cmpe195',
     art: <CatchArt />,
   },
   {
@@ -558,11 +561,20 @@ const projects = [
 ];
 
 const shots = {
+  'ESP32 Wheel Calibration': ['/projects/alef-breadboard.jpg'],
   'URC Teleoperation — Mission Control': ['/projects/urc-arm.png', '/projects/urc.png'],
+  'Air Quality Monitoring System': ['/projects/aq-front.jpg', '/projects/aq-inside.jpg'],
+  'Edge AI Headcount': ['/projects/nuvoton-board.jpg', '/projects/nuvoton-detect.jpg'],
   freakypeeky: ['/projects/freakypeeky.png'],
   'Cosmetic Safety Intelligence': ['/projects/cosmetic.png', '/projects/cosmetic-scan.png'],
+  Catch: ['/projects/catch.png'],
+  'SCEvents + Clark Calendar': ['/projects/scevents.png'],
+  'Customer Churn Prediction': ['/projects/churn.png'],
+  AgentDex: ['/projects/agentdex.png'],
   'AI Meeting Agent': ['/projects/meeting.png'],
+  SpartanClubConnect: ['/projects/spartan.png', '/projects/spartan-login.png'],
   'SCE Financial Advising App': ['/projects/stock.png'],
+  'Prof-Support': ['/projects/prof-support.png'],
   Orig: ['/projects/orig.png'],
 };
 
@@ -586,6 +598,10 @@ const groups = {
 
 const filters = ['All', 'Hardware', 'Software', 'Hackathon'];
 
+function interestFor(title) {
+  return groups[title] === 'Hardware' ? 'hardware' : 'software';
+}
+
 export default function ProjectsPage() {
   const [filter, setFilter] = useState('All');
   const visible = projects.filter((project) => filter === 'All' || groups[project.title] === filter);
@@ -603,7 +619,11 @@ export default function ProjectsPage() {
             key={name}
             type="button"
             className={filter === name ? 'on' : ''}
-            onClick={() => setFilter(name)}
+            onClick={() => {
+              setFilter(name);
+              if (name === 'Hardware') noteInterest('hardware', 2);
+              if (name === 'Software' || name === 'Hackathon') noteInterest('software', 2);
+            }}
             aria-pressed={filter === name}
           >
             {name}
@@ -622,12 +642,14 @@ export default function ProjectsPage() {
               role={p.role}
               href={p.href}
               shots={shots[p.title]}
+              onOpen={() => noteInterest(interestFor(p.title), 3)}
             >
               {p.art}
             </ProjectCard>
           </div>
         ))}
       </div>
+      <ResumeToast />
     </div>
   );
 }
