@@ -1,15 +1,28 @@
 # Air Quality Monitor
 
-De Anza College ENGR 10 group project, due June 18, 2025.
+De Anza College **ENGR 10** group project · due June 18, 2025
 
-**Team:** Wenyan Chen, Trista Chen, Ricardo Barron, Luke Nguyen, Kevin Ngo
+**Team:** Wenyan Chen, Trista Chen, Ricardo Barron, Luke Nguyen, Kevin Ngo  
 **Instructor:** Saied Rafati
 
-A small indoor air-quality box. An Arduino UNO reads a gas sensor, shows the level on an LCD1602, lights a green, yellow, or red LED, and turns on a fan when the air is harmful or dangerous.
+A cardboard-box indoor air-quality monitor. An Arduino UNO reads a gas sensor, shows status on an LCD1602, lights green / yellow / red LEDs, and turns on a fan when the air is harmful or dangerous.
+
+<p>
+  <img src="aq-front.jpg" alt="Finished box with fan, LEDs, and LCD showing Safe" width="420" />
+  <img src="aq-inside.jpg" alt="Breadboard wiring inside the box" width="420" />
+</p>
+
+## How to show this project
+
+| Place | What to open |
+| --- | --- |
+| **This folder** (portfolio repo) | README + `AirQualityMonitor.ino` + photos |
+| **Portfolio site** | [Projects → Air Quality Monitoring System](https://tristachen.vercel.app/projects) — hover for inside wiring, tap to enlarge |
+| **Standalone repo** | Create `trista-chen-29/air-quality-monitor` (empty), then the prepared package under the agent artifacts can be pushed |
 
 ## What it does
 
-The loop reads the sensor on `A5` and maps the raw value from 0–900 onto a 0–100 “gas level” for the display. The LED and fan follow the raw reading:
+The loop reads the sensor on `A5` and maps the raw value from 0–900 onto a 0–100 gas level for the display. LED and fan follow the raw reading:
 
 | Raw reading | Status | Light | Fan |
 | --- | --- | --- | --- |
@@ -18,17 +31,18 @@ The loop reads the sensor on `A5` and maps the raw value from 0–900 onto a 0�
 | under 600 | Harmful | red | on |
 | 600 and up | Danger | second red | on |
 
-The class report stored the sketch as IDE screenshots. `AirQualityMonitor.ino` is those screens joined in order, including the comments that were on screen.
+The class report stored the sketch as IDE screenshots. `AirQualityMonitor.ino` is those screens joined in order.
 
-## Build notes from the report
+## Build notes
 
-- Board: Arduino UNO R3, written in C++.
-- Display: LCD1602. Getting a stable message on it took many tries; a long run could scramble the characters, so the group rewrote that part and tested it piece by piece.
-- Fan turns on for harmful and dangerous readings.
-- A DHT11 was added for temperature and humidity and overheated during the test, so that path did not ship.
-- Gas tests used butane from a lighter. LEDs and the fan were checked at each threshold.
-- Parts were chosen to stay under the $75 budget people in a 9-person class survey said they would pay. The build landed around $40.
+- Board: Arduino UNO R3, C++
+- Display: LCD1602 (many tries; long runs could scramble characters — rewritten piece by piece)
+- Fan on for harmful / dangerous
+- DHT11 for temp/humidity overheated during test and did not ship
+- Gas tests used butane from a lighter
+- Parts ~$40 (under the ~$75 survey willingness-to-pay)
 
 ## Photos
 
-The two build photos from the report are on the portfolio and in this folder: the front of the box (fan, LEDs, LCD reading Safe) and the wiring inside.
+- `aq-front.jpg` — finished box (fan, LEDs, LCD reading Safe)
+- `aq-inside.jpg` — breadboard wiring inside the box

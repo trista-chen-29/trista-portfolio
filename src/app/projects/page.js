@@ -413,7 +413,7 @@ const projects = [
     title: 'ESP32 Wheel Calibration',
     period: 'Apr – May 2026 · Alef',
     status: 'done',
-    desc: 'Dual Hall-sensor homing on ESP32 to restore wheel zero after power loss. CAN (TWAI) motor control at 100 Hz for velocity and incremental positioning, hysteresis against EMI, and a diagnostic web UI that cut field setup time.',
+    desc: 'Dual Hall-sensor homing on ESP32 to restore wheel zero after power loss. CAN (TWAI) motor control at 100 Hz for velocity and incremental positioning, hysteresis against EMI, and a diagnostic web UI that cut field setup time. Full firmware notes stay in a private repo; only breadboard / sensor bench photos are shown here.',
     tags: ['ESP32', 'CAN/TWAI', 'C++', 'Hall sensors'],
     role: 'Firmware Software Engineer Intern',
     art: <AlefArt />,
@@ -432,7 +432,7 @@ const projects = [
     title: 'Air Quality Monitoring System',
     period: 'Apr – June 2025 · De Anza ENGR 10',
     status: 'done',
-    desc: 'Arduino UNO monitor for indoor gas: LCD1602 status, green/yellow/red LEDs, and a fan that turns on when the reading is harmful or dangerous. Built with Wenyan Chen, Ricardo Barron, Luke Nguyen, and Kevin Ngo. The DHT11 overheated during testing; the gas path, lights, and fan still ran.',
+    desc: 'Arduino UNO monitor for indoor gas: LCD1602 status, green/yellow/red LEDs, and a fan that turns on when the reading is harmful or dangerous. Built with Wenyan Chen, Ricardo Barron, Luke Nguyen, and Kevin Ngo. Hover the card for the wiring inside the box; tap for a larger view. Sketch + report live in the linked repo.',
     tags: ['Arduino', 'C++', 'LCD1602', 'Sensors'],
     role: 'Embedded Developer',
     href: 'https://github.com/trista-chen-29/trista-portfolio/tree/main/projects/air-quality-monitor',
@@ -561,7 +561,11 @@ const projects = [
 ];
 
 const shots = {
-  'ESP32 Wheel Calibration': ['/projects/alef-breadboard.jpg'],
+  'ESP32 Wheel Calibration': [
+    '/projects/alef-breadboard.jpg',
+    '/projects/alef-hall-test.jpg',
+    '/projects/alef-magnets.jpg',
+  ],
   'URC Teleoperation — Mission Control': ['/projects/urc-arm.png', '/projects/urc.png'],
   'Air Quality Monitoring System': ['/projects/aq-front.jpg', '/projects/aq-inside.jpg'],
   'Edge AI Headcount': ['/projects/nuvoton-board.jpg', '/projects/nuvoton-detect.jpg'],
