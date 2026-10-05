@@ -348,14 +348,57 @@ function AirQualityArt() {
 function CosmeticArt() {
   return (
     <div style={{ position: 'absolute', inset: 0, padding: '.65rem', display: 'flex', flexDirection: 'column', gap: '.3rem' }}>
-      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '.35rem .6rem', fontFamily: 'var(--mono)', fontSize: '.52rem', color: 'var(--accent)' }}>POST /v1/analyze</div>
-      <div style={{ background: 'var(--accent-soft)', border: '1px solid var(--accent-mid)', borderRadius: '3px', padding: '.45rem', fontFamily: 'var(--mono)', fontSize: '.5rem', color: 'var(--text2)', lineHeight: 1.5 }}>risk: medium · confidence 0.72 · cache miss</div>
+      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '.35rem .6rem', display: 'flex', justifyContent: 'space-between' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '.52rem', color: 'var(--accent)' }}>Scan a product</span>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '.48rem', color: 'var(--text3)' }}>iPhone PWA</span>
+      </div>
+      <div style={{ background: 'var(--accent-soft)', border: '1px solid var(--accent-mid)', borderRadius: '3px', padding: '.45rem', fontFamily: 'var(--mono)', fontSize: '.5rem', color: 'var(--text2)', lineHeight: 1.5 }}>looks okay for now · confidence 0.72</div>
       <div style={{ display: 'flex', gap: '.3rem', flex: 1 }}>
-        {['schema', 'LLM', 'cache'].map((s) => (
-          <div key={s} style={{ flex: 1, background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: '3px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--mono)', fontSize: '.48rem', color: 'var(--text3)' }}>{s}</div>
+        {['camera', 'batch code', 'shelf life'].map((s) => (
+          <div key={s} style={{ flex: 1, background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: '3px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--mono)', fontSize: '.48rem', color: 'var(--text3)', textAlign: 'center', padding: '.2rem' }}>{s}</div>
         ))}
       </div>
       <div style={{ position: 'absolute', bottom: '.75rem', right: '.75rem', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', textTransform: 'uppercase', padding: '.22rem .6rem', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '3px', color: 'var(--text2)' }}>FastAPI</div>
+    </div>
+  );
+}
+
+function ShowerHacksArt() {
+  return (
+    <div style={{ position: 'absolute', inset: 0, padding: '.65rem', display: 'flex', flexDirection: 'column', gap: '.3rem' }}>
+      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '.35rem .6rem', display: 'flex', justifyContent: 'space-between' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '.55rem', color: 'var(--accent)', fontWeight: 600 }}>freakypeeky</span>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '.48rem', color: 'var(--text3)' }}>public sources only</span>
+      </div>
+      <div style={{ display: 'flex', gap: '.3rem', flex: 1 }}>
+        {['discover', 'corpus', 'cite'].map((s, i) => (
+          <div key={s} style={{ flex: 1, background: i === 1 ? 'var(--accent-soft)' : 'var(--surface2)', border: `1px solid ${i === 1 ? 'var(--accent-line)' : 'var(--border)'}`, borderRadius: '3px', padding: '.4rem', fontFamily: 'var(--mono)', fontSize: '.5rem', color: i === 1 ? 'var(--accent)' : 'var(--text2)' }}>{s}</div>
+        ))}
+      </div>
+      <div style={{ fontFamily: 'var(--mono)', fontSize: '.5rem', color: '#4ade80' }}>pytest + Playwright on every push</div>
+      <div style={{ position: 'absolute', bottom: '.75rem', right: '.75rem', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', textTransform: 'uppercase', padding: '.22rem .6rem', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '3px', color: 'var(--text2)' }}>Shower Hacks</div>
+    </div>
+  );
+}
+
+function CatchArt() {
+  return (
+    <div style={{ position: 'absolute', inset: 0, padding: '.65rem', display: 'flex', flexDirection: 'column', gap: '.3rem' }}>
+      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '.35rem .6rem', display: 'flex', justifyContent: 'space-between' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '.55rem', color: 'var(--accent)' }}>REC ●</span>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '.48rem', color: '#4ade80' }}>on this computer</span>
+      </div>
+      <div style={{ flex: 1, background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: '3px', padding: '.45rem', display: 'flex', flexDirection: 'column', gap: '.25rem' }}>
+        <div style={{ height: '4px', background: 'var(--accent-line)', borderRadius: '1px', width: '85%' }} />
+        <div style={{ height: '4px', background: 'var(--border)', borderRadius: '1px', width: '62%' }} />
+        <div style={{ fontFamily: 'var(--mono)', fontSize: '.48rem', color: 'var(--text3)', marginTop: '.2rem' }}>transcript → tasks</div>
+      </div>
+      <div style={{ display: 'flex', gap: '.3rem' }}>
+        {['Whisper', 'SQLite', 'offline'].map((s) => (
+          <div key={s} style={{ flex: 1, background: 'var(--accent-soft)', border: '1px solid var(--accent-mid)', borderRadius: '3px', textAlign: 'center', padding: '.25rem', fontFamily: 'var(--mono)', fontSize: '.46rem', color: 'var(--accent)' }}>{s}</div>
+        ))}
+      </div>
+      <div style={{ position: 'absolute', bottom: '.75rem', right: '.75rem', fontFamily: 'var(--mono)', fontSize: '.62rem', letterSpacing: '.1em', textTransform: 'uppercase', padding: '.22rem .6rem', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '3px', color: 'var(--text2)' }}>Desktop</div>
     </div>
   );
 }
@@ -400,6 +443,36 @@ const projects = [
     art: <NuvotonArt />,
   },
   {
+    title: 'freakypeeky',
+    period: 'Sep 2026 · Shower Hacks',
+    status: 'done',
+    desc: 'Source-linked portrait prototype from public web material: username discovery, a SQLite corpus with crawls and citations, and LLM reports that stay grounded in saved evidence. Shipped backend contract tests and Playwright coverage, plus a production-build fix for empty Next.js routes.',
+    tags: ['FastAPI', 'Next.js', 'SQLite', 'Playwright'],
+    role: 'Backend Engineer',
+    href: 'https://github.com/jindoridodi/shower-hacks',
+    art: <ShowerHacksArt />,
+  },
+  {
+    title: 'Cosmetic Safety Intelligence',
+    period: '2026',
+    status: 'wip',
+    desc: 'iPhone-first PWA: photograph a product or type the details, then a FastAPI backend estimates opened/unopened dates, risk, and a recommended action. Camera capture, schema-validated analysis, and on-device saved results — educational estimates, not medical advice.',
+    tags: ['FastAPI', 'React', 'PWA', 'Pydantic'],
+    role: 'Full-Stack Engineer',
+    href: 'https://github.com/trista-chen-29/cosmetic-safety-intelligence-api',
+    art: <CosmeticArt />,
+  },
+  {
+    title: 'Catch',
+    period: 'Sep 2026',
+    status: 'done',
+    desc: 'Laptop app that records a lecture locally, transcribes with on-device Whisper, and turns the transcript into an editable to-do list. Audio, text, and tasks stay on the computer — nothing is uploaded.',
+    tags: ['TypeScript', 'Whisper', 'SQLite'],
+    role: 'Full-Stack Engineer',
+    href: 'https://github.com/trista-chen-29/catch',
+    art: <CatchArt />,
+  },
+  {
     title: 'SCEvents + Clark Calendar',
     period: 'Mar – May 2026 · SCE-Development',
     status: 'done',
@@ -438,16 +511,6 @@ const projects = [
     role: 'Backend Engineer',
     href: 'https://github.com/trista-chen-29/meeting-agent',
     art: <MeetingAgentArt />,
-  },
-  {
-    title: 'Cosmetic Safety Intelligence API',
-    period: '2026',
-    status: 'wip',
-    desc: 'FastAPI service that turns product metadata and storage context into schema-validated expiration risk, recommended action, confidence, and cache/latency metadata via an LLM adapter.',
-    tags: ['Python', 'FastAPI', 'Pydantic', 'LLM'],
-    role: 'Backend Engineer',
-    href: 'https://github.com/trista-chen-29/cosmetic-safety-intelligence-api',
-    art: <CosmeticArt />,
   },
   {
     title: 'SpartanClubConnect',
