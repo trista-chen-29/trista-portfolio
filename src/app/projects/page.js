@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import ProjectCard from '@/components/ProjectCard';
 
 /* ── Screenshot art components ── */
@@ -455,7 +458,7 @@ const projects = [
   {
     title: 'Cosmetic Safety Intelligence',
     period: '2026',
-    status: 'wip',
+    status: 'done',
     desc: 'iPhone-first PWA: photograph a product or type the details, then a FastAPI backend estimates opened/unopened dates, risk, and a recommended action. Camera capture, schema-validated analysis, and on-device saved results — educational estimates, not medical advice.',
     tags: ['FastAPI', 'React', 'PWA', 'Pydantic'],
     role: 'Full-Stack Engineer',
@@ -554,16 +557,61 @@ const projects = [
   },
 ];
 
+const shots = {
+  'URC Teleoperation — Mission Control': ['/projects/urc-arm.png', '/projects/urc.png'],
+  freakypeeky: ['/projects/freakypeeky.png'],
+  'Cosmetic Safety Intelligence': ['/projects/cosmetic.png', '/projects/cosmetic-scan.png'],
+  'AI Meeting Agent': ['/projects/meeting.png'],
+  'SCE Financial Advising App': ['/projects/stock.png'],
+  Orig: ['/projects/orig.png'],
+};
+
+const groups = {
+  'ESP32 Wheel Calibration': 'Hardware',
+  'URC Teleoperation — Mission Control': 'Hardware',
+  'Air Quality Monitoring System': 'Hardware',
+  'Edge AI Headcount': 'Hardware',
+  freakypeeky: 'Hackathon',
+  'Cosmetic Safety Intelligence': 'Software',
+  Catch: 'Software',
+  'SCEvents + Clark Calendar': 'Software',
+  'Customer Churn Prediction': 'Software',
+  AgentDex: 'Hackathon',
+  'AI Meeting Agent': 'Hackathon',
+  SpartanClubConnect: 'Software',
+  'SCE Financial Advising App': 'Software',
+  'Prof-Support': 'Software',
+  Orig: 'Hackathon',
+};
+
+const filters = ['All', 'Hardware', 'Software', 'Hackathon'];
+
 export default function ProjectsPage() {
+  const [filter, setFilter] = useState('All');
+  const visible = projects.filter((project) => filter === 'All' || groups[project.title] === filter);
+
   return (
     <div className="page">
       <p className="page-kicker">Selected work</p>
       <h1 className="page-title">Projects</h1>
       <p className="page-sub">
-        Hardware, software, and hackathon weekends — built with teammates who also refused to leave a bug alone.
+        Hover a photo to peek at another screen. Tap it to open the real interface.
       </p>
+      <div className="proj-filters" role="tablist" aria-label="Project filters">
+        {filters.map((name) => (
+          <button
+            key={name}
+            type="button"
+            className={filter === name ? 'on' : ''}
+            onClick={() => setFilter(name)}
+            aria-pressed={filter === name}
+          >
+            {name}
+          </button>
+        ))}
+      </div>
       <div className="project-grid">
-        {projects.map((p, i) => (
+        {visible.map((p, i) => (
           <div key={p.title} className={`reveal delay-${Math.min((i % 4) + 1, 5)}`}>
             <ProjectCard
               title={p.title}
@@ -573,6 +621,7 @@ export default function ProjectsPage() {
               tags={p.tags}
               role={p.role}
               href={p.href}
+              shots={shots[p.title]}
             >
               {p.art}
             </ProjectCard>

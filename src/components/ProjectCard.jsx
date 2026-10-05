@@ -1,9 +1,26 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { Tag, StatusBadge } from './Ui';
 
-export default function ProjectCard({ title, period, status, desc, tags, role, href, children }) {
+export default function ProjectCard({ title, period, status, desc, tags, role, href, shots = [], children }) {
+  const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState(0);
+  const shot = shots[index] || shots[0];
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const onKey = (event) => {
+      if (event.key === 'Escape') setOpen(false);
+      if (event.key === 'ArrowRight') setIndex((i) => (i + 1) % shots.length);
+      if (event.key === 'ArrowLeft') setIndex((i) => (i - 1 + shots.length) % shots.length);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, shots.length]);
+
   return (
     <motion.article
       className="proj-card"
@@ -11,7 +28,25 @@ export default function ProjectCard({ title, period, status, desc, tags, role, h
       whileTap={{ scale: 0.985 }}
       transition={{ type: 'spring', stiffness: 380, damping: 28 }}
     >
-      <div className="proj-art">{children}</div>
+      <button
+        type="button"
+        className="proj-art"
+        onClick={() => shot && setOpen(true)}
+        onMouseEnter={() => shots.length > 1 && setIndex(1)}
+        onMouseLeave={() => setIndex(0)}
+        aria-label={shot ? `Open screenshot of ${title}` : undefined}
+      >
+        {shot ? (
+          <img src={shot} alt="" className="proj-shot" />
+        ) : children}
+        {shots.length > 1 && (
+          <span className="proj-dots" aria-hidden="true">
+            {shots.map((_, i) => (
+              <span key={shots[i]} className={i === index ? 'on' : ''} />
+            ))}
+          </span>
+        )}
+      </button>
       <div className="proj-body">
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, alignItems: 'flex-start' }}>
           <h3 className="proj-title">{title}</h3>
@@ -33,6 +68,21 @@ export default function ProjectCard({ title, period, status, desc, tags, role, h
           )}
         </div>
       </div>
+      {open && shot && createPortal(
+        <div className="lightbox" role="dialog" aria-modal="true" aria-label={`${title} screenshot`} onClick={() => setOpen(false)}>
+          <img src={shots[index]} alt={`${title} interface`} onClick={(event) => event.stopPropagation()} />
+          {shots.length > 1 && (
+            <div className="lightbox-nav" onClick={(event) => event.stopPropagation()}>
+              {shots.map((src, i) => (
+                <button key={src} type="button" className={i === index ? 'on' : ''} onClick={() => setIndex(i)}>
+                  {i + 1}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>,
+        document.body,
+      )}
     </motion.article>
   );
 }
