@@ -51,7 +51,6 @@ function playMeow() {
 export default function CatCompanion() {
   const [open, setOpen] = useState(false);
   const [box, setBox] = useState(null);
-  const fieldRef = useRef(null);
   const catRef = useRef(null);
   const closeRef = useRef(null);
   const popRef = useRef(null);
@@ -106,48 +105,65 @@ export default function CatCompanion() {
   }
 
   useEffect(() => {
-    const field = fieldRef.current;
     const cat = catRef.current;
-    if (!field || !cat) return undefined;
+    if (!cat) return undefined;
 
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const pos = { x: 8, y: 8, vx: 1.05, vy: 0.72 };
+    const pos = { x: 28, y: 140, vx: 1.8, vy: 1.15 };
     let last = performance.now();
     let frame = 0;
 
+    const limits = () => {
+      const nav = document.querySelector('.ios-topbar');
+      const tab = document.querySelector('.ios-tabbar');
+      const navH = nav ? nav.getBoundingClientRect().height : 64;
+      const tabVisible = tab && getComputedStyle(tab).display !== 'none';
+      const tabH = tabVisible ? tab.getBoundingClientRect().height : 0;
+      const margin = 6;
+      const minX = margin;
+      const minY = navH + margin;
+      const maxX = Math.max(minX, window.innerWidth - cat.offsetWidth - margin);
+      const maxY = Math.max(minY, window.innerHeight - tabH - cat.offsetHeight - margin);
+      return { minX, minY, maxX, maxY };
+    };
+
     const tick = (now) => {
-      const maxX = Math.max(0, field.clientWidth - cat.offsetWidth);
-      const maxY = Math.max(0, field.clientHeight - cat.offsetHeight);
+      const { minX, minY, maxX, maxY } = limits();
       const reduced = motion.matches;
-      const hold = reduced || pausedRef.current || openRef.current;
+      const hold = reduced || pausedRef.current || openRef.current || document.body.classList.contains('dialog-open');
 
       if (reduced) {
-        pos.x = maxX * 0.55;
-        pos.y = maxY * 0.45;
+        pos.x = maxX;
+        pos.y = maxY;
       } else if (!hold) {
         const step = Math.min(32, now - last) / 16.67;
         pos.x += pos.vx * step;
         pos.y += pos.vy * step;
-        if (pos.x <= 0 || pos.x >= maxX) {
+        if (pos.x <= minX || pos.x >= maxX) {
           pos.vx *= -1;
-          pos.x = Math.max(0, Math.min(maxX, pos.x));
+          pos.x = Math.max(minX, Math.min(maxX, pos.x));
         }
-        if (pos.y <= 0 || pos.y >= maxY) {
+        if (pos.y <= minY || pos.y >= maxY) {
           pos.vy *= -1;
-          pos.y = Math.max(0, Math.min(maxY, pos.y));
+          pos.y = Math.max(minY, Math.min(maxY, pos.y));
         }
         if (Math.random() < 0.012) {
-          pos.vx += (Math.random() - 0.5) * 0.35;
-          pos.vy += (Math.random() - 0.5) * 0.35;
+          pos.vx += (Math.random() - 0.5) * 0.55;
+          pos.vy += (Math.random() - 0.5) * 0.45;
           const speed = Math.hypot(pos.vx, pos.vy) || 1;
-          const target = 0.95 + Math.random() * 0.35;
+          const span = Math.max(maxX - minX, maxY - minY, 1);
+          const target = Math.min(2.7, Math.max(1.45, span / 380));
           pos.vx = (pos.vx / speed) * target;
           pos.vy = (pos.vy / speed) * target;
         }
+      } else {
+        pos.x = Math.max(minX, Math.min(maxX, pos.x));
+        pos.y = Math.max(minY, Math.min(maxY, pos.y));
       }
 
       last = now;
-      cat.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
+      const face = pos.vx < 0 ? -1 : 1;
+      cat.style.transform = `translate(${pos.x}px, ${pos.y}px) scaleX(${face})`;
       frame = requestAnimationFrame(tick);
     };
 
@@ -183,23 +199,20 @@ export default function CatCompanion() {
   }, [open]);
 
   return (
-    <div className="cat-slot">
-      <p className="cat-hint">Catch me</p>
-      <div className="cat-field" ref={fieldRef}>
-        <button
-          ref={catRef}
-          type="button"
-          className="cat-button"
-          aria-expanded={open}
-          aria-controls={panelId}
-          aria-label="Catch the cat"
-          onFocus={() => { pausedRef.current = true; }}
-          onBlur={() => { pausedRef.current = false; }}
-          onClick={catchCat}
-        >
-          <CatArt />
-        </button>
-      </div>
+    <>
+      <button
+        ref={catRef}
+        type="button"
+        className="cat-button"
+        aria-expanded={open}
+        aria-controls={panelId}
+        aria-label="Catch the cat"
+        onFocus={() => { pausedRef.current = true; }}
+        onBlur={() => { pausedRef.current = false; }}
+        onClick={catchCat}
+      >
+        <CatArt />
+      </button>
       {open && box && createPortal(
         <div
           ref={popRef}
@@ -217,7 +230,7 @@ export default function CatCompanion() {
         </div>,
         document.body,
       )}
-    </div>
+    </>
   );
 }
 

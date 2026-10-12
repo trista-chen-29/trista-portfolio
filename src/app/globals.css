@@ -113,6 +113,7 @@ button, a, input, summary { font: inherit; }
 .page-kicker {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   font-size: 14px;
   font-weight: 600;
@@ -232,22 +233,22 @@ body.dialog-open .ios-tabbar { visibility: hidden; }
   gap: 28px;
 }
 .hero-profile {
-  display: grid;
-  grid-template-columns: min(168px, 46vw) minmax(0, 1fr);
-  gap: 8px 14px;
-  align-items: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
   margin-top: 16px;
 }
 .hero-photo {
   position: relative;
-  width: min(168px, 46vw);
+  width: min(210px, 62vw);
   aspect-ratio: 4 / 5;
   border-radius: 22px;
   overflow: hidden;
   box-shadow: var(--photo-shadow);
   background: var(--surface2);
 }
-.hero-copy { grid-column: 1 / -1; min-width: 0; padding-top: 4px; }
+.hero-copy { min-width: 0; width: 100%; }
 .hero-bio {
   margin-top: 18px;
   display: flex;
@@ -346,47 +347,27 @@ body.dialog-open .ios-tabbar { visibility: hidden; }
 .btn-outline:hover { background: var(--outline-hover); }
 .btn-solid:active, .btn-outline:active { transform: translateY(1px); }
 
-.cat-slot {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  width: 100%;
-  min-width: 0;
-  align-self: end;
-}
-.cat-hint {
-  margin: 0;
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: 0.04em;
-  color: var(--text3);
-  pointer-events: none;
-}
-.cat-field {
-  position: relative;
-  width: 100%;
-  height: 112px;
-  border-radius: 18px;
-  background: var(--accent-soft);
-}
 .cat-button {
-  position: absolute;
+  position: fixed;
+  z-index: 90;
   top: 0;
   left: 0;
-  width: 72px;
-  height: 72px;
+  width: 64px;
+  height: 64px;
   border: 0;
   padding: 0;
   background: transparent;
   color: var(--text);
   cursor: pointer;
   border-radius: 18px;
+  filter: drop-shadow(0 8px 12px rgba(38, 30, 48, 0.22));
+  transform: translate(16px, calc(var(--nav-h) + 24px));
   will-change: transform;
 }
-.cat-button:hover { filter: brightness(1.08); }
+.cat-button:hover { filter: drop-shadow(0 8px 12px rgba(38, 30, 48, 0.22)) brightness(1.08); }
 .cat-button:active { opacity: 0.82; }
-.cat-svg { width: 72px; height: 72px; }
+body.dialog-open .cat-button { visibility: hidden; }
+.cat-svg { width: 64px; height: 64px; }
 .cat-tail {
   transform-origin: 62px 72px;
   animation: cat-tail 3.8s ease-in-out infinite;
@@ -406,7 +387,7 @@ body.dialog-open .ios-tabbar { visibility: hidden; }
 }
 .cat-pop {
   position: fixed;
-  z-index: 80;
+  z-index: 140;
   margin: 0;
   background: var(--surface);
   color: var(--text);
@@ -802,17 +783,14 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   .page { padding: 32px 28px 64px; }
   .hero-photo { width: 220px; grid-area: photo; }
   .hero-profile {
+    display: grid;
     grid-template-columns: 220px minmax(0, 1fr);
-    grid-template-areas:
-      "photo copy"
-      "cat copy";
+    grid-template-areas: "photo copy";
     column-gap: 28px;
-    row-gap: 0;
-    align-items: end;
+    align-items: center;
   }
-  .cat-slot { grid-area: cat; justify-self: stretch; align-self: end; margin-top: 8px; z-index: 1; }
-  .cat-field { height: 104px; }
-  .hero-copy { grid-area: copy; align-self: center; }
+  .hero-copy { grid-area: copy; width: auto; align-self: center; }
+  .cat-button, .cat-svg { width: 76px; height: 76px; }
   .project-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
   .site-footer { padding: 8px 28px 20px; }
 }
