@@ -73,10 +73,10 @@ function InterestCard({ item }) {
 
   useEffect(() => {
     if (!open) return undefined;
-    const frame = requestAnimationFrame(() => {
+    const timer = window.setTimeout(() => {
       panelRef.current?.scrollIntoView({ block: 'nearest' });
-    });
-    return () => cancelAnimationFrame(frame);
+    }, 240);
+    return () => window.clearTimeout(timer);
   }, [open]);
 
   return (

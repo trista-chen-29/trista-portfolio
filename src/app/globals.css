@@ -438,6 +438,8 @@ body.dialog-open .ios-tabbar { visibility: hidden; }
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   min-width: 0;
+  scroll-margin-top: calc(var(--nav-h) + 12px);
+  scroll-margin-bottom: calc(var(--tab-h) + 20px);
   transition: border-color 200ms var(--ease), transform 200ms var(--ease);
 }
 .interest-card.open { border-color: var(--accent-line); }
@@ -476,6 +478,7 @@ body.dialog-open .ios-tabbar { visibility: hidden; }
   display: grid;
   grid-template-rows: 0fr;
   min-width: 0;
+  scroll-margin-bottom: calc(var(--tab-h) + 20px);
   transition: grid-template-rows 220ms var(--ease);
 }
 .interest-panel.open { grid-template-rows: 1fr; }

@@ -62,12 +62,29 @@ export default function CatCompanion() {
   function place() {
     const rect = catRef.current?.getBoundingClientRect();
     if (!rect) return null;
+    const styles = getComputedStyle(document.documentElement);
+    const navH = parseFloat(styles.getPropertyValue('--nav-h')) || 64;
+    const tabH = parseFloat(styles.getPropertyValue('--tab-h')) || 0;
     const width = Math.min(280, window.innerWidth - 32);
+    const popH = 176;
     let left = rect.left;
     if (left + width > window.innerWidth - 16) left = window.innerWidth - 16 - width;
     if (left < 16) left = 16;
-    let top = rect.bottom + 8;
-    if (top + 160 > window.innerHeight - 12) top = Math.max(12, rect.top - 168);
+
+    const minTop = navH + 8;
+    const maxTop = window.innerHeight - tabH - 8 - popH;
+    const title = document.querySelector('.page-title')?.getBoundingClientRect();
+    const below = rect.bottom + 8;
+    const above = rect.top - 8 - popH;
+    const belowHitsTitle = title && below < title.bottom && below + popH > title.top;
+    const belowFits = below >= minTop && below <= maxTop && !belowHitsTitle;
+    const aboveFits = above >= minTop && above <= maxTop;
+    const aboveTitle = title ? title.top - 8 - popH : minTop;
+    let top = below;
+    if (belowFits) top = below;
+    else if (aboveFits) top = above;
+    else if (aboveTitle >= minTop) top = aboveTitle;
+    else top = Math.min(Math.max(below, minTop), Math.max(minTop, maxTop));
     return { top, left, width };
   }
 
@@ -83,7 +100,7 @@ export default function CatCompanion() {
       return;
     }
     openRef.current = true;
-    playMeow();
+    try { playMeow(); } catch { /* the secret still opens if audio is unavailable */ }
     setBox(place());
     setOpen(true);
   }
