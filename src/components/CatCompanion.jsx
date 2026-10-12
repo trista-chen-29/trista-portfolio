@@ -124,8 +124,8 @@ export default function CatCompanion() {
       toX: 0,
       toY: 0,
       phase: 'rest',
-      until: performance.now() + 400,
-      hopDur: 800,
+      until: performance.now() + 2200,
+      hopDur: 4200,
     };
     spot.fromX = spot.x;
     spot.fromY = spot.y;
@@ -146,17 +146,26 @@ export default function CatCompanion() {
           region,
           distance: Math.hypot(region.x - spot.x, region.y - spot.y),
         }))
-        .sort((a, b) => b.distance - a.distance);
-      const choice = ranked[Math.floor(Math.random() * Math.min(3, ranked.length))].region;
+        .filter((item) => item.distance > 70)
+        .sort((a, b) => a.distance - b.distance);
+      if (!ranked.length) {
+        spot.phase = 'rest';
+        spot.until = performance.now() + 8000;
+        return;
+      }
+      const nearby = ranked.slice(0, 3);
+      const pool = nearby.length ? nearby : ranked;
+      const choice = pool[Math.floor(Math.random() * pool.length)].region;
       const landing = {
-        x: Math.max(0, Math.min(maxX, choice.x + (Math.random() - 0.5) * maxX * 0.12)),
-        y: Math.max(0, Math.min(maxY, choice.y + (Math.random() - 0.5) * maxY * 0.1)),
+        x: Math.max(0, Math.min(maxX, choice.x + (Math.random() - 0.5) * maxX * 0.08)),
+        y: Math.max(0, Math.min(maxY, choice.y + (Math.random() - 0.5) * maxY * 0.06)),
       };
+      const travel = Math.hypot(landing.x - spot.x, landing.y - spot.y);
       spot.fromX = spot.x;
       spot.fromY = spot.y;
       spot.toX = landing.x;
       spot.toY = landing.y;
-      spot.hopDur = 720 + Math.random() * 280;
+      spot.hopDur = Math.max(4200, travel * 14);
       spot.until = performance.now();
       spot.phase = 'hop';
     };
@@ -196,14 +205,13 @@ export default function CatCompanion() {
         spot.x = spot.fromX + (spot.toX - spot.fromX) * ease;
         spot.y = spot.fromY + (spot.toY - spot.fromY) * ease;
         const distance = Math.hypot(spot.toX - spot.fromX, spot.toY - spot.fromY);
-        const arc = Math.sin(Math.PI * t) * Math.min(56, 22 + distance * 0.08);
-        const squash = t > 0.9 ? 1 - ((t - 0.9) / 0.1) * 0.14 : 1;
-        paint(Math.max(0, Math.min(maxX, spot.x)), Math.max(0, Math.min(maxY, spot.y)), arc, squash);
+        const arc = Math.sin(Math.PI * t) * Math.min(10, 3 + distance * 0.012);
+        paint(Math.max(0, Math.min(maxX, spot.x)), Math.max(0, Math.min(maxY, spot.y)), arc, 1);
         if (t >= 1) {
           spot.x = Math.max(0, Math.min(maxX, spot.toX));
           spot.y = Math.max(0, Math.min(maxY, spot.toY));
           spot.phase = 'rest';
-          spot.until = now + 1600 + Math.random() * 1400;
+          spot.until = now + 6000 + Math.random() * 4000;
         }
       }
 
