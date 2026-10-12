@@ -5,45 +5,48 @@ import { useEffect, useId, useRef, useState } from 'react';
 const interests = [
   {
     name: 'Rock climbing',
-    teaser: 'V1+ at the SRAC, with V2 as the goal.',
     blurb: 'The SJSU SRAC boulders currently have me parked on V1+. This semester’s assignment is V2, whether the wall agrees or not.',
     icon: ClimbIcon,
   },
   {
     name: 'Gym',
-    teaser: 'Beginner miles on the machines I like.',
     blurb: 'Still collecting beginner miles. Leg press, stairmaster, and treadmill are the rotation I actually look forward to.',
     icon: GymIcon,
   },
   {
     name: 'Cocktails',
-    teaser: 'Not candy-sweet. Tequila is the favorite.',
     blurb: 'I’ll try almost anything as long as it isn’t candy-sweet. Hard liquor is welcome. Tequila is the favorite.',
     icon: GlassIcon,
   },
   {
     name: 'Karaoke',
-    teaser: 'Mandarin, English, and ROSÉ is next.',
     blurb: 'Mandarin, English, and a growing queue. ROSÉ is next on the list — ambitious, but that is the point of a microphone.',
     icon: MicIcon,
   },
   {
     name: 'Mahjong',
-    teaser: 'Five years. The stakes are exercise.',
     blurb: 'Five years, on and off. No cash on the table — only push-ups and sit-ups, which somehow still sting.',
     icon: TileIcon,
   },
   {
     name: 'Exploring food',
-    teaser: 'Scallion pancake, malatang, pho, matcha.',
     blurb: 'Always chasing the next bowl or pan: scallion pancake, malatang, pho, tom yum, and a matcha somewhere in between.',
     icon: BowlIcon,
   },
   {
     name: 'Cats',
-    teaser: 'A quiet fondness.',
-    blurb: 'I like cats. A quiet fondness, nothing more elaborate than that.',
+    blurb: 'I want to be a cat mom someday.',
     icon: CatIcon,
+  },
+  {
+    name: 'Traveling',
+    blurb: 'I want new cities, and meals I have not tried yet.',
+    icon: TravelIcon,
+  },
+  {
+    name: 'Hiking',
+    blurb: 'I want trails, and more time outside.',
+    icon: HikeIcon,
   },
 ];
 
@@ -64,7 +67,6 @@ function InterestCard({ item }) {
   const [open, setOpen] = useState(false);
   const buttonId = useId();
   const nameId = useId();
-  const teaserId = useId();
   const panelId = useId();
   const panelRef = useRef(null);
   const Icon = item.icon;
@@ -85,7 +87,6 @@ function InterestCard({ item }) {
         aria-expanded={open}
         aria-controls={panelId}
         aria-labelledby={nameId}
-        aria-describedby={teaserId}
         onClick={() => setOpen((value) => !value)}
         onKeyDown={(event) => {
           if (event.key === 'Escape' && open) {
@@ -97,7 +98,6 @@ function InterestCard({ item }) {
         <span className="interest-icon" aria-hidden="true"><Icon /></span>
         <span className="interest-text">
           <span id={nameId} className="interest-name">{item.name}</span>
-          <span id={teaserId} className="interest-teaser">{item.teaser}</span>
         </span>
         <span className="interest-mark" aria-hidden="true">
           {open ? <MinusIcon /> : <PlusIcon />}
@@ -194,6 +194,24 @@ function CatIcon() {
       <path d="M7 18 10 9l5 6h2l5-6 3 9v6H7Z" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
       <circle cx="13" cy="18" r="0.9" fill="currentColor" />
       <circle cx="19" cy="18" r="0.9" fill="currentColor" />
+    </svg>
+  );
+}
+
+function TravelIcon() {
+  return (
+    <svg viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="9" fill="none" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M7 16h18M16 7c2.4 2.6 3.6 5.6 3.6 9s-1.2 6.4-3.6 9c-2.4-2.6-3.6-5.6-3.6-9s1.2-6.4 3.6-9Z" fill="none" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
+function HikeIcon() {
+  return (
+    <svg viewBox="0 0 32 32">
+      <path d="M4 25 11 14l5 6 4-5 8 10" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round" />
+      <circle cx="22" cy="8" r="2.2" fill="none" stroke="currentColor" strokeWidth="1.6" />
     </svg>
   );
 }

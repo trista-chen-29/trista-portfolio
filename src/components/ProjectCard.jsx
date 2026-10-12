@@ -16,7 +16,6 @@ export default function ProjectCard({
   href,
   shots = [],
   frame,
-  onOpen,
 }) {
   const [open, setOpen] = useState(false);
   const openerRef = useRef(null);
@@ -109,10 +108,7 @@ export default function ProjectCard({
             type="button"
             className="btn-outline"
             aria-haspopup="dialog"
-            onClick={() => {
-              setOpen(true);
-              onOpen?.();
-            }}
+            onClick={() => setOpen(true)}
           >
             View project
           </button>

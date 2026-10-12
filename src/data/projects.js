@@ -201,7 +201,3 @@ export const projects = [
 ];
 
 export const projectFilters = ['All', 'Hardware', 'Software', 'Hackathon'];
-
-export function interestFor(group) {
-  return group === 'Hardware' ? 'hardware' : 'software';
-}

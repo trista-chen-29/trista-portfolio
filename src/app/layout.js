@@ -2,7 +2,6 @@ import './globals.css';
 import { Newsreader } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/components/Navbar';
-import LittleSecret from '@/components/LittleSecret';
 
 const newsreader = Newsreader({
   subsets: ['latin'],
@@ -40,11 +39,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           <main>{children}</main>
           <footer className="site-footer">
-            <div className="footer-meta">
-              <span>© 2026 Yi-Chi (Trista) Chen</span>
-              <span>San Jose, CA · SJSU SWE ’27</span>
-            </div>
-            <LittleSecret />
+            <p>© Yi-Chi (Trista) Chen</p>
           </footer>
         </ThemeProvider>
       </body>

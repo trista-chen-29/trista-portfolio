@@ -43,7 +43,8 @@ export default function AboutPage() {
             <CatCompanion />
             <div className="hero-copy">
               <h1 className="page-title">Yi-Chi (Trista) Chen</h1>
-              <p className="page-sub">SJSU Software Engineering · May 2027</p>
+              <p className="page-sub">SJSU Software Engineering</p>
+              <ResumeActions />
             </div>
           </div>
           <div className="hero-bio">
@@ -54,7 +55,6 @@ export default function AboutPage() {
               I&apos;m open to internships before graduation, and to new-grad roles afterward, in firmware, robotics, validation, and software.
             </p>
           </div>
-          <ResumeActions />
           <p className="hero-now">
             Right now I do EMC and RF validation at{' '}
             <a href="https://www.element.com/" target="_blank" rel="noreferrer">Element Materials Technology</a>
@@ -76,7 +76,6 @@ export default function AboutPage() {
         </aside>
       </section>
 
-      <Interests />
       <Skills />
 
       <section className="block" aria-labelledby="school-heading">
@@ -88,6 +87,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <Interests />
 
       <section className="block" id="contact" aria-labelledby="contact-heading">
         <h2 id="contact-heading" className="section-label">Contact</h2>

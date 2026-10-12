@@ -2,9 +2,7 @@
 
 import { useState } from 'react';
 import ProjectCard from '@/components/ProjectCard';
-import ResumeToast from '@/components/ResumeToast';
-import { interestFor, projectFilters, projects } from '@/data/projects';
-import { noteInterest } from '@/lib/resumeFeed';
+import { projectFilters, projects } from '@/data/projects';
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState('All');
@@ -23,18 +21,13 @@ export default function ProjectsPage() {
             key={name}
             type="button"
             className={filter === name ? 'on' : ''}
-            onClick={() => {
-              setFilter(name);
-              if (name === 'Hardware') noteInterest('hardware', 2);
-              if (name === 'Software' || name === 'Hackathon') noteInterest('software', 2);
-            }}
+            onClick={() => setFilter(name)}
             aria-pressed={filter === name}
           >
             {name}
           </button>
         ))}
       </div>
-      <ResumeToast />
       <div className="project-grid">
         {visible.map((project) => (
           <ProjectCard
@@ -49,7 +42,6 @@ export default function ProjectsPage() {
             href={project.href}
             shots={project.shots}
             frame={project.frame}
-            onOpen={() => noteInterest(interestFor(project.group), 3)}
           />
         ))}
       </div>
