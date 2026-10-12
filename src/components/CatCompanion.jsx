@@ -134,20 +134,29 @@ export default function CatCompanion() {
 
     const nextLanding = () => {
       const { maxX, maxY } = bounds();
-      const minHop = Math.min(180, Math.max(90, Math.max(maxX, maxY) * 0.28));
-      let landing = { x: maxX * 0.2, y: maxY * 0.62 };
-      for (let i = 0; i < 8; i += 1) {
-        const candidate = { x: Math.random() * maxX, y: Math.random() * maxY };
-        if (Math.hypot(candidate.x - spot.x, candidate.y - spot.y) >= minHop) {
-          landing = candidate;
-          break;
-        }
-      }
+      const regions = [
+        { x: maxX * 0.08, y: maxY * 0.1 },
+        { x: maxX * 0.76, y: maxY * 0.14 },
+        { x: maxX * 0.14, y: maxY * 0.7 },
+        { x: maxX * 0.68, y: maxY * 0.66 },
+        { x: maxX * 0.4, y: maxY * 0.38 },
+      ];
+      const ranked = regions
+        .map((region) => ({
+          region,
+          distance: Math.hypot(region.x - spot.x, region.y - spot.y),
+        }))
+        .sort((a, b) => b.distance - a.distance);
+      const choice = ranked[Math.floor(Math.random() * Math.min(3, ranked.length))].region;
+      const landing = {
+        x: Math.max(0, Math.min(maxX, choice.x + (Math.random() - 0.5) * maxX * 0.12)),
+        y: Math.max(0, Math.min(maxY, choice.y + (Math.random() - 0.5) * maxY * 0.1)),
+      };
       spot.fromX = spot.x;
       spot.fromY = spot.y;
       spot.toX = landing.x;
       spot.toY = landing.y;
-      spot.hopDur = 620 + Math.random() * 480;
+      spot.hopDur = 720 + Math.random() * 280;
       spot.until = performance.now();
       spot.phase = 'hop';
     };
@@ -194,7 +203,7 @@ export default function CatCompanion() {
           spot.x = Math.max(0, Math.min(maxX, spot.toX));
           spot.y = Math.max(0, Math.min(maxY, spot.toY));
           spot.phase = 'rest';
-          spot.until = now + 220 + Math.random() * 520;
+          spot.until = now + 1600 + Math.random() * 1400;
         }
       }
 
