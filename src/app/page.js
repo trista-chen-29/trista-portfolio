@@ -1,42 +1,8 @@
 import Image from 'next/image';
-import { Chip } from '@/components/Ui';
+import CatCompanion from '@/components/CatCompanion';
 import Interests from '@/components/Interests';
 import ResumeActions from '@/components/ResumeActions';
-
-const skills = [
-  { label: 'Languages', items: [
-    { name: 'C', icon: 'c' }, { name: 'C++', icon: 'cplusplus' },
-    { name: 'Python', icon: 'python' }, { name: 'Go', icon: 'go' },
-    { name: 'Java', icon: 'java' }, { name: 'JavaScript', icon: 'javascript' },
-    { name: 'TypeScript', icon: 'typescript' }, { name: 'Kotlin', icon: 'kotlin' },
-    { name: 'Assembly' }, { name: 'SQL' },
-    { name: 'HTML', icon: 'html5' }, { name: 'CSS', icon: 'css3' },
-  ]},
-  { label: 'Embedded & firmware', items: [
-    { name: 'ESP32' }, { name: 'CAN / TWAI' }, { name: 'UART' }, { name: 'USB' },
-    { name: 'Hall sensors' }, { name: 'Motor control' }, { name: 'Ethos-U55' }, { name: 'Arduino' },
-  ]},
-  { label: 'Backend & data', items: [
-    { name: 'FastAPI', icon: 'fastapi' }, { name: 'Gin' },
-    { name: 'Kafka', icon: 'apachekafka' }, { name: 'Redis', icon: 'redis' },
-    { name: 'MongoDB', icon: 'mongodb' }, { name: 'MySQL', icon: 'mysql' },
-    { name: 'SQLite', icon: 'sqlite' }, { name: 'Pydantic' }, { name: 'JWT' },
-    { name: 'React', icon: 'react' }, { name: 'Next.js', icon: 'nextjs' },
-    { name: 'Node.js', icon: 'nodejs' }, { name: 'Express', icon: 'express' },
-    { name: 'Electron', icon: 'electron' }, { name: 'Vite', icon: 'vitejs' },
-    { name: 'Tailwind', icon: 'tailwindcss' },
-    { name: 'JDBC' }, { name: 'JSP' }, { name: 'JavaFX' }, { name: 'Maven', icon: 'maven' },
-    { name: 'Docker', icon: 'docker' }, { name: 'Socket.IO', icon: 'socketio' },
-  ]},
-  { label: 'ML, validation & tools', items: [
-    { name: 'PyTorch', icon: 'pytorch' }, { name: 'scikit-learn', icon: 'scikitlearn' },
-    { name: 'pandas', icon: 'pandas' }, { name: 'Jupyter', icon: 'jupyter' },
-    { name: 'YOLOv8' }, { name: 'Whisper' }, { name: 'RedisVL' }, { name: 'uAgents' },
-    { name: 'EMC / RF' }, { name: 'Wi-Fi 6E' }, { name: 'Bluetooth' }, { name: 'UWB' },
-    { name: 'k6' }, { name: 'Playwright' }, { name: 'pytest' }, { name: 'Vitest' },
-    { name: 'Linux', icon: 'linux' }, { name: 'GitHub Actions' },
-  ]},
-];
+import Skills from '@/components/Skills';
 
 const contacts = [
   { label: 'Email', value: 'yichichen229@gmail.com', href: 'mailto:yichichen229@gmail.com' },
@@ -46,107 +12,107 @@ const contacts = [
   { label: 'Location', value: 'San Jose, CA', href: null },
 ];
 
+function Crescent() {
+  return (
+    <svg className="kicker-mark" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="currentColor" d="M14.5 3.2a8.2 8.2 0 1 0 6.2 13.6 6.4 6.4 0 1 1-6.2-13.6z" />
+    </svg>
+  );
+}
+
 export default function AboutPage() {
   return (
     <div className="page">
-      <section className="hero reveal">
+      <section className="hero">
         <div>
-          <p className="page-kicker">Firmware · Robotics · Validation · Software</p>
-          <div className="hero-profile" style={{ marginTop: 10 }}>
+          <p className="page-kicker">
+            <Crescent />
+            Firmware · Robotics · Validation · Software
+          </p>
+          <div className="hero-profile">
             <div className="hero-photo">
               <Image
                 src="/photo.jpg"
-                alt="Trista Chen"
+                alt="Portrait of Yi-Chi (Trista) Chen"
                 fill
                 style={{ objectFit: 'cover', objectPosition: 'center 18%' }}
                 priority
-                sizes="168px"
+                sizes="(min-width: 768px) 220px, 210px"
               />
             </div>
+            <CatCompanion />
             <div className="hero-copy">
-              <h1 className="page-title" style={{ margin: 0 }}>Yi-Chi (Trista) Chen</h1>
-              <p className="page-sub" style={{ margin: '6px 0 0' }}>SJSU Software Engineering · May 2027</p>
+              <h1 className="page-title">Yi-Chi (Trista) Chen</h1>
+              <p className="page-sub">SJSU Software Engineering · May 2027</p>
             </div>
           </div>
-          <div className="hero-bio" style={{ marginTop: 14 }}>
+          <div className="hero-bio">
             <p>
-              Taiwanese, currently in San Jose, and a February 29 baby — so I only get a real birthday every four years.
-              I like problems that do not sit still: a noisy sensor, a racey waitlist, a rover arm that has to feel honest in your hands.
+              I&apos;m Taiwanese and based in San Jose. I study software engineering at SJSU and graduate in May 2027.
             </p>
             <p>
-              Some days that is <span className="strong">firmware</span>. Some days it is <span className="strong">software</span>. A lot of days it is both.
-            </p>
-            <p>
-              I currently do EMC/RF validation at{' '}
-              <a className="accent" href="https://www.element.com/" target="_blank" rel="noreferrer">Element Materials Technology</a>
-              {' '}and serve as an officer at the{' '}
-              <a className="accent" href="https://sce.sjsu.edu/" target="_blank" rel="noreferrer">SJSU Software & Computer Engineering Society</a>.
-              I have also interned in firmware at Alef, built Mission Control tools for SJSU Robotics, and shipped event software with SCE.
-            </p>
-            <p>
-              Looking for <span className="strong">internships now</span> and <span className="strong">new-grad roles after May 2027</span>
-              {' '}in firmware, robotics, validation, or software.
+              I&apos;m open to internships before graduation, and to new-grad roles afterward, in firmware, robotics, validation, and software.
             </p>
           </div>
           <ResumeActions />
+          <p className="hero-now">
+            Right now I do EMC and RF validation at{' '}
+            <a href="https://www.element.com/" target="_blank" rel="noreferrer">Element Materials Technology</a>
+            {' '}and serve as an officer at the{' '}
+            <a href="https://sce.sjsu.edu/" target="_blank" rel="noreferrer">SJSU Software & Computer Engineering Society</a>.
+          </p>
         </div>
 
-        <div className="ios-group" style={{ margin: 0 }}>
-          <div className="ios-group-label">Snapshot</div>
-          <div className="ios-card">
-            <div className="ios-row"><span className="label">GPA</span><span className="value">3.7</span></div>
-            <div className="ios-row"><span className="label">Grad</span><span className="value">May 2027</span></div>
-            <div className="ios-row stack">
-              <span className="label">Seeking</span>
-              <span className="value green">Internships now · New grad after May 2027</span>
+        <aside className="snapshot" aria-label="At a glance">
+          <h2 className="section-label">At a glance</h2>
+          <div className="quiet-card">
+            <div className="snap-row"><span>GPA</span><span>3.7</span></div>
+            <div className="snap-row"><span>Grad</span><span>May 2027</span></div>
+            <div className="snap-row stack">
+              <span>Seeking</span>
+              <span>Internships now · New grad after May 2027</span>
             </div>
+          </div>
+        </aside>
+      </section>
+
+      <Interests />
+      <Skills />
+
+      <section className="block" aria-labelledby="school-heading">
+        <h2 id="school-heading" className="section-label">School</h2>
+        <div className="quiet-card">
+          <div className="snap-row stack">
+            <span>B.S. Software Engineering · SJSU</span>
+            <span>May 2027 · algorithms, architecture, assembly, OS, databases, ML</span>
           </div>
         </div>
       </section>
 
-      <Interests />
-
-      {skills.map((group) => (
-        <div className="ios-group" key={group.label}>
-          <div className="ios-group-label">{group.label}</div>
-          <div className="ios-card">
-            <div className="chips">
-              {group.items.map((item) => (
-                <Chip key={item.name} icon={item.icon}>{item.name}</Chip>
-              ))}
-            </div>
-          </div>
-        </div>
-      ))}
-
-      <div className="ios-group">
-        <div className="ios-group-label">School</div>
-        <div className="ios-card">
-          <div className="ios-row stack">
-            <span className="label">B.S. Software Engineering · SJSU</span>
-            <span className="value">May 2027 · algorithms, architecture, assembly, OS, databases, ML</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="ios-group">
-        <div className="ios-group-label">Contact</div>
-        <div className="ios-card">
-          {contacts.map((c) => (
-            c.href ? (
-              <a key={c.label} className="ios-row" href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
-                <span className="label">{c.label}</span>
-                <span className="value accent">{c.value}</span>
+      <section className="block" id="contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" className="section-label">Contact</h2>
+        <div className="quiet-card">
+          {contacts.map((item) => (
+            item.href ? (
+              <a
+                key={item.label}
+                className="snap-row"
+                href={item.href}
+                target={item.href.startsWith('http') ? '_blank' : undefined}
+                rel="noreferrer"
+              >
+                <span>{item.label}</span>
+                <span className="linkish">{item.value}</span>
               </a>
             ) : (
-              <div key={c.label} className="ios-row">
-                <span className="label">{c.label}</span>
-                <span className="value">{c.value}</span>
+              <div key={item.label} className="snap-row">
+                <span>{item.label}</span>
+                <span>{item.value}</span>
               </div>
             )
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const typeLabel = {
@@ -12,24 +13,27 @@ const typeLabel = {
 export default function Timeline({ items }) {
   return (
     <div className="timeline">
-      <motion.div
-        className="timeline-line"
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: 1 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-      />
+      <div className="timeline-line" />
       {items.map((item, i) => {
         const current = item.type === 'current';
-        const logo = <img src={item.logo} alt={`${item.company} logo`} className="tl-logo-img" />;
+        const logo = (
+          <Image
+            src={item.logo}
+            alt=""
+            fill
+            sizes="48px"
+            className="tl-logo-img"
+            unoptimized={item.logo.endsWith('.svg')}
+          />
+        );
 
         return (
           <motion.article
             key={`${item.company}-${item.roles[0].period}`}
             className="tl-item"
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -3 }}
-            transition={{ type: 'spring', stiffness: 320, damping: 28, delay: Math.min(i, 6) * 0.06 }}
+            transition={{ duration: 0.22, delay: Math.min(i, 5) * 0.04, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className={`tl-dot${current ? ' current' : ''}`} />
             <div className="tl-card">

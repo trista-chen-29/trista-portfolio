@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { noteFocusFromUrl, suggestResume } from '@/lib/resumeFeed';
 
@@ -23,18 +24,17 @@ export default function ResumeActions() {
     };
   }, []);
 
-  const order = pick === 'embedded' ? ['embedded', 'software'] : ['software', 'embedded'];
   const hint = pick === 'embedded'
-    ? 'You have been looking at hardware, so the embedded resume is up front.'
+    ? 'You have been looking at hardware, so the embedded resume is highlighted.'
     : pick === 'software'
-      ? 'You have been looking at software, so the software resume is up front.'
+      ? 'You have been looking at software, so the software resume is highlighted.'
       : null;
 
   return (
     <>
-      <div className="hero-actions" style={{ marginTop: 14 }}>
-        <a className="btn-solid" href="mailto:yichichen229@gmail.com">Say hi</a>
-        {order.map((key) => (
+      <div className="hero-actions">
+        <Link className="btn-outline" href="/projects">Projects</Link>
+        {['software', 'embedded'].map((key) => (
           <a
             key={key}
             className={pick === key ? 'btn-solid' : 'btn-outline'}
@@ -45,8 +45,7 @@ export default function ResumeActions() {
             {files[key].label}
           </a>
         ))}
-        <a className="btn-outline" href="https://github.com/trista-chen-29" target="_blank" rel="noreferrer">GitHub</a>
-        <a className="btn-outline" href="https://linkedin.com/in/yichichen229" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a className="btn-outline" href="#contact">Contact</a>
       </div>
       {hint && <p className="resume-hint">{hint}</p>}
     </>

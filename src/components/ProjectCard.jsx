@@ -1,92 +1,207 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { motion } from 'framer-motion';
-import { Tag, StatusBadge } from './Ui';
+import Image from 'next/image';
+import { GitHubIcon, StatusBadge, Tag } from './Ui';
 
-export default function ProjectCard({ title, period, status, desc, tags, role, href, shots = [], onOpen, children }) {
+export default function ProjectCard({
+  title,
+  period,
+  status,
+  summary,
+  desc,
+  tags,
+  role,
+  href,
+  shots = [],
+  frame,
+  onOpen,
+}) {
   const [open, setOpen] = useState(false);
-  const [index, setIndex] = useState(0);
-  const shot = shots[index] || shots[0];
+  const openerRef = useRef(null);
+  const dialogRef = useRef(null);
+  const closeRef = useRef(null);
+  const titleId = useId();
+  const shot = shots[0];
 
   useEffect(() => {
     if (!open) return undefined;
-    const onKey = (event) => {
-      if (event.key === 'Escape') setOpen(false);
-      if (event.key === 'ArrowRight') setIndex((i) => (i + 1) % shots.length);
-      if (event.key === 'ArrowLeft') setIndex((i) => (i - 1 + shots.length) % shots.length);
+    const dialog = dialogRef.current;
+    const opener = openerRef.current;
+    const portal = dialog?.closest('.modal-root');
+    const hidden = [];
+    document.querySelectorAll('body > *').forEach((el) => {
+      if (el === portal || (dialog && el.contains(dialog))) return;
+      if (el.hasAttribute('inert')) return;
+      el.setAttribute('inert', '');
+      hidden.push(el);
+    });
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('dialog-open');
+
+    const frameId = requestAnimationFrame(() => closeRef.current?.focus());
+
+    const focusable = () => {
+      if (!dialog) return [];
+      return [...dialog.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])')]
+        .filter((node) => !node.hasAttribute('disabled'));
     };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [open, shots.length]);
+
+    const onKey = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setOpen(false);
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const nodes = focusable();
+      if (!nodes.length) return;
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', onKey);
+    return () => {
+      cancelAnimationFrame(frameId);
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = previousOverflow;
+      document.body.classList.remove('dialog-open');
+      hidden.forEach((el) => el.removeAttribute('inert'));
+      opener?.focus();
+    };
+  }, [open]);
 
   return (
-    <motion.article
-      className="proj-card"
-      whileHover={{ y: -4 }}
-      whileTap={{ scale: 0.985 }}
-      transition={{ type: 'spring', stiffness: 380, damping: 28 }}
-    >
-      <button
-        type="button"
-        className="proj-art"
-        onClick={() => {
-          if (!shot) return;
-          setOpen(true);
-          onOpen?.();
-        }}
-        onMouseEnter={() => shots.length > 1 && setIndex(1)}
-        onMouseLeave={() => setIndex(0)}
-        aria-label={shot ? `Open screenshot of ${title}` : undefined}
-      >
+    <article className="proj-card reveal">
+      <div className="proj-art" style={frame ? { '--frame': frame } : undefined}>
         {shot ? (
-          <img src={shot} alt="" className="proj-shot" />
-        ) : children}
-        {shots.length > 1 && (
-          <span className="proj-dots" aria-hidden="true">
-            {shots.map((_, i) => (
-              <span key={shots[i]} className={i === index ? 'on' : ''} />
-            ))}
-          </span>
+          <Image
+            src={shot.src}
+            alt=""
+            fill
+            sizes="(min-width: 768px) 480px, 100vw"
+            className="proj-shot"
+          />
+        ) : (
+          <div className="proj-fallback" aria-hidden="true">
+            <span>{title.slice(0, 1)}</span>
+          </div>
         )}
-      </button>
+      </div>
       <div className="proj-body">
-        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, alignItems: 'flex-start' }}>
+        <div className="proj-head">
           <h3 className="proj-title">{title}</h3>
           <StatusBadge status={status} />
         </div>
-        <div className="tl-period">{period}</div>
-        <p className="proj-desc">{desc}</p>
-        <div className="chips" style={{ padding: 0 }}>
-          {tags.map((t) => <Tag key={t}>{t}</Tag>)}
-        </div>
-        <div className="ios-row" style={{ padding: '10px 0 0', borderBottom: 'none' }}>
-          <span className="value" style={{ textAlign: 'left' }}>Role · {role}</span>
+        <p className="proj-desc">{summary}</p>
+        <div className="proj-actions">
+          <button
+            ref={openerRef}
+            type="button"
+            className="btn-outline"
+            aria-haspopup="dialog"
+            onClick={() => {
+              setOpen(true);
+              onOpen?.();
+            }}
+          >
+            View project
+          </button>
           {href && (
-            <a className="gh-icon" href={href} target="_blank" rel="noreferrer" aria-label="GitHub repository">
-              <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.68 7.68 0 0 1 8 4.77c.68.003 1.36.092 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
-              </svg>
+            <a
+              className="gh-icon"
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`GitHub repository for ${title}`}
+            >
+              <GitHubIcon />
             </a>
           )}
         </div>
       </div>
-      {open && shot && createPortal(
-        <div className="lightbox" role="dialog" aria-modal="true" aria-label={`${title} screenshot`} onClick={() => setOpen(false)}>
-          <img src={shots[index]} alt={`${title} interface`} onClick={(event) => event.stopPropagation()} />
-          {shots.length > 1 && (
-            <div className="lightbox-nav" onClick={(event) => event.stopPropagation()}>
-              {shots.map((src, i) => (
-                <button key={src} type="button" className={i === index ? 'on' : ''} onClick={() => setIndex(i)}>
-                  {i + 1}
-                </button>
-              ))}
+      {open && createPortal(
+        <div className="modal-root">
+          <button
+            type="button"
+            className="modal-backdrop"
+            tabIndex={-1}
+            aria-label="Close project details"
+            onClick={() => setOpen(false)}
+          />
+          <div
+            ref={dialogRef}
+            className="modal-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={titleId}
+          >
+            <div className="modal-toolbar">
+              <h2 id={titleId} className="modal-title">{title}</h2>
+              <button ref={closeRef} type="button" className="btn-outline close-btn" onClick={() => setOpen(false)}>
+                Close
+              </button>
             </div>
-          )}
+            <div className="modal-body">
+              <p className="modal-meta">
+                <StatusBadge status={status} />
+                <span>{period}</span>
+              </p>
+              <p className="modal-role">{role}</p>
+              <p className="modal-desc">{desc}</p>
+              <h3 className="modal-sub">Technologies</h3>
+              <ul className="chips">
+                {tags.map((tag) => (
+                  <li key={tag}><Tag>{tag}</Tag></li>
+                ))}
+              </ul>
+              {shots.length > 0 && (
+                <>
+                  <h3 className="modal-sub">Screenshots</h3>
+                  <div className="shot-list">
+                    {shots.map((item, index) => (
+                      <figure key={item.src}>
+                        <Image
+                          src={item.src}
+                          alt={`${title}, screenshot ${index + 1} of ${shots.length}`}
+                          width={item.width}
+                          height={item.height}
+                          sizes="(min-width: 768px) 680px, 100vw"
+                          className="modal-img"
+                        />
+                        <figcaption>Screenshot {index + 1} of {shots.length}</figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                </>
+              )}
+              {href && (
+                <div className="modal-repo">
+                  <a
+                    className="gh-icon"
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`GitHub repository for ${title}`}
+                  >
+                    <GitHubIcon />
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
         </div>,
         document.body,
       )}
-    </motion.article>
+    </article>
   );
 }
