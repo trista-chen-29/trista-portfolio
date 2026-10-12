@@ -1,0 +1,198 @@
+﻿Air Quality Monitor
+
+
+De Anza College
+ENGR 10: Introduction to Engineering
+Wenyan Chen, Trista Chen, Ricardo Barron, Luke Nguyen, Kevin Ngo
+E10 Group 6
+Instructor: Saied Rafati
+Due Date: June 18, 2025
+________________
+
+
+Table of Contents
+
+
+Project Goal --------------------------------------------------------------------------------------------------- 1
+Market Survey ------------------------------------------------------------------------------------------------ 4
+        Survey Questions and Pie Charts ----------------------------------------------------------------- 4
+        Survey Results Summary -------------------------------------------------------------------------- 8
+Gantt Chart ---------------------------------------------------------------------------------------------------- 9
+Testing Description ----------------------------------------------------------------------------------------- 10
+        Test Results Table --------------------------------------------------------------------------------- 11
+        Arduino --------------------------------------------------------------------------------------------- 13
+Parts Status / Order ----------------------------------------------------------------------------------------- 18
+Conclusion -------------------------------------------------------------------------------------------------- 19
+Recommendation ------------------------------------------------------------------------------------------- 20
+Appendix ---------------------------------------------------------------------------------------------------- 21
+Project Goal
+        Our project was to design and build an Air Quality Monitor that provides real-time feedback on indoor air conditions. Many people spend most of their time indoors, often unaware of harmful air pollutants. Poor indoor air can lead to health issues like headaches, dizziness, and long-term respiratory problems. This is especially concerning in places with poor ventilation, such as bathrooms, dorms, or basements. Our goal was to create a simple, affordable, and portable device that alerts users when air quality becomes harmful, so they can take action before symptoms appear.
+        This device uses a gas sensor to detect air pollutants, displays real-time status on an LCD1602 screen, and uses LEDs to show safety levels: green for safe, yellow for moderate, and red for harmful and dangerous. When gas levels exceed a dangerous threshold, the system automatically turns on a fan to improve ventilation. The product was built using an Arduino UNO R3 microcontroller, coded in C++.
+        Throughout the project, we followed a structured engineering process. We began with defining our goal and conducting a market survey to understand user needs. The survey results helped us prioritize affordability (under $75) and clear real-time feedback. We then developed a Gantt chart to assign tasks and manage our schedule. During the parts ordering phase, we looked for compatible and low-cost components. After receiving the parts, we assembled the system, tested each component individually, and then integrated them. We ran multiple tests using a lighter to simulate poor air conditions, checked LED behavior, and confirmed automatic fan activation. In the end, we concluded the project by reflecting on what worked or didn’t work well and what could be improved in the future.
+  
+
+  
+
+Market Survey
+        We conducted a survey with 9 participants to understand their awareness and concerns about indoor air quality. Our survey questions covered topics such as frequency of respiratory symptoms, use of gas appliances, frequency of using chemicals indoors, and willingness to pay for an air monitor. Participants were from different age groups.
+Link to Survey
+Survey Questions and Pie Charts
+Q1: Would you find it useful to receive real-time air quality alerts to take immediate action?
+  
+
+Q2: Do you or anyone in your house have respiratory issues? (e.g., asthma or allergies)
+  
+
+Q3: What age groups do you believe would most likely need/want an air quality monitor?
+  
+
+Q4: Do you ever notice bad indoor odors that linger, but you're not sure where they come from?
+  
+
+Q5: How often do you use cleaning chemicals, paints, or aerosols indoors?
+  
+
+Q6: Do you use gas appliances for cooking or heating?
+  
+
+Q7: Have you or others you know experienced headaches, fatigue, or irritation while indoors and are unsure why?
+  
+
+Q8: How much are you willing to pay for an air quality monitor?
+  
+
+Survey Results Summary
+The majority of participants in our survey reported experiencing unexplained fatigue, lingering odors, or irritation while indoors, highlighting a common concern about unseen air quality issues. Many respondents expressed a strong interest in receiving real-time air quality alerts, indicating a demand for proactive solutions. Additionally, most participants stated they would be willing to pay from $51 to $75 for a simple and effective air quality monitor. Therefore, these insights, supported by our pie chart data, guided our priorities – real-time gas detection, visual alerts, and cost-efficiency.
+
+
+
+
+
+
+
+
+Gantt Chart
+  
+
+
+
+        We found that the hardest part would be the task for the Arduino code. The timeline does say it was set for May 13th to June 16th, but in actuality some of the parts we ordered had not actually come yet, which was the gas sensor and so we lost a few days to work on the code. The other reason that we struggled with the code the most was because only a few in our group had previous experience in C++ code, but none of us had previous experience in Arduino code prior to what was taught in class. There were several issues from the code, namely being displaying content on the LCD, it took several attempts (if I remember it was at least 10 tries) to get the screen to display what we wanted, and even after that if the code was left to run for a bit the display will jumble up into an incoherent bunch of characters. We eventually decided to go back and restart almost from scratch. After that we overcame the challenge by simply just readjusting the code bit by bit and testing each part to single out what our issue was.
+________________
+Testing Description
+To evaluate the performance and reliability of our air quality monitor, we conducted a series of hands-on tests under different environmental conditions. Each component, like sensors, LEDs, LCD display, and fan, was tested individually and in combination to verify that the system responds accurately when air quality becomes unsafe. For the gas sensor, we exposed it to butane released from a lighter to simulate dangerous air. For the temperature and humidity, we used ambient room conditions, through one DHT11 sensor, which unfortunately overheated during use. We verified the LED behavior under each threshold level and confirmed that the fan activates appropriately when harmful or dangerous gas levels are detected. The LCD screen was also checked to ensure that it updates and displays sensor readings in real time.  The table below summarizes the test conditions, expected behavior, and actual results for each component.
+________________
+Test Results Table
+Component
+	Test Condition
+	Expected Behavior
+	Actual Result
+	Gas Sensor
+	Exposed to butane gas released by the lighter
+	If the gas value , displays “Danger”, two red LEDs and the fan turn on
+	Gas value listed by %.
+“Safe” < 170, “Moderate” < 350, “Harmful” < 500, “Dangerous” >= 500
+	Temperature & Humidity Sensor
+	Place in any room
+	Data shows on the display screen
+	EXPLODED (extreme way to say the dht11 part melted)
+	LED
+	Triggered by sensor threshold conditions
+	Green LED for safe, yellow LED for moderate, and red LED for unsafe
+	Green LED = “Safe”
+Yellow LED = “Moderate”
+Red LED = “Harmful”/ “Danger”
+	LCD Display Screen
+	Real-time operation under any environment
+	Display temperature, humidity, and gas level
+	Displays when ready, and shows status and gas level
+	Fan
+	Triggered by dangerous gas
+	Turns on when the air quality is unsafe
+	Turns on when gas level hits “Harmful” and “Danger”
+	
+
+________________
+Arduino
+  
+
+
+
+        This section of the code defines a custom 8-row binary array to create a simple character that can be displayed on the LCD screen. It also assigns constant names to specific Arduino pins for the gas sensor, fan, and LEDs, improving code readability and organization. Lastly, the variables sensorValue and gasppm are initialized to 0 and will later store real-time gas readings used to determine whether the air quality is safe or harmful.
+  The pinMode() function is used to configure the specified Arduino pins as outputs for the fan and LEDs, allowing them to be controlled by the program The digitalWrite(fanPin, LOW) command ensures the fan starts in the off state. The LCD is initialized with lcd.begin(16, 2) to set up a 16-column, 2-row display. A custom character (a smiley face) is created and stored at position (0,0) in LCD memory using lcd.createChar(0, smile);. The setCursor() and print() functions are used to display the initial welcome message, “Air Quality” on row 0 and “Monitor “ on row 1. The lcd.write(byte(0)) prints the custom smiley character on the screen, followed by a 1000 millisecond delay to let the circuit stabilize, the screen is cleared, and a for loop is used to flash the message “Gas Sensor Ready” twice with a brief pause of 800 milliseconds between each display. This sequence provides a friendly setup message to the user and confirms the sensor system is functional.
+  The manageFan() function controls whether the fan is on or off based on the statusNum value. If statusNum is greater than 0, the fan is activated by setting fanPin to HIGH; otherwise, it is turned off with fanPin set to LOW, and “OFF” is printed to the Serial Monitor for feedback. For the ledsOff() function, it turns off all four LEDs (green, yellow, red, and an optional second red) by setting each corresponding pin to LOW.. In the loop() function, the program starts by declaring a static integer fanStatus to track whether the fan should be active. It reads the current analog value from the gas sensor and stores it in sensorValue. This raw value is then mapped to a percentage scale from 0 to 100 using the map() function and stored in gasppm. The comment below the mapping line outlines the air quality interpretation ranges: values under 170 indicate safe air, 201-250 reflect moderate conditions (such as breathing near the sensor), values over 400 suggest harmful air, and values above 700 (such as from alcohol or chemicals) are considered dangerous. Finally, the sensor value is printed to the Serial Monitor to allow real-time tracking and debugging.
+  
+
+
+
+In this section, a series of if-else statements categorize the air quality based on the sensorValue read from the gas sensor. Each condition first calls ledsOff() to reset all LEDs before setting the status string to reflect the air quality level: “Safe,” “Moderate,” “Harmful,” or “Danger.” It then turns on the corresponding LED color, green for safe, yellow for moderate, red for harmful, and a second red for dangerous levels. For harmful and dangerous levels, the fanStatus is set to 4 or 8, respectively, which corresponds to how long the fan should stay on. After determining the air quality, the LCD is updated: the gas percentage is printed on the first row (lcd.setCursor(0, 0)), and the corresponding status is printed on the second row (lcd.setCursor(0, 1)). At last, the manageFan() function is called with the current fanStatus, and a short delay ensures the system updates smoothly without flickering or overload.
+Part Status / Order
+We ordered the following components:
+Items
+	Price
+	Quantity
+	Delivery Status
+	Shipping Cost
+	Total Cost Per Item
+	ELEGOO UNO R3 Project Super Starter Kit
+	$26.99
+	1
+	Delivered
+	0
+	$26.99
+	Gas Sensor
+	$8.99
+	1
+	Delivered
+	0
+	$8.99
+	Total Cost
+	$38.59
+	
+
+At first, we found that most Arduino starter kits were expensive for our limited budget. To address this, we searched for a more affordable option on eBay and found a kit that included most of the essential components we needed, such as the Arduino board, wires, and basic sensors. This significantly reduced our overall cost. We then purchased a gas sensor from Amazon. Lastly, based on our survey results, most respondents were willing to pay between $51 to $75 for an air quality monitor, so we made it a priority to keep our total cost under $75 to align with what users considered affordable. Overall, all parts were ordered online and arrived on time.
+________________
+Conclusion
+Our project achieved its intended functionality with a high degree of success. The gas sensor accurately detected changes in air quality and triggered appropriate system responses in real time. The LCD screen effectively displayed the gas concentration values, and the LED indicators offered clear, color-coded visual feedback on air safety levels. The fan component operated reliably, activating automatically when thresholds for harmful or dangerous air quality were reached.
+Beyond the technical implementation, the group dynamic was positive and productive. Members communicated clearly and consistently, especially when troubleshooting unexpected hardware issues and debugging code. Each member showed strong commitment by actively contributing during both the planning and execution phases. Overall, the combination of functional performance and strong team collaboration was key to the success of the project.
+Despite these accomplishments, we also encountered several setbacks. Some components we ordered were not consistent with the ones used in the online tutorials we referenced, which introduced confusion during the assembly process. A significant issue occurred with the temperature and humidity module, which was damaged (melted), likely due to incorrect wiring instructions from unreliable online sources. We also had to exclude the CO₂ sensor from the final design because it was incompatible with our existing hardware setup and available documentation was insufficient to safely implement it.
+
+
+________________
+Recommendation
+From these experiences, we developed several technical recommendations for future iterations of the project. It is important to carefully check the specifications and compatibility of all components before purchasing to avoid integration issues. Each sensor or module should be tested separately before being integrated into the full system to simplify the debugging process. Wiring and voltage requirements should always be verified using official data sheets rather than relying solely on informal online tutorials. Additionally, writing clean, modular, and well-commented code can significantly reduce debugging time and allow for easier future updates.
+Beyond the technical aspects, we also identified several non-technical strategies that would improve team workflow and project outcomes. Keeping a shared log of tests, bugs, and fixes can help ensure that all team members remain aligned and informed throughout development. When facing difficult challenges, reaching out to instructors or experienced peers can provide valuable guidance and avoid wasted effort. Finally, it is important to remain flexible; if certain goals become unrealistic, the scope of the project should be adjusted rather than risking incomplete or unstable results.
+________________
+
+
+Appendix
+Who worked on each aspect of the project?
+Wenyan = 100%: Project Goals, Presentation Format, Arduino Code
+Trista = 100%: Project Goals, Presentation Format, Arduino Code
+Ricardo = 100%: Market Survey, Arduino Code
+Luke = 100%: Market Survey, Arduino Code, Wiring, Testing, Testing Description, Gantt Chart
+Kevin = 100%: Arduino Code, Wiring, Testing, Gantt Chart, Parts Status / Order
+Who contributed to each section of the report?
+Wenyan = 100%: Project Goals, Conclusion, Recommendation, Report Format
+Trista = 100%: Project Goals, Market Survey, Testing Description, Parts Status / Order
+Ricardo = 100%: Testing Description, Recommendation
+Luke = 100%: Gantt Chart, Arduino Code, Testing Description, Report Format, Editing
+Kevin = 100%: Testing Description, Parts Status / Order
+
+
+Teamwork Skill
+	Performance Level
+	1) Open and honest communication among
+members
+	5
+	2) Each individual carried his/her own
+weight
+	5
+	3) Collaboration in decision making
+	5
+	4) Team set goals and milestones
+	5
+	5) People listened to each other
+	5
+	6) Leadership was shared among the
+members
+	5

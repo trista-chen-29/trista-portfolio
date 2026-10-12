@@ -8,17 +8,11 @@ De Anza College **ENGR 10** group project · due June 18, 2025
 A cardboard-box indoor air-quality monitor. An Arduino UNO reads a gas sensor, shows status on an LCD1602, lights green / yellow / red LEDs, and turns on a fan when the air is harmful or dangerous.
 
 <p>
-  <img src="aq-front.jpg" alt="Finished box with fan, LEDs, and LCD showing Safe" width="420" />
-  <img src="aq-inside.jpg" alt="Breadboard wiring inside the box" width="420" />
+  <img src="photos/front.jpg" alt="Finished box with fan, LEDs, and LCD showing Safe" width="420" />
+  <img src="photos/inside.jpg" alt="Breadboard wiring inside the box" width="420" />
 </p>
 
-## How to show this project
-
-| Place | What to open |
-| --- | --- |
-| **This folder** (portfolio repo) | README + `AirQualityMonitor.ino` + photos |
-| **Portfolio site** | [Projects → Air Quality Monitoring System](https://tristachen.vercel.app/projects) — hover for inside wiring, tap to enlarge |
-| **Standalone repo** | Create `trista-chen-29/air-quality-monitor` (empty), then the prepared package under the agent artifacts can be pushed |
+Open this folder on GitHub to see the sketch, the class report, and the survey charts. The same two build photos are on the portfolio project card.
 
 ## What it does
 
@@ -42,7 +36,11 @@ The class report stored the sketch as IDE screenshots. `AirQualityMonitor.ino` i
 - Gas tests used butane from a lighter
 - Parts ~$40 (under the ~$75 survey willingness-to-pay)
 
-## Photos
+## In this folder
 
-- `aq-front.jpg` — finished box (fan, LEDs, LCD reading Safe)
-- `aq-inside.jpg` — breadboard wiring inside the box
+| Path | What it is |
+| --- | --- |
+| `AirQualityMonitor.ino` | Arduino sketch |
+| `photos/` | Front of the box and the wiring inside |
+| `docs/ENGR10-final-report.txt` | Class report text |
+| `charts/` | Survey charts, Gantt chart, and code screenshots from the report |
