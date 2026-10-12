@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import CatCompanion from '@/components/CatCompanion';
 import Interests from '@/components/Interests';
 import ResumeActions from '@/components/ResumeActions';
 import Skills from '@/components/Skills';
@@ -40,7 +39,6 @@ export default function AboutPage() {
                 sizes="(min-width: 768px) 220px, 210px"
               />
             </div>
-            <CatCompanion />
             <div className="hero-copy">
               <h1 className="page-title">Yi-Chi (Trista) Chen</h1>
               <p className="page-sub">SJSU Software Engineering</p>

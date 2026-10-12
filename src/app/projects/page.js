@@ -10,11 +10,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="page">
-      <p className="page-kicker">Selected work</p>
       <h1 className="page-title">Projects</h1>
-      <p className="page-sub">
-        Filter by kind of work. Open a project for the longer story, screenshots, and technologies.
-      </p>
       <div className="proj-filters" role="group" aria-label="Project filters">
         {projectFilters.map((name) => (
           <button

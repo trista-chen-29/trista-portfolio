@@ -111,43 +111,93 @@ export default function CatCompanion() {
     if (!field || !cat) return undefined;
 
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const pos = { x: 8, y: 8, vx: 1.05, vy: 0.72 };
-    let last = performance.now();
-    let frame = 0;
+    const bounds = () => ({
+      maxX: Math.max(0, field.clientWidth - cat.offsetWidth),
+      maxY: Math.max(0, field.clientHeight - cat.offsetHeight),
+    });
+    const first = bounds();
+    const spot = {
+      x: first.maxX * 0.72,
+      y: first.maxY * 0.18,
+      fromX: 0,
+      fromY: 0,
+      toX: 0,
+      toY: 0,
+      phase: 'rest',
+      until: performance.now() + 400,
+      hopDur: 800,
+    };
+    spot.fromX = spot.x;
+    spot.fromY = spot.y;
+    spot.toX = spot.x;
+    spot.toY = spot.y;
 
+    const nextLanding = () => {
+      const { maxX, maxY } = bounds();
+      const minHop = Math.min(180, Math.max(90, Math.max(maxX, maxY) * 0.28));
+      let landing = { x: maxX * 0.2, y: maxY * 0.62 };
+      for (let i = 0; i < 8; i += 1) {
+        const candidate = { x: Math.random() * maxX, y: Math.random() * maxY };
+        if (Math.hypot(candidate.x - spot.x, candidate.y - spot.y) >= minHop) {
+          landing = candidate;
+          break;
+        }
+      }
+      spot.fromX = spot.x;
+      spot.fromY = spot.y;
+      spot.toX = landing.x;
+      spot.toY = landing.y;
+      spot.hopDur = 620 + Math.random() * 480;
+      spot.until = performance.now();
+      spot.phase = 'hop';
+    };
+
+    const paint = (x, y, lift, squash) => {
+      const { maxX, maxY } = bounds();
+      const drawnX = Math.max(0, Math.min(maxX, x));
+      const drawnY = Math.max(0, Math.min(maxY, y - lift));
+      cat.style.transform = `translate(${drawnX}px, ${drawnY}px) scaleY(${squash})`;
+    };
+
+    let frame = 0;
+    let pausedAt = 0;
     const tick = (now) => {
-      const maxX = Math.max(0, field.clientWidth - cat.offsetWidth);
-      const maxY = Math.max(0, field.clientHeight - cat.offsetHeight);
+      const { maxX, maxY } = bounds();
       const reduced = motion.matches;
-      const hold = reduced || pausedRef.current || openRef.current;
+      const hold = pausedRef.current || openRef.current;
+
+      if (!hold && pausedAt) {
+        spot.until += now - pausedAt;
+        pausedAt = 0;
+      }
 
       if (reduced) {
-        pos.x = maxX * 0.55;
-        pos.y = maxY * 0.45;
-      } else if (!hold) {
-        const step = Math.min(32, now - last) / 16.67;
-        pos.x += pos.vx * step;
-        pos.y += pos.vy * step;
-        if (pos.x <= 0 || pos.x >= maxX) {
-          pos.vx *= -1;
-          pos.x = Math.max(0, Math.min(maxX, pos.x));
-        }
-        if (pos.y <= 0 || pos.y >= maxY) {
-          pos.vy *= -1;
-          pos.y = Math.max(0, Math.min(maxY, pos.y));
-        }
-        if (Math.random() < 0.012) {
-          pos.vx += (Math.random() - 0.5) * 0.35;
-          pos.vy += (Math.random() - 0.5) * 0.35;
-          const speed = Math.hypot(pos.vx, pos.vy) || 1;
-          const target = 0.95 + Math.random() * 0.35;
-          pos.vx = (pos.vx / speed) * target;
-          pos.vy = (pos.vy / speed) * target;
+        spot.x = maxX * 0.78;
+        spot.y = maxY * 0.12;
+        paint(spot.x, spot.y, 0, 1);
+      } else if (hold) {
+        if (!pausedAt) pausedAt = now;
+        paint(spot.x, spot.y, 0, 1);
+      } else if (spot.phase === 'rest') {
+        paint(spot.x, spot.y, 0, 1);
+        if (now >= spot.until) nextLanding();
+      } else {
+        const t = Math.min(1, (now - spot.until) / spot.hopDur);
+        const ease = t < 0.5 ? 2 * t * t : 1 - ((-2 * t + 2) ** 2) / 2;
+        spot.x = spot.fromX + (spot.toX - spot.fromX) * ease;
+        spot.y = spot.fromY + (spot.toY - spot.fromY) * ease;
+        const distance = Math.hypot(spot.toX - spot.fromX, spot.toY - spot.fromY);
+        const arc = Math.sin(Math.PI * t) * Math.min(56, 22 + distance * 0.08);
+        const squash = t > 0.9 ? 1 - ((t - 0.9) / 0.1) * 0.14 : 1;
+        paint(Math.max(0, Math.min(maxX, spot.x)), Math.max(0, Math.min(maxY, spot.y)), arc, squash);
+        if (t >= 1) {
+          spot.x = Math.max(0, Math.min(maxX, spot.toX));
+          spot.y = Math.max(0, Math.min(maxY, spot.toY));
+          spot.phase = 'rest';
+          spot.until = now + 220 + Math.random() * 520;
         }
       }
 
-      last = now;
-      cat.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
       frame = requestAnimationFrame(tick);
     };
 
@@ -183,8 +233,7 @@ export default function CatCompanion() {
   }, [open]);
 
   return (
-    <div className="cat-slot">
-      <p className="cat-hint">Catch me</p>
+    <>
       <div className="cat-field" ref={fieldRef}>
         <button
           ref={catRef}
@@ -217,7 +266,7 @@ export default function CatCompanion() {
         </div>,
         document.body,
       )}
-    </div>
+    </>
   );
 }
 

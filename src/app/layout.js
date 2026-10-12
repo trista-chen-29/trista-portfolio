@@ -2,6 +2,7 @@ import './globals.css';
 import { Newsreader } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/components/Navbar';
+import CatCompanion from '@/components/CatCompanion';
 
 const newsreader = Newsreader({
   subsets: ['latin'],
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
       <body>
         <ThemeProvider>
           <Navbar />
+          <CatCompanion />
           <main>{children}</main>
           <footer className="site-footer">
             <p>© Yi-Chi (Trista) Chen</p>
