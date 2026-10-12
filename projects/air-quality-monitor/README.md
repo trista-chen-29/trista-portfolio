@@ -12,7 +12,7 @@ A cardboard-box indoor air-quality monitor. An Arduino UNO reads a gas sensor, s
   <img src="photos/inside.jpg" alt="Breadboard wiring inside the box" width="420" />
 </p>
 
-Open this folder on GitHub to see the sketch, the class report, and the survey charts. The same two build photos are on the portfolio project card.
+The same project also lives on its own: [trista-chen-29/air-quality-monitor](https://github.com/trista-chen-29/air-quality-monitor). This folder is the copy inside the portfolio. The two build photos are on the portfolio project card.
 
 ## What it does
 

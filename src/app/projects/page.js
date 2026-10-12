@@ -435,7 +435,7 @@ const projects = [
     desc: 'Arduino UNO monitor for indoor gas: LCD1602 status, green/yellow/red LEDs, and a fan that turns on when the reading is harmful or dangerous. Built with Wenyan Chen, Ricardo Barron, Luke Nguyen, and Kevin Ngo. Hover the card for the wiring inside the box; tap for a larger view. The GitHub link opens the sketch, report, and charts.',
     tags: ['Arduino', 'C++', 'LCD1602', 'Sensors'],
     role: 'Embedded Developer',
-    href: 'https://github.com/trista-chen-29/trista-portfolio/tree/cursor/alef-aq-repos-0807/projects/air-quality-monitor',
+    href: 'https://github.com/trista-chen-29/air-quality-monitor',
     art: <AirQualityArt />,
   },
   {
