@@ -102,6 +102,12 @@ export default function ScopeTrace() {
     });
     const resizeObserver = new ResizeObserver(resize);
 
+    // In reduced-motion mode nothing redraws on its own, so repaint when the theme changes.
+    const themeObserver = new MutationObserver(() => {
+      if (media.matches) draw(0);
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
     intersection.observe(canvas);
     resizeObserver.observe(canvas);
     resize();
@@ -115,6 +121,7 @@ export default function ScopeTrace() {
       window.cancelAnimationFrame(frame);
       intersection.disconnect();
       resizeObserver.disconnect();
+      themeObserver.disconnect();
       window.removeEventListener('pointermove', onPointer);
       media.removeEventListener('change', onMotion);
     };

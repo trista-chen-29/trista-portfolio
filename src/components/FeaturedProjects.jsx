@@ -25,24 +25,27 @@ export default function FeaturedProjects() {
                 <p className="case-kicker">{project.period}</p>
                 <h3>{project.title}</h3>
                 <p className="case-result">{project.result}</p>
-                {project.metric ? (
-                  <p className="metric">{project.metric}</p>
-                ) : (
-                  <p className="todo">TODO(metric)</p>
-                )}
+                {/* Empty metric renders nothing. Add one in src/data/projects.js once it is real. */}
+                {project.metric && <p className="metric">{project.metric}</p>}
                 <dl className="case-facts">
-                  <div>
-                    <dt>Problem</dt>
-                    <dd>{project.problem}</dd>
-                  </div>
-                  <div>
-                    <dt>My role</dt>
-                    <dd>{project.role}</dd>
-                  </div>
-                  <div>
-                    <dt>Result</dt>
-                    <dd>{project.outcome}</dd>
-                  </div>
+                  {project.problem && (
+                    <div>
+                      <dt>Problem</dt>
+                      <dd>{project.problem}</dd>
+                    </div>
+                  )}
+                  {project.role && (
+                    <div>
+                      <dt>My role</dt>
+                      <dd>{project.role}</dd>
+                    </div>
+                  )}
+                  {project.outcome && (
+                    <div>
+                      <dt>Result</dt>
+                      <dd>{project.outcome}</dd>
+                    </div>
+                  )}
                 </dl>
                 <ul className="tag-row">
                   {project.tags.slice(0, 5).map((tag) => (

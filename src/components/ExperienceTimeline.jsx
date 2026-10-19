@@ -66,7 +66,11 @@ export default function ExperienceTimeline() {
   );
 }
 
+/** Placeholder bullets (TODO...) never render. Real bullets appear once written in src/data/experience.js. */
+const isReal = (bullet) => typeof bullet === 'string' && bullet.trim() && !bullet.startsWith('TODO');
+
 function Role({ entry, nested = false }) {
+  const bullets = entry.bullets.filter(isReal);
   const logo = (
     <Image
       src={entry.logo}
@@ -107,13 +111,13 @@ function Role({ entry, nested = false }) {
             </p>
           </div>
         </div>
-        <ul className="role-bullets">
-          {entry.bullets.map((bullet, index) => (
-            <li key={`${entry.id}-${index}`} className={bullet.startsWith('TODO') ? 'todo' : undefined}>
-              {bullet}
-            </li>
-          ))}
-        </ul>
+        {bullets.length > 0 && (
+          <ul className="role-bullets">
+            {bullets.map((bullet, index) => (
+              <li key={`${entry.id}-${index}`}>{bullet}</li>
+            ))}
+          </ul>
+        )}
       </article>
     </li>
   );

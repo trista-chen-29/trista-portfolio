@@ -181,7 +181,9 @@ export default function HallSensorDemo() {
       </div>
       <p className="sr-only" aria-live="polite">{status}</p>
       <p className="demo-caption">
-        On the Alef internship, two Hall sensors on an ESP32 find wheel zero again after power is cut.
+        A simplified model of the idea behind my Alef project: after power is cut, two Hall sensors let an ESP32 find wheel zero again.
+        {' '}
+        <span className="demo-note">Illustrative, not the production firmware.</span>
         {' '}
         <a className="text-link" href="#esp32-wheel-calibration">Project note</a>
       </p>

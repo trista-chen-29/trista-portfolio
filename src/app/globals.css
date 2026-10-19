@@ -904,6 +904,8 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   transition: transform 220ms var(--ease);
 }
 .site-nav.is-hidden { transform: translateY(-110%); }
+/* A keyboard user tabbing into a hidden nav must be able to see where focus is. */
+.site-nav.is-hidden:focus-within { transform: none; }
 .wordmark {
   grid-area: brand;
   color: var(--text);
@@ -1378,6 +1380,30 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   color: var(--text2);
   min-height: 2.5em;
 }
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1;
+  padding: 9px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 160ms var(--ease), background-color 160ms var(--ease);
+}
+.chip:hover { border-color: var(--accent); }
+.chip.is-on,
+.chip:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.demo-note { font-family: var(--mono); font-size: 12px; color: var(--text3); }
 .skill-proof {
   margin-top: 16px;
   min-height: 3.4em;

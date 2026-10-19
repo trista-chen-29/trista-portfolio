@@ -24,10 +24,28 @@ function getServerSnapshot() {
   return 'light';
 }
 
+// Storage can throw (private mode, blocked site data). The theme must still work without it.
+function readSavedTheme() {
+  try {
+    const saved = window.localStorage.getItem('theme');
+    return saved === 'dark' || saved === 'light' ? saved : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveTheme(next) {
+  try {
+    window.localStorage.setItem('theme', next);
+  } catch {
+    /* not persisted; the theme still applies for this visit */
+  }
+}
+
 function applyTheme(next) {
   currentTheme = next;
   document.documentElement.dataset.theme = next;
-  window.localStorage.setItem('theme', next);
+  saveTheme(next);
   emit();
 }
 
@@ -35,8 +53,7 @@ export function ThemeProvider({ children }) {
   const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem('theme');
-    const next = saved === 'dark' || saved === 'light' ? saved : 'light';
+    const next = readSavedTheme() || 'light';
     document.documentElement.dataset.theme = next;
     if (next !== currentTheme) {
       currentTheme = next;
