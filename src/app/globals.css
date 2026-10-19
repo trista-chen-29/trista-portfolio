@@ -1108,6 +1108,93 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   color: var(--accent);
 }
 .more-empty { margin-top: 12px; color: var(--text2); }
+.wave { position: relative; margin-top: 12px; }
+.wave-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  height: 100%;
+  color: var(--trace);
+  pointer-events: none;
+}
+.wave-list, .earlier-list { list-style: none; margin: 0; padding: 0; }
+.wave-list { padding-left: 56px; }
+.wave-item { position: relative; padding-bottom: 16px; }
+.wave-item.is-nested { padding-bottom: 0; }
+.pulse {
+  position: absolute;
+  left: -44px;
+  top: 26px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--trace);
+}
+.pulse.is-current { background: var(--trace); }
+.role-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+.role-head { display: flex; gap: 12px; align-items: flex-start; }
+.role-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  display: block;
+}
+.role-logo-img { width: 100%; height: 100%; object-fit: contain; }
+.role-org { font-weight: 700; line-height: 1.3; }
+.role-org a { color: inherit; text-decoration: none; }
+.role-org a:hover { color: var(--link); }
+.role-title {
+  font-size: 1.02rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin-top: 2px;
+}
+.role-meta {
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text3);
+  line-height: 1.45;
+}
+.role-bullets {
+  margin: 10px 0 0;
+  padding-left: 1.1rem;
+  color: var(--text2);
+  font-size: 15px;
+}
+.role-bullets li + li { margin-top: 4px; }
+.earlier-toggle {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+}
+.earlier-list { display: grid; gap: 12px; margin-top: 12px; }
 @media (min-width: 768px) {
   .more-list li {
     grid-template-columns: minmax(0, 1fr) minmax(180px, 34%);
