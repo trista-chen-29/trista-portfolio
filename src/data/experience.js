@@ -1,7 +1,7 @@
 /**
  * Recent roles render in full. Anything before 2025 collapses into Earlier.
- * TODO(bullets): each `bullets` entry is a placeholder. Trista writes 2–3 outcome
- * bullets (what was built or tested, tools, measurable result). Do not invent them.
+ * Bullets below are resume wording with [VERIFY] and [WRITE] lines left out.
+ * TODO(bullets) stays only where the plan asked Trista to write the role. Those lines do not render.
  */
 
 export const experiences = [
@@ -17,7 +17,10 @@ export const experiences = [
         title: 'Associate Test Technician (EMC & RF validation)',
         period: 'Jun 2026 – Present',
         kind: 'Internship',
-        bullets: ['TODO(bullets)'],
+        bullets: [
+          'Run EMC/RF tests across Wi-Fi 2.4/5/6E GHz, Bluetooth, UWB, and IEEE 802.15.4 devices.',
+          'Measure peak and average RF and tune transmit power/EIRP with spectrum analyzers, call boxes, and antenna systems.',
+        ],
       },
     ],
   },
@@ -39,7 +42,10 @@ export const experiences = [
         title: 'Software Engineer Intern',
         period: 'Mar 2026 – May 2026',
         kind: 'Internship',
-        bullets: ['TODO(bullets)'],
+        bullets: [
+          'Built SCEvents registration and waitlist pipelines on Go, Kafka, Redis, and MongoDB.',
+          'Redis locking removed race conditions under k6 load tests with 10,000+ write spikes.',
+        ],
       },
     ],
   },
@@ -55,7 +61,10 @@ export const experiences = [
         title: 'Mission Control Team Member',
         period: 'Jan 2026 – Aug 2026',
         kind: 'Club',
-        bullets: ['TODO(bullets)'],
+        bullets: [
+          'Built React + Python arm teleoperation over CAN with ACK handling and automatic recovery.',
+          'Slider and gamepad controls with joint limits, deadzones, and disconnect handling.',
+        ],
       },
     ],
   },
@@ -71,7 +80,9 @@ export const experiences = [
         title: 'Firmware Software Engineer Intern',
         period: 'Apr 2026 – May 2026',
         kind: 'Internship',
-        bullets: ['TODO(bullets)'],
+        bullets: [
+          'Wrote the CAN (TWAI) motor-control path: velocity and incremental positioning at a 100 Hz loop.',
+        ],
       },
     ],
   },
@@ -87,7 +98,10 @@ export const experiences = [
         title: 'Edge AI Project Member — Nuvoton Industry Project',
         period: 'Feb 2026 – May 2026',
         kind: 'Club',
-        bullets: ['TODO(bullets)'],
+        bullets: [
+          'Trained YOLOv8 people counting to mAP@0.5 0.979 and mAP@0.5:0.95 0.651.',
+          'Deployed on Ethos-U55 edge hardware at 20–22 FPS.',
+        ],
       },
     ],
   },

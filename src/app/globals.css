@@ -1075,6 +1075,13 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   font-size: 1.05rem;
   line-height: 1.45;
 }
+.hero-sub {
+  margin-top: 8px;
+  max-width: 42rem;
+  color: var(--text2);
+  font-size: 15px;
+  line-height: 1.45;
+}
 .scope-wrap { margin-top: 6px; }
 .scope-trace {
   width: 100%;
