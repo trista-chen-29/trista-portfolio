@@ -42,23 +42,43 @@ function saveTheme(next) {
   }
 }
 
-function applyTheme(next) {
+const themeColor = { light: '#f6f1e8', dark: '#261e30' };
+
+function paintTheme(next) {
   currentTheme = next;
   document.documentElement.dataset.theme = next;
+  document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+    meta.setAttribute('content', themeColor[next]);
+  });
+}
+
+function applyTheme(next) {
+  paintTheme(next);
   saveTheme(next);
   emit();
+}
+
+function systemTheme() {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 export function ThemeProvider({ children }) {
   const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   useEffect(() => {
-    const next = readSavedTheme() || 'light';
-    document.documentElement.dataset.theme = next;
-    if (next !== currentTheme) {
-      currentTheme = next;
+    const sync = () => {
+      const next = readSavedTheme() || systemTheme();
+      if (next === currentTheme && document.documentElement.dataset.theme === next) return;
+      paintTheme(next);
       emit();
-    }
+    };
+    sync();
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const onScheme = () => {
+      if (!readSavedTheme()) sync();
+    };
+    media.addEventListener('change', onScheme);
+    return () => media.removeEventListener('change', onScheme);
   }, []);
 
   const toggleTheme = useCallback(() => {

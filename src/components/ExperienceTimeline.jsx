@@ -7,6 +7,8 @@ import { roleEntries } from '@/data/experience';
 const entries = roleEntries();
 const recent = entries.filter((entry) => entry.era === 'recent');
 const earlier = entries.filter((entry) => entry.era === 'earlier');
+const openRoles = recent.slice(0, 3);
+const folded = [...recent.slice(3), ...earlier];
 
 export default function ExperienceTimeline() {
   const [open, setOpen] = useState(false);
@@ -35,7 +37,7 @@ export default function ExperienceTimeline() {
           <path d={wavePath()} fill="none" stroke="currentColor" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
         </svg>
         <ol className="wave-list">
-          {recent.map((entry) => (
+          {openRoles.map((entry) => (
             <Role key={entry.id} entry={entry} />
           ))}
           <li className="wave-item">
@@ -49,11 +51,11 @@ export default function ExperienceTimeline() {
                 onClick={() => setOpen((value) => !value)}
               >
                 <span>Earlier</span>
-                <span className="mono-count">{earlier.length} roles before 2025</span>
+                <span className="mono-count">{folded.length} roles</span>
               </button>
               {open && (
                 <ol id="earlier-roles" className="earlier-list">
-                  {earlier.map((entry) => (
+                  {folded.map((entry) => (
                     <Role key={entry.id} entry={entry} nested />
                   ))}
                 </ol>
@@ -70,7 +72,7 @@ export default function ExperienceTimeline() {
 const isReal = (bullet) => typeof bullet === 'string' && bullet.trim() && !bullet.startsWith('TODO');
 
 function Role({ entry, nested = false }) {
-  const bullets = entry.bullets.filter(isReal);
+  const bullets = entry.bullets.filter(isReal).slice(0, 3);
   const logo = (
     <Image
       src={entry.logo}

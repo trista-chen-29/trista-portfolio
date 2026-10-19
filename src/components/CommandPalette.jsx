@@ -182,6 +182,7 @@ export default function CommandPalette({ initialOpen = false }) {
 
 function createActions({ toggleTheme, reduced, setOpen, setStatus }) {
   const jump = (id) => {
+    window.dispatchEvent(new CustomEvent('case:open', { detail: id }));
     const node = document.getElementById(id);
     const heading = node?.querySelector('h1, h2, h3') || node;
     if (heading && !heading.hasAttribute('tabindex')) heading.setAttribute('tabindex', '-1');
