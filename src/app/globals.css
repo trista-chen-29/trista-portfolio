@@ -839,12 +839,15 @@ a.tl-logo { transition: transform 200ms var(--ease); }
 .skip-link:focus { transform: none; }
 .sr-only {
   position: absolute;
+  left: 0;
+  top: 0;
   width: 1px;
   height: 1px;
   padding: 0;
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
 }
@@ -1134,8 +1137,12 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   border-radius: 50%;
   background: var(--bg);
   border: 2px solid var(--trace);
+  transition: box-shadow 280ms var(--ease);
 }
 .pulse.is-current { background: var(--trace); }
+.wave-item.is-in .pulse {
+  box-shadow: 0 0 0 6px var(--accent-soft);
+}
 .role-card {
   background: var(--surface);
   border: 1px solid var(--border);

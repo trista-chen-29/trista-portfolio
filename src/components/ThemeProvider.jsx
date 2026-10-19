@@ -1,6 +1,5 @@
 'use client';
 
-import { MotionConfig } from 'framer-motion';
 import { createContext, useCallback, useContext, useEffect, useSyncExternalStore } from 'react';
 
 const ThemeContext = createContext({ theme: 'light', toggleTheme: () => {}, setTheme: () => {} });
@@ -55,9 +54,7 @@ export function ThemeProvider({ children }) {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
-      <MotionConfig reducedMotion="user">
-        {children}
-      </MotionConfig>
+      {children}
     </ThemeContext.Provider>
   );
 }

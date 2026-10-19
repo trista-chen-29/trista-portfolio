@@ -87,7 +87,7 @@ export default function Nav() {
         <button
           className="cmdk-hint"
           type="button"
-          aria-label="Open command palette"
+          aria-label="⌘K, open command palette"
           aria-keyshortcuts="Control+K Meta+K"
           onClick={() => window.dispatchEvent(new CustomEvent('palette:toggle'))}
         >

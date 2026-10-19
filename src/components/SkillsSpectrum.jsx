@@ -77,7 +77,8 @@ export default function SkillsSpectrum() {
         <span>Also used </span>
         {allSkills.filter((skill) => !skill.visible).map((skill) => skill.name).join(' · ')}
       </p>
-      <table className={reduced ? 'skill-table' : 'sr-only'}>
+      <div className={reduced ? undefined : 'sr-only'}>
+      <table className="skill-table">
         <caption>Skills by lane, with depth and where each one shows up</caption>
         <thead>
           <tr>
@@ -98,6 +99,7 @@ export default function SkillsSpectrum() {
           ))}
         </tbody>
       </table>
+      </div>
     </section>
   );
 }

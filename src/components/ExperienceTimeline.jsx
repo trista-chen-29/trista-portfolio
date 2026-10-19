@@ -1,18 +1,31 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { roleEntries } from '@/data/experience';
 
 const entries = roleEntries();
 const recent = entries.filter((entry) => entry.era === 'recent');
 const earlier = entries.filter((entry) => entry.era === 'earlier');
 
-const view = { once: false, margin: '-18% 0px -18% 0px' };
-
 export default function ExperienceTimeline() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const items = document.querySelectorAll('#experience .wave-item');
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (media.matches) {
+      items.forEach((item) => item.classList.add('is-in'));
+      return undefined;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('is-in');
+      });
+    }, { threshold: 0.35 });
+    items.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, [open]);
 
   return (
     <section className="section" id="experience" aria-labelledby="experience-heading">
@@ -26,13 +39,7 @@ export default function ExperienceTimeline() {
             <Role key={entry.id} entry={entry} />
           ))}
           <li className="wave-item">
-            <motion.span
-              className="pulse"
-              aria-hidden="true"
-              initial={{ scale: 0.7 }}
-              whileInView={{ scale: 1 }}
-              viewport={view}
-            />
+            <span className="pulse" aria-hidden="true" />
             <div>
               <button
                 type="button"
@@ -74,21 +81,9 @@ function Role({ entry, nested = false }) {
   return (
     <li className={`wave-item${nested ? ' is-nested' : ''}`}>
       {!nested && (
-        <motion.span
-          className={`pulse${entry.current ? ' is-current' : ''}`}
-          aria-hidden="true"
-          initial={{ scale: 0.65 }}
-          whileInView={{ scale: 1 }}
-          viewport={view}
-        />
+        <span className={`pulse${entry.current ? ' is-current' : ''}`} aria-hidden="true" />
       )}
-      <motion.article
-        className="role-card"
-        initial={{ opacity: 0.72, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={view}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <article className="role-card">
         <div className="role-head">
           {entry.companyHref ? (
             <a className="role-logo" href={entry.companyHref} target="_blank" rel="noreferrer" aria-label={`${entry.company} website`}>
@@ -119,7 +114,7 @@ function Role({ entry, nested = false }) {
             </li>
           ))}
         </ul>
-      </motion.article>
+      </article>
     </li>
   );
 }

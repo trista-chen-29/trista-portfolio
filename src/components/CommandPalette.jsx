@@ -1,15 +1,16 @@
 'use client';
 
+import { MotionConfig, motion } from 'framer-motion';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { emailAddress, GITHUB_URL, LINKEDIN_URL, RESUME_URL } from '@/data/contact';
 import { projects } from '@/data/projects';
 import { useTheme } from './ThemeProvider';
 import { usePrefersReducedMotion } from './usePrefersReducedMotion';
 
-export default function CommandPalette() {
+export default function CommandPalette({ initialOpen = false }) {
   const { toggleTheme } = useTheme();
   const reduced = usePrefersReducedMotion();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(initialOpen);
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const [status, setStatus] = useState('');
@@ -122,12 +123,16 @@ export default function CommandPalette() {
         tabIndex={-1}
         onClick={() => setOpen(false)}
       />
-      <div
+      <MotionConfig reducedMotion="user">
+      <motion.div
         ref={dialogRef}
         className="palette-panel"
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
       >
         <h2 id={titleId} className="sr-only">Command palette</h2>
         <input
@@ -169,7 +174,8 @@ export default function CommandPalette() {
         )}
         <p className="palette-status" role="status">{status}</p>
         <p className="palette-hint">Arrow keys to move, Enter to run, Esc to close</p>
-      </div>
+      </motion.div>
+      </MotionConfig>
     </div>
   );
 }
