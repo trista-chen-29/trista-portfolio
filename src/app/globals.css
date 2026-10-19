@@ -938,6 +938,71 @@ a.tl-logo { transition: transform 200ms var(--ease); }
 }
 .section { margin-top: 72px; }
 .section:first-child { margin-top: 8px; }
+.hero-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 84px;
+  gap: 16px 18px;
+  align-items: end;
+}
+.portrait-wrap {
+  position: relative;
+  width: 84px;
+  height: 104px;
+  justify-self: end;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface2);
+  box-shadow: var(--photo-shadow);
+}
+.position {
+  margin-top: 12px;
+  max-width: 38rem;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+.scope-wrap { margin-top: 6px; }
+.scope-trace {
+  width: 100%;
+  height: 72px;
+  display: block;
+  color: var(--trace);
+}
+.glance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  list-style: none;
+  margin-top: 4px;
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text2);
+}
+.glance li { display: inline; }
+.glance li + li::before {
+  content: "·";
+  margin: 0 8px;
+  color: var(--accent);
+}
+.now-line {
+  margin-top: 12px;
+  max-width: 42rem;
+  color: var(--text2);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.now-line a {
+  color: var(--link);
+  font-weight: 650;
+  text-underline-offset: 3px;
+}
+@media (min-width: 768px) {
+  .hero-top { grid-template-columns: minmax(0, 1fr) 104px; }
+  .portrait-wrap { width: 104px; height: 128px; }
+  .scope-trace { height: 96px; }
+  .position { font-size: 1.2rem; }
+}
 #work, #experience, #skills, #about, #contact, #demo, #more-projects, #top {
   scroll-margin-top: calc(var(--nav-h) + 16px);
 }

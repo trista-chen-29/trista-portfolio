@@ -1,8 +1,45 @@
+import Image from 'next/image';
+import ScopeTrace from './ScopeTrace';
+
 export default function Hero() {
   return (
-    <section className="section" id="top" aria-label="Introduction">
-      <p className="kicker">Firmware · Robotics · Validation</p>
-      <h1 className="display">Yi-Chi (Trista) Chen</h1>
+    <section className="hero-block section" id="top" aria-label="Introduction">
+      <div className="hero-top">
+        <div>
+          <p className="kicker">Firmware · Robotics · Validation</p>
+          <h1 className="display">Yi-Chi (Trista) Chen</h1>
+          {/* TODO(hero-line): replace with Trista's final one-line positioning statement. */}
+          <p className="position">Firmware and validation engineer who ships things that move.</p>
+          <div className="hero-actions">
+            <a className="btn-solid" href="/Yi-Chi_Trista_Chen_Resume.pdf">Resume</a>
+            <a className="btn-outline" href="#contact">Contact</a>
+          </div>
+        </div>
+        <div className="portrait-wrap">
+          <Image
+            src="/photo.jpg"
+            alt="Portrait of Yi-Chi (Trista) Chen"
+            fill
+            priority
+            sizes="104px"
+            style={{ objectFit: 'cover', objectPosition: 'center 18%' }}
+          />
+        </div>
+      </div>
+      <ScopeTrace />
+      <ul className="glance" aria-label="At a glance">
+        <li>GPA 3.7</li>
+        <li>Grad May 2027</li>
+        <li>Seeking: internships now / new grad after May 2027</li>
+        <li>San Jose, CA</li>
+      </ul>
+      <p className="now-line">
+        Now: EMC &amp; RF validation at{' '}
+        <a href="https://www.element.com/" target="_blank" rel="noreferrer">Element Materials Technology</a>
+        {' · '}
+        Officer at{' '}
+        <a href="https://sce.sjsu.edu/" target="_blank" rel="noreferrer">SJSU SCE</a>
+      </p>
     </section>
   );
 }
