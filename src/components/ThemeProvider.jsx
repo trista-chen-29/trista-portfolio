@@ -1,9 +1,8 @@
 'use client';
 
-import { MotionConfig } from 'framer-motion';
 import { createContext, useCallback, useContext, useEffect, useSyncExternalStore } from 'react';
 
-const ThemeContext = createContext({ theme: 'light', toggleTheme: () => {} });
+const ThemeContext = createContext({ theme: 'light', toggleTheme: () => {}, setTheme: () => {} });
 
 let currentTheme = 'light';
 const listeners = new Set();
@@ -25,10 +24,28 @@ function getServerSnapshot() {
   return 'light';
 }
 
+// Storage can throw (private mode, blocked site data). The theme must still work without it.
+function readSavedTheme() {
+  try {
+    const saved = window.localStorage.getItem('theme');
+    return saved === 'dark' || saved === 'light' ? saved : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveTheme(next) {
+  try {
+    window.localStorage.setItem('theme', next);
+  } catch {
+    /* not persisted; the theme still applies for this visit */
+  }
+}
+
 function applyTheme(next) {
   currentTheme = next;
   document.documentElement.dataset.theme = next;
-  window.localStorage.setItem('theme', next);
+  saveTheme(next);
   emit();
 }
 
@@ -36,8 +53,7 @@ export function ThemeProvider({ children }) {
   const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem('theme');
-    const next = saved === 'dark' || saved === 'light' ? saved : 'light';
+    const next = readSavedTheme() || 'light';
     document.documentElement.dataset.theme = next;
     if (next !== currentTheme) {
       currentTheme = next;
@@ -49,11 +65,13 @@ export function ThemeProvider({ children }) {
     applyTheme(currentTheme === 'light' ? 'dark' : 'light');
   }, []);
 
+  const setTheme = useCallback((next) => {
+    if (next === 'light' || next === 'dark') applyTheme(next);
+  }, []);
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <MotionConfig reducedMotion="user">
-        {children}
-      </MotionConfig>
+    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
+      {children}
     </ThemeContext.Provider>
   );
 }

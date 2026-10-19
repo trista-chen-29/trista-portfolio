@@ -1,19 +1,50 @@
 import './globals.css';
-import { Newsreader } from 'next/font/google';
+import { Figtree, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import Navbar from '@/components/Navbar';
-import CatCompanion from '@/components/CatCompanion';
+import Nav from '@/components/Nav';
+import PaletteHost from '@/components/PaletteHost';
+import CatHost from '@/components/CatHost';
 
-const newsreader = Newsreader({
+const instrument = Instrument_Serif({
   subsets: ['latin'],
+  weight: '400',
   display: 'swap',
-  weight: ['500', '600'],
   variable: '--font-serif',
 });
 
+const figtree = Figtree({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-sans',
+});
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+});
+
+const description = 'Yi-Chi (Trista) Chen, a Taiwanese software engineering student in San Jose, graduating May 2027. Firmware, robotics, validation, and software.';
+
 export const metadata = {
-  title: 'Trista Chen',
-  description: 'Yi-Chi (Trista) Chen, a Taiwanese software engineering student in San Jose, graduating May 2027. Firmware, robotics, validation, and software.',
+  metadataBase: new URL('https://www.yichichen.dev'),
+  title: 'Trista Chen — Firmware, robotics, validation',
+  description,
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'Trista Chen — Firmware, robotics, validation',
+    description,
+    url: 'https://www.yichichen.dev',
+    siteName: 'trista.chen',
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Trista Chen — Firmware, robotics, validation',
+    description,
+  },
 };
 
 export const viewport = {
@@ -21,28 +52,35 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: 'cover',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f6f1e8' },
-    { media: '(prefers-color-scheme: dark)', color: '#261e30' },
-  ],
+  themeColor: '#261e30',
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="light" className={newsreader.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      data-theme="light"
+      className={`${instrument.variable} ${figtree.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}",
+          }}
+        />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body>
         <ThemeProvider>
-          <Navbar />
-          <CatCompanion />
-          <main>{children}</main>
+          <Nav />
+          <main id="content">{children}</main>
           <footer className="site-footer">
             <p>© Yi-Chi (Trista) Chen</p>
           </footer>
+          <PaletteHost />
+          <CatHost />
         </ThemeProvider>
       </body>
     </html>
