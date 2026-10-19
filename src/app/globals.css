@@ -1195,6 +1195,106 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   text-align: left;
 }
 .earlier-list { display: grid; gap: 12px; margin-top: 12px; }
+.skills-note {
+  max-width: 42rem;
+  color: var(--text2);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.lane { margin-top: 20px; }
+.lane h3 {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.bars {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  align-items: end;
+}
+.bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  min-height: 128px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.bar-track {
+  display: flex;
+  align-items: flex-end;
+  height: 92px;
+  border: 1px solid var(--border);
+  border-radius: 8px 8px 3px 3px;
+  background: var(--accent-soft);
+  overflow: hidden;
+}
+.bar-fill {
+  display: block;
+  width: 100%;
+  background: var(--trace);
+}
+.bar-fill.is-unset {
+  height: 42%;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--trace),
+    var(--trace) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+}
+.bar.is-on .bar-track,
+.bar:focus-visible .bar-track { border-color: var(--accent); }
+.bar-name {
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.25;
+  color: var(--text2);
+  min-height: 2.5em;
+}
+.skill-proof {
+  margin-top: 16px;
+  min-height: 3.4em;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.also-used {
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text3);
+}
+.also-used span { color: var(--text2); }
+.skill-table {
+  width: 100%;
+  margin-top: 18px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.skill-table th,
+.skill-table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+@media (min-width: 768px) {
+  .bars { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .bar-track { height: 120px; }
+  .bar { min-height: 160px; }
+}
 @media (min-width: 768px) {
   .more-list li {
     grid-template-columns: minmax(0, 1fr) minmax(180px, 34%);
