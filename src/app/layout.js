@@ -5,6 +5,7 @@ import Nav from '@/components/Nav';
 import PaletteHost from '@/components/PaletteHost';
 import CatHost from '@/components/CatHost';
 import { themeBoot } from '@/lib/theme-boot';
+import { GITHUB_URL, LINKEDIN_URL } from '@/data/contact';
 
 const instrument = Instrument_Serif({
   subsets: ['latin'],
@@ -68,6 +69,23 @@ export default function RootLayout({ children }) {
         <script
           dangerouslySetInnerHTML={{
             __html: themeBoot,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Yi-Chi (Trista) Chen',
+              alumniOf: { '@type': 'CollegeOrUniversity', name: 'SJSU' },
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'San Jose',
+                addressRegion: 'CA',
+              },
+              sameAs: [LINKEDIN_URL, GITHUB_URL],
+            }),
           }}
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
