@@ -8,8 +8,8 @@ export default function Hero() {
         <div>
           <p className="kicker">Firmware · Robotics · Validation</p>
           <h1 className="display">Yi-Chi (Trista) Chen</h1>
-          {/* TODO(hero-line): replace with Trista's final one-line positioning statement. */}
           <p className="position">Firmware and validation engineer who ships things that move.</p>
+          <p className="hero-sub">SJSU Software Engineering, May 2027 · Open to firmware, robotics, validation roles</p>
           <div className="hero-actions">
             <a className="btn-solid" href="/Yi-Chi_Trista_Chen_Resume.pdf">Resume</a>
             <a className="btn-outline" href="#contact">Contact</a>
