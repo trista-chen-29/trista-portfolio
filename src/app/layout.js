@@ -1,14 +1,26 @@
 import './globals.css';
-import { Newsreader } from 'next/font/google';
+import { Figtree, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import Navbar from '@/components/Navbar';
-import CatCompanion from '@/components/CatCompanion';
+import Nav from '@/components/Nav';
 
-const newsreader = Newsreader({
+const instrument = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+  variable: '--font-serif',
+});
+
+const figtree = Figtree({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-sans',
+});
+
+const geistMono = Geist_Mono({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['500', '600'],
-  variable: '--font-serif',
+  variable: '--font-mono',
 });
 
 export const metadata = {
@@ -29,17 +41,25 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="light" className={newsreader.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      data-theme="light"
+      className={`${instrument.variable} ${figtree.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}",
+          }}
+        />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body>
         <ThemeProvider>
-          <Navbar />
-          <CatCompanion />
-          <main>{children}</main>
+          <Nav />
+          <main id="content">{children}</main>
           <footer className="site-footer">
             <p>© Yi-Chi (Trista) Chen</p>
           </footer>

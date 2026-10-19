@@ -3,7 +3,7 @@
 import { MotionConfig } from 'framer-motion';
 import { createContext, useCallback, useContext, useEffect, useSyncExternalStore } from 'react';
 
-const ThemeContext = createContext({ theme: 'light', toggleTheme: () => {} });
+const ThemeContext = createContext({ theme: 'light', toggleTheme: () => {}, setTheme: () => {} });
 
 let currentTheme = 'light';
 const listeners = new Set();
@@ -49,8 +49,12 @@ export function ThemeProvider({ children }) {
     applyTheme(currentTheme === 'light' ? 'dark' : 'light');
   }, []);
 
+  const setTheme = useCallback((next) => {
+    if (next === 'light' || next === 'dark') applyTheme(next);
+  }, []);
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
       <MotionConfig reducedMotion="user">
         {children}
       </MotionConfig>
