@@ -128,7 +128,7 @@ export const projects = [
     role: 'Backend Engineer',
     outcome: '',
     summary: 'A source-linked portrait built only from public web material.',
-    desc: 'Source-linked portrait prototype from public web material: username discovery, a SQLite corpus with crawls and citations, and LLM reports that stay grounded in saved evidence. Shipped backend contract tests and Playwright coverage, plus a production-build fix for empty Next.js routes.',
+    desc: 'Source-linked portrait prototype from public web material: username discovery, a SQLite corpus with crawls and citations, and LLM reports that stay grounded in saved evidence. Backend contract tests and Playwright coverage, plus a production-build fix for empty Next.js routes.',
     tags: ['FastAPI', 'Next.js', 'SQLite', 'Playwright'],
     href: 'https://github.com/jindoridodi/shower-hacks',
     shots: [{ src: '/projects/freakypeeky.png', width: 2560, height: 1600, alt: 'freakypeeky portrait interface' }],

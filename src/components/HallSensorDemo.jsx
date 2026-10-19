@@ -124,7 +124,7 @@ export default function HallSensorDemo() {
             aria-label="Wheel angle"
             aria-valuemin={0}
             aria-valuemax={359}
-            aria-valuenow={power ? Math.round(angle) : undefined}
+            aria-valuenow={power ? Math.round(angle) : 0}
             aria-valuetext={power ? `${angle.toFixed(1)} degrees` : 'Position unknown'}
             onKeyDown={onKeyDown}
             onPointerDown={onPointerDown}

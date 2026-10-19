@@ -24,9 +24,26 @@ const geistMono = Geist_Mono({
   variable: '--font-mono',
 });
 
+const description = 'Yi-Chi (Trista) Chen, a Taiwanese software engineering student in San Jose, graduating May 2027. Firmware, robotics, validation, and software.';
+
 export const metadata = {
-  title: 'Trista Chen',
-  description: 'Yi-Chi (Trista) Chen, a Taiwanese software engineering student in San Jose, graduating May 2027. Firmware, robotics, validation, and software.',
+  metadataBase: new URL('https://www.yichichen.dev'),
+  title: 'Trista Chen — Firmware, robotics, validation',
+  description,
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'Trista Chen — Firmware, robotics, validation',
+    description,
+    url: 'https://www.yichichen.dev',
+    siteName: 'trista.chen',
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Trista Chen — Firmware, robotics, validation',
+    description,
+  },
 };
 
 export const viewport = {
@@ -34,10 +51,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: 'cover',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f6f1e8' },
-    { media: '(prefers-color-scheme: dark)', color: '#261e30' },
-  ],
+  themeColor: '#261e30',
 };
 
 export default function RootLayout({ children }) {
