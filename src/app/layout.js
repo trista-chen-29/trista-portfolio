@@ -2,6 +2,7 @@ import './globals.css';
 import { Figtree, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Nav from '@/components/Nav';
+import CommandPalette from '@/components/CommandPalette';
 
 const instrument = Instrument_Serif({
   subsets: ['latin'],
@@ -63,6 +64,7 @@ export default function RootLayout({ children }) {
           <footer className="site-footer">
             <p>© Yi-Chi (Trista) Chen</p>
           </footer>
+          <CommandPalette />
         </ThemeProvider>
       </body>
     </html>
