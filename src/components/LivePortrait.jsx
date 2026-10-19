@@ -26,8 +26,8 @@ export default function LivePortrait() {
         shift.style.transform = 'translate(0px, 0px)';
         return;
       }
-      const x = look.current.x * -16;
-      const y = look.current.y * -18;
+      const x = look.current.x * -36;
+      const y = look.current.y * -42;
       shift.style.transform = `translate(${x}px, ${y}px)`;
       if (!media.matches) scan.style.top = `${(look.current.y + 0.5) * 100}%`;
     };

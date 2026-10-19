@@ -112,8 +112,26 @@ export default function SiteCat({ petOnMount = false }) {
       const { maxX, maxY } = bounds();
       spot.x = Math.max(0, Math.min(maxX, x));
       spot.y = Math.max(0, Math.min(maxY, y));
+      const photo = document.querySelector('.portrait-frame');
+      if (photo) {
+        const fieldRect = field.getBoundingClientRect();
+        const photoRect = photo.getBoundingClientRect();
+        const size = cat.offsetWidth;
+        const left = fieldRect.left + spot.x;
+        const top = fieldRect.top + spot.y;
+        const hit = left < photoRect.right - 8
+          && left + size > photoRect.left + 8
+          && top < photoRect.bottom - 8
+          && top + size > photoRect.top + 8;
+        if (hit) {
+          const below = photoRect.bottom - fieldRect.top + 10;
+          if (below <= maxY) spot.y = below;
+          else spot.x = Math.max(0, Math.min(maxX, photoRect.left - fieldRect.left - size - 10));
+        }
+      }
       actor.style.transform = `translate(${spot.x}px, ${spot.y - lift}px)`;
       actor.classList.toggle('is-left', spot.face < 0);
+      actor.classList.toggle('is-right', spot.x > maxX * 0.45);
       actor.classList.toggle('is-pet', spot.mode === 'pet');
       actor.classList.toggle('is-curious', spot.mode === 'approach');
     };

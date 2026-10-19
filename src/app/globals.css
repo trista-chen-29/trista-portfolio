@@ -372,12 +372,16 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
   pointer-events: none;
   will-change: transform;
 }
+.cat-actor.is-right .cat-line {
+  left: auto;
+  right: 0;
+}
 .cat-line {
   position: absolute;
   left: 0;
   bottom: calc(100% - 8px);
   width: max-content;
-  max-width: 180px;
+  max-width: min(180px, 42vw);
   margin: 0;
   padding: 6px 9px;
   border-radius: 12px;
@@ -992,7 +996,10 @@ a.tl-logo { transition: transform 200ms var(--ease); }
 }
 .portrait-shift {
   position: absolute;
-  inset: -14%;
+  width: 210%;
+  height: 210%;
+  left: -48%;
+  top: -62%;
   transition: transform 480ms var(--ease);
 }
 .portrait-frame.is-looking .portrait-shift { transition-duration: 70ms; }
