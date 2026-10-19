@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { skillLanes } from '@/data/skills';
 
 const allSkills = skillLanes.flatMap((lane) => lane.skills.map((skill) => ({
@@ -15,6 +15,17 @@ const rated = allSkills.some((skill) => skill.depth != null);
 
 export default function SkillsSpectrum() {
   const [active, setActive] = useState(null);
+  const [linked, setLinked] = useState('');
+
+  useEffect(() => {
+    const onHighlight = (event) => {
+      setLinked(typeof event.detail === 'string' ? event.detail : '');
+    };
+    window.addEventListener('skill:highlight', onHighlight);
+    return () => window.removeEventListener('skill:highlight', onHighlight);
+  }, []);
+
+  const isLinked = (skill) => linked !== '' && skill.name.toLowerCase() === linked.toLowerCase();
 
   const select = (skill) => setActive(skill);
 
@@ -62,7 +73,7 @@ export default function SkillsSpectrum() {
                     return (
                       <button
                         key={skill.name}
-                        className={`bar${selected ? ' is-on' : ''}`}
+                        className={`bar${selected ? ' is-on' : ''}${isLinked(skill) ? ' is-linked' : ''}`}
                         {...interaction(skill, lane.id, index)}
                       >
                         <span className="bar-track" aria-hidden="true">
@@ -80,7 +91,7 @@ export default function SkillsSpectrum() {
                     return (
                       <button
                         key={skill.name}
-                        className={`chip${selected ? ' is-on' : ''}`}
+                        className={`chip${selected ? ' is-on' : ''}${isLinked(skill) ? ' is-linked' : ''}`}
                         {...interaction(skill, lane.id, index)}
                       >
                         {skill.name}

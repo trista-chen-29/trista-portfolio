@@ -154,35 +154,6 @@ export default function SiteCat({ petOnMount = false }) {
       spot.face = landing.x < spot.x ? -1 : 1;
     };
 
-    const nextLanding = () => {
-      const { maxX, maxY } = bounds();
-      const regions = [
-        { x: maxX * 0.08, y: maxY * 0.16 },
-        { x: maxX * 0.78, y: maxY * 0.2 },
-        { x: maxX * 0.12, y: maxY * 0.72 },
-        { x: maxX * 0.7, y: maxY * 0.68 },
-        { x: maxX * 0.42, y: maxY * 0.4 },
-      ];
-      const ranked = regions
-        .map((region) => ({
-          region,
-          distance: Math.hypot(region.x - spot.x, region.y - spot.y),
-        }))
-        .filter((item) => item.distance > 80)
-        .sort((a, b) => a.distance - b.distance);
-      const pool = ranked.slice(0, 3);
-      if (!pool.length) {
-        spot.mode = 'rest';
-        spot.until = performance.now() + 5000;
-        return;
-      }
-      const choice = pool[Math.floor(Math.random() * pool.length)].region;
-      startHop(
-        choice.x + (Math.random() - 0.5) * maxX * 0.08,
-        choice.y + (Math.random() - 0.5) * maxY * 0.06,
-      );
-    };
-
     const pet = () => {
       spot.mode = 'pet';
       spot.petUntil = performance.now() + 1700;
@@ -274,12 +245,11 @@ export default function SiteCat({ petOnMount = false }) {
         paint(x, y, arc);
         if (t >= 1) {
           spot.mode = 'rest';
-          spot.until = now + 5000 + Math.random() * 3000;
+          spot.until = now + 900;
         }
       } else {
         paint(spot.x, spot.y, 0);
         if (dist > 340) spot.greeted = false;
-        if (now >= spot.until) nextLanding();
       }
 
       frame = requestAnimationFrame(tick);

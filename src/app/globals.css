@@ -364,6 +364,10 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
   left: 0;
   pointer-events: none;
 }
+/* The cat is a desktop easter egg. It never sits on top of content on phones or touch screens. */
+@media (max-width: 767px), (pointer: coarse) {
+  .cat-field { display: none; }
+}
 .cat-actor {
   position: absolute;
   top: 0;
@@ -420,12 +424,13 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
 }
 .cat-tail {
   transform-origin: 62px 72px;
-  animation: cat-tail 3.8s ease-in-out infinite;
 }
 .cat-lid {
   transform-box: fill-box;
   transform-origin: center;
-  animation: cat-blink 6.8s ease-in-out infinite;
+}
+.cat-actor.is-curious .cat-tail {
+  animation: cat-tail 0.85s ease-in-out infinite;
 }
 @keyframes cat-tail {
   0%, 100% { transform: rotate(-6deg); }
@@ -1071,13 +1076,13 @@ a.tl-logo { transition: transform 200ms var(--ease); }
 .portrait-frame.is-looking .portrait-dot { box-shadow: 0 0 0 4px var(--accent-soft); }
 .position {
   margin-top: 12px;
-  max-width: 38rem;
+  max-width: 68ch;
   font-size: 1.05rem;
   line-height: 1.45;
 }
 .hero-sub {
   margin-top: 8px;
-  max-width: 42rem;
+  max-width: 68ch;
   color: var(--text2);
   font-size: 15px;
   line-height: 1.45;
@@ -1109,7 +1114,7 @@ a.tl-logo { transition: transform 200ms var(--ease); }
 }
 .now-line {
   margin-top: 12px;
-  max-width: 42rem;
+  max-width: 68ch;
   color: var(--text2);
   font-size: 15px;
   line-height: 1.5;
@@ -1160,10 +1165,28 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   letter-spacing: -0.03em;
   line-height: 1.1;
   margin: 4px 0 8px;
+  overflow-wrap: anywhere;
 }
-.case-result { font-size: 1.02rem; line-height: 1.45; }
+.case-result { font-size: 1.02rem; line-height: 1.45; max-width: 68ch; }
 .metric, .todo { color: var(--accent); margin-top: 8px; }
-.case-facts { display: grid; gap: 12px; margin-top: 14px; }
+.case-read {
+  margin-top: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--link);
+  font-weight: 680;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.case-facts {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 180ms var(--ease);
+}
+.case-facts.is-open { grid-template-rows: 1fr; }
+.case-facts-inner { overflow: hidden; }
+.case-facts dl { display: grid; gap: 12px; margin-top: 14px; }
 .case-facts dt {
   font-family: var(--mono);
   font-size: 11px;
@@ -1171,7 +1194,7 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   text-transform: uppercase;
   color: var(--text3);
 }
-.case-facts dd { margin: 3px 0 0; font-size: 15px; line-height: 1.5; }
+.case-facts dd { margin: 3px 0 0; font-size: 15px; line-height: 1.5; max-width: 68ch; }
 .tag-row {
   display: flex;
   flex-wrap: wrap;
@@ -1180,13 +1203,16 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   padding: 0;
   list-style: none;
 }
-.tag-row li {
+.tag-row li { list-style: none; }
+.tag {
   font-family: var(--mono);
   font-size: 12px;
   padding: 4px 8px;
   border-radius: 999px;
   border: 1px solid var(--border2);
+  background: transparent;
   color: var(--text2);
+  cursor: pointer;
 }
 .case-links { margin-top: 14px; }
 .text-link { color: var(--link); font-weight: 680; text-underline-offset: 3px; }
@@ -1301,6 +1327,7 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   padding-left: 1.1rem;
   color: var(--text2);
   font-size: 15px;
+  max-width: 68ch;
 }
 .role-bullets li + li { margin-top: 4px; }
 .earlier-toggle {
@@ -1405,6 +1432,8 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   transition: border-color 160ms var(--ease), background-color 160ms var(--ease);
 }
 .chip:hover { border-color: var(--accent); }
+.chip.is-linked,
+.bar.is-linked { border-color: var(--accent); transition: none; }
 .chip.is-on,
 .chip:focus-visible {
   border-color: var(--accent);
@@ -1448,7 +1477,7 @@ a.tl-logo { transition: transform 200ms var(--ease); }
 .about-copy {
   display: grid;
   gap: 10px;
-  max-width: 40rem;
+  max-width: 68ch;
 }
 .about-copy p { font-size: 17px; line-height: 1.55; }
 .off-label {

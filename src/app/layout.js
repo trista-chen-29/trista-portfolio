@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import Nav from '@/components/Nav';
 import PaletteHost from '@/components/PaletteHost';
 import CatHost from '@/components/CatHost';
+import { themeBoot } from '@/lib/theme-boot';
 
 const instrument = Instrument_Serif({
   subsets: ['latin'],
@@ -52,7 +53,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: 'cover',
-  themeColor: '#261e30',
+  themeColor: '#f6f1e8',
 };
 
 export default function RootLayout({ children }) {
@@ -66,7 +67,7 @@ export default function RootLayout({ children }) {
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: "try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}",
+            __html: themeBoot,
           }}
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
