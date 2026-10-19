@@ -19,9 +19,12 @@ export default function Hero() {
       </div>
       <ScopeTrace />
       <ul className="glance" aria-label="At a glance">
+        <li>
+          <span className="glance-dot" aria-hidden="true" />
+          Open to firmware, validation, robotics roles · internships now, new grad after May 2027
+        </li>
         <li>GPA 3.7</li>
         <li>Grad May 2027</li>
-        <li>Seeking: internships now / new grad after May 2027</li>
         <li>San Jose, CA</li>
       </ul>
       <p className="now-line">

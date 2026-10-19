@@ -1107,6 +1107,20 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   color: var(--text2);
 }
 .glance li { display: inline; }
+.glance-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--trace);
+  vertical-align: 1px;
+  animation: glance-pulse 700ms var(--ease) 1;
+}
+@keyframes glance-pulse {
+  from { box-shadow: 0 0 0 0 var(--accent-soft); }
+  to { box-shadow: 0 0 0 6px transparent; }
+}
 .glance li + li::before {
   content: "·";
   margin: 0 8px;

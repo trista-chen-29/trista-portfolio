@@ -18,7 +18,7 @@ export default function Contact() {
       <ul className="contact-list">
         <li>
           {email ? (
-            <a href={`mailto:${email}`}>{email}</a>
+            <a href={`mailto:${email}?subject=Opportunity`}>{email}</a>
           ) : (
             <span>Email</span>
           )}
