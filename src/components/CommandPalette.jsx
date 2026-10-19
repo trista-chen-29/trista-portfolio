@@ -228,6 +228,16 @@ function createActions({ toggleTheme, reduced, setOpen, setStatus }) {
       run: () => openUrl(project.href),
     })),
     {
+      id: 'cat',
+      label: 'Pet the cat',
+      group: 'Actions',
+      keywords: 'cat pet hello visitor',
+      run: () => {
+        setOpen(false);
+        window.dispatchEvent(new CustomEvent('cat:pet'));
+      },
+    },
+    {
       id: 'theme',
       label: 'Toggle theme',
       group: 'Actions',

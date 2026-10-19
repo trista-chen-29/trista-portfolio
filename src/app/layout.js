@@ -3,6 +3,7 @@ import { Figtree, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Nav from '@/components/Nav';
 import PaletteHost from '@/components/PaletteHost';
+import CatHost from '@/components/CatHost';
 
 const instrument = Instrument_Serif({
   subsets: ['latin'],
@@ -79,6 +80,7 @@ export default function RootLayout({ children }) {
             <p>© Yi-Chi (Trista) Chen</p>
           </footer>
           <PaletteHost />
+          <CatHost />
         </ThemeProvider>
       </body>
     </html>

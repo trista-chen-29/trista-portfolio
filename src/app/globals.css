@@ -364,10 +364,39 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
   left: 0;
   pointer-events: none;
 }
-.cat-button {
+.cat-actor {
   position: absolute;
   top: 0;
   left: 0;
+  width: 72px;
+  pointer-events: none;
+  will-change: transform;
+}
+.cat-line {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% - 8px);
+  width: max-content;
+  max-width: 180px;
+  margin: 0;
+  padding: 6px 9px;
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.cat-line:empty { display: none; }
+.cat-actor.is-left .cat-svg { transform: scaleX(-1); }
+.cat-actor.is-pet .cat-lid {
+  animation: none;
+  transform: scaleY(1);
+}
+.cat-actor.is-curious .cat-tail { animation-duration: 0.85s; }
+.cat-button {
+  position: relative;
   width: 72px;
   height: 72px;
   border: 0;
@@ -377,7 +406,6 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
   cursor: pointer;
   pointer-events: auto;
   border-radius: 18px;
-  will-change: transform;
 }
 .cat-button:hover { filter: brightness(1.08); }
 .cat-button:active { opacity: 0.82; }
@@ -945,20 +973,93 @@ a.tl-logo { transition: transform 200ms var(--ease); }
 .section:first-child { margin-top: 8px; }
 .hero-top {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 84px;
+  grid-template-columns: minmax(0, 1fr) 132px;
   gap: 16px 18px;
   align-items: end;
 }
-.portrait-wrap {
+.portrait-frame {
   position: relative;
-  width: 84px;
-  height: 104px;
+  width: 132px;
+  height: 168px;
   justify-self: end;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
   background: var(--surface2);
   box-shadow: var(--photo-shadow);
+  border: 1px solid var(--border2);
+  cursor: crosshair;
+  touch-action: none;
 }
+.portrait-shift {
+  position: absolute;
+  inset: -14%;
+  transition: transform 480ms var(--ease);
+}
+.portrait-frame.is-looking .portrait-shift { transition-duration: 70ms; }
+.portrait-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: var(--trace);
+  box-shadow: 0 0 10px var(--trace);
+  opacity: 0.8;
+  pointer-events: none;
+  animation: portrait-scan 5.2s ease-in-out infinite;
+}
+.portrait-frame.is-looking .portrait-scan { animation: none; }
+@keyframes portrait-scan {
+  0%, 100% { top: 8%; }
+  50% { top: 88%; }
+}
+.portrait-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(38, 30, 48, 0.18), transparent 22% 78%, rgba(38, 30, 48, 0.28)),
+    radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(38, 30, 48, 0.2));
+}
+.portrait-corners {
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--trace), var(--trace)) left top / 16px 1.5px no-repeat,
+    linear-gradient(var(--trace), var(--trace)) left top / 1.5px 16px no-repeat,
+    linear-gradient(var(--trace), var(--trace)) right top / 16px 1.5px no-repeat,
+    linear-gradient(var(--trace), var(--trace)) right top / 1.5px 16px no-repeat,
+    linear-gradient(var(--trace), var(--trace)) left bottom / 16px 1.5px no-repeat,
+    linear-gradient(var(--trace), var(--trace)) left bottom / 1.5px 16px no-repeat,
+    linear-gradient(var(--trace), var(--trace)) right bottom / 16px 1.5px no-repeat,
+    linear-gradient(var(--trace), var(--trace)) right bottom / 1.5px 16px no-repeat;
+}
+.portrait-readout {
+  position: absolute;
+  left: 8px;
+  bottom: 7px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 7px 2px 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.portrait-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--trace);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.portrait-frame.is-looking .portrait-dot { box-shadow: 0 0 0 4px var(--accent-soft); }
 .position {
   margin-top: 12px;
   max-width: 38rem;
@@ -1003,8 +1104,8 @@ a.tl-logo { transition: transform 200ms var(--ease); }
   text-underline-offset: 3px;
 }
 @media (min-width: 768px) {
-  .hero-top { grid-template-columns: minmax(0, 1fr) 104px; }
-  .portrait-wrap { width: 104px; height: 128px; }
+  .hero-top { grid-template-columns: minmax(0, 1fr) 188px; }
+  .portrait-frame { width: 188px; height: 236px; }
   .scope-trace { height: 96px; }
   .position { font-size: 1.2rem; }
 }

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import LivePortrait from './LivePortrait';
 import ScopeTrace from './ScopeTrace';
 
 export default function Hero() {
@@ -15,16 +15,7 @@ export default function Hero() {
             <a className="btn-outline" href="#contact">Contact</a>
           </div>
         </div>
-        <div className="portrait-wrap">
-          <Image
-            src="/photo.jpg"
-            alt="Portrait of Yi-Chi (Trista) Chen"
-            fill
-            priority
-            sizes="104px"
-            style={{ objectFit: 'cover', objectPosition: 'center 18%' }}
-          />
-        </div>
+        <LivePortrait />
       </div>
       <ScopeTrace />
       <ul className="glance" aria-label="At a glance">
